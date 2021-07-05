@@ -138,12 +138,13 @@ class Thumbnail {
 @JsonSerializable()
 class Thumbnails {
   const Thumbnails({
+    // ignore: non_constant_identifier_names
     required this.default_,
     required this.medium,
     required this.high,
   });
 
-  @JsonKey(name: "default")
+  @JsonKey(name: 'default')
   // ignore: non_constant_identifier_names
   final Thumbnail default_;
   final Thumbnail medium;
