@@ -7,7 +7,7 @@ import 'package:playlister/models.dart';
 
 void main() {
   group('Models', () {
-    final key = Platform.environment['API_KEY']!;
+    final key = Platform.environment['API_KEY'];
 
     test('Deserialization of YouTube API response', () async {
       final res = await get(Uri.parse(
