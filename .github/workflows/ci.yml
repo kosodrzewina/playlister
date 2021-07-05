@@ -47,6 +47,19 @@ jobs:
       - name: Android build
         run: flutter build apk --split-per-abi
 
+  ios:
+    name: iOS
+    runs-on: macos-latest
+    # needs: lint
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "2.0.5"
+
+      - run: flutter build ios --release --no-codesign
+
   linux:
     name: Linux
     runs-on: ubuntu-latest
