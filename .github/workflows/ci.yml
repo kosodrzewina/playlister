@@ -50,7 +50,7 @@ jobs:
   ios:
     name: iOS
     runs-on: macos-latest
-    # needs: lint
+    needs: lint
     steps:
       - uses: actions/checkout@v2
 
