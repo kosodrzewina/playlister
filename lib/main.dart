@@ -58,6 +58,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(2),
+          child: Container(
+            color: Colors.white,
+            height: 2,
+          ),
+        ),
         title: Text(widget.title),
         elevation: 0,
         leading: IconButton(
