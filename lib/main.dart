@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,9 +20,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
         textTheme: const TextTheme(
-          bodyText1: TextStyle(),
-          bodyText2: TextStyle(),
-          headline4: TextStyle(),
+          bodyText1: TextStyle(fontWeight: FontWeight.bold),
+          bodyText2: TextStyle(fontWeight: FontWeight.bold),
+          headline4: TextStyle(fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontWeight: FontWeight.bold),
         ).apply(
           bodyColor: Colors.white,
           displayColor: Colors.white,
@@ -98,17 +101,166 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        child: Container(
+          margin: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Recently updated',
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  vertical: 10,
+                ),
+                height: 100,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Container(
+                      width: 100,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.teal),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              side: const BorderSide(
+                                color: Colors.white,
+                                width: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          child: const Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              'Playlist name',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.brown),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              side: const BorderSide(
+                                color: Colors.white,
+                                width: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          child: const Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              'Playlist name',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.pink),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              side: const BorderSide(
+                                color: Colors.white,
+                                width: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          child: const Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              'Playlist name',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.deepPurple),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              side: const BorderSide(
+                                color: Colors.white,
+                                width: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          child: const Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              'Playlist name',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Text(
+                'Recently added',
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
