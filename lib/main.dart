@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'styles/custom_icons.dart';
@@ -128,7 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               MaterialStateProperty.all(Colors.teal),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(
+                                15,
+                              ),
                               side: const BorderSide(
                                 color: Colors.white,
                                 width: 1.5,
@@ -162,7 +165,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               MaterialStateProperty.all(Colors.brown),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(
+                                15,
+                              ),
                               side: const BorderSide(
                                 color: Colors.white,
                                 width: 1.5,
@@ -196,7 +201,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               MaterialStateProperty.all(Colors.pink),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(
+                                15,
+                              ),
                               side: const BorderSide(
                                 color: Colors.white,
                                 width: 1.5,
@@ -230,7 +237,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               MaterialStateProperty.all(Colors.deepPurple),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(
+                                15,
+                              ),
                               side: const BorderSide(
                                 color: Colors.white,
                                 width: 1.5,
@@ -258,6 +267,46 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const Text(
                 'Recently added',
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                ),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(
+                        top: 10,
+                        bottom: 10,
+                      ),
+                      child: SizedBox(
+                        height: 45,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              Colors.grey[800],
+                            ),
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  15,
+                                ),
+                              ),
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Playlist name',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
