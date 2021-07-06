@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:playlister/styles/custom_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'styles/custom_icons.dart';
+import 'styles/custom_images.dart';
 
 void main() {
   runApp(MyApp());
@@ -62,6 +64,22 @@ class _MyHomePageState extends State<MyHomePage> {
           icon: SvgPicture.asset(iconLogo),
           onPressed: () {},
         ),
+        actions: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white,
+                width: 3,
+              ),
+            ),
+            child: const CircleAvatar(
+              radius: 15,
+              backgroundImage: AssetImage(imageAvatar),
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
