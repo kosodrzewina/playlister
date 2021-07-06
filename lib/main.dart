@@ -60,10 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(2),
+          preferredSize: const Size.fromHeight(0.5),
           child: Container(
-            color: Colors.white,
-            height: 2,
+            color: Colors.grey,
+            height: 0.5,
           ),
         ),
         title: Text(widget.title),
