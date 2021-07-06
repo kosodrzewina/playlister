@@ -17,6 +17,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(),
+          bodyText2: TextStyle(),
+          headline4: TextStyle(),
+        ).apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        ),
       ),
       home: const MyHomePage(title: 'Playlister'),
     );
