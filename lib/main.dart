@@ -35,6 +35,50 @@ class MyApp extends StatelessWidget {
   }
 }
 
+Widget renderRecentlyUpdatedListElement(
+  BuildContext context,
+  String text,
+  Color color,
+) {
+  return Container(
+    width: 100,
+    margin: const EdgeInsets.symmetric(
+      horizontal: 10,
+    ),
+    child: ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          color,
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              15,
+            ),
+            side: const BorderSide(
+              color: Colors.white,
+              width: 1.5,
+            ),
+          ),
+        ),
+      ),
+      onPressed: () {},
+      child: Container(
+        margin: const EdgeInsets.only(
+          right: 10,
+          bottom: 10,
+        ),
+        child: Align(
+          alignment: Alignment.bottomLeft,
+          child: Text(
+            text,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -105,150 +149,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    Container(
-                      width: 100,
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.teal),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                15,
-                              ),
-                              side: const BorderSide(
-                                color: Colors.white,
-                                width: 1.5,
-                              ),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                            right: 10,
-                            bottom: 10,
-                          ),
-                          child: const Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              'Playlist name',
-                            ),
-                          ),
-                        ),
-                      ),
+                    renderRecentlyUpdatedListElement(
+                      context,
+                      'Playlist name',
+                      Colors.red,
                     ),
-                    Container(
-                      width: 100,
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.brown),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                15,
-                              ),
-                              side: const BorderSide(
-                                color: Colors.white,
-                                width: 1.5,
-                              ),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                            right: 10,
-                            bottom: 10,
-                          ),
-                          child: const Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              'Playlist name',
-                            ),
-                          ),
-                        ),
-                      ),
+                    renderRecentlyUpdatedListElement(
+                      context,
+                      'Playlist name',
+                      Colors.teal,
                     ),
-                    Container(
-                      width: 100,
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.pink),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                15,
-                              ),
-                              side: const BorderSide(
-                                color: Colors.white,
-                                width: 1.5,
-                              ),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                            right: 10,
-                            bottom: 10,
-                          ),
-                          child: const Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              'Playlist name',
-                            ),
-                          ),
-                        ),
-                      ),
+                    renderRecentlyUpdatedListElement(
+                      context,
+                      'Playlist name',
+                      Colors.amber,
                     ),
-                    Container(
-                      width: 100,
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.deepPurple),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                15,
-                              ),
-                              side: const BorderSide(
-                                color: Colors.white,
-                                width: 1.5,
-                              ),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                            right: 10,
-                            bottom: 10,
-                          ),
-                          child: const Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              'Playlist name',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    renderRecentlyUpdatedListElement(
+                      context,
+                      'Playlist name',
+                      Colors.purpleAccent,
+                    )
                   ],
                 ),
               ),
