@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'l10n/l10n.dart';
 import 'styles/custom_icons.dart';
 import 'styles/custom_images.dart';
 
@@ -17,6 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Playlister',
+      supportedLocales: L10n.supportedLocales,
+      localizationsDelegates: L10n.localizationsDelegates,
       theme: ThemeData(
         primaryColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
@@ -205,8 +208,8 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Recently updated',
+              Text(
+                L10n.of(context)!.homePage_recentlyUpdated,
               ),
               Container(
                 margin: const EdgeInsets.symmetric(
@@ -235,8 +238,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              const Text(
-                'Recently added',
+              Text(
+                L10n.of(context)!.homePage_recentlyAdded,
               ),
               Expanded(
                 child: Container(
