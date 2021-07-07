@@ -35,48 +35,56 @@ class MyApp extends StatelessWidget {
   }
 }
 
-Widget renderRecentlyUpdatedListElement(
-  BuildContext context,
-  String text,
-  Color color,
-) {
-  return Container(
-    width: 100,
-    margin: const EdgeInsets.symmetric(
-      horizontal: 10,
-    ),
-    child: ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          color,
-        ),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              15,
+class RecentlyUpdatedListItem extends StatelessWidget {
+  final String text;
+  final Color color;
+
+  const RecentlyUpdatedListItem({
+    Key? key,
+    required this.text,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 10,
+      ),
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            color,
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                15,
+              ),
+              side: const BorderSide(
+                color: Colors.white,
+                width: 1.5,
+              ),
             ),
-            side: const BorderSide(
-              color: Colors.white,
-              width: 1.5,
+          ),
+        ),
+        onPressed: () {},
+        child: Container(
+          margin: const EdgeInsets.only(
+            right: 10,
+            bottom: 10,
+          ),
+          child: Align(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              text,
             ),
           ),
         ),
       ),
-      onPressed: () {},
-      child: Container(
-        margin: const EdgeInsets.only(
-          right: 10,
-          bottom: 10,
-        ),
-        child: Align(
-          alignment: Alignment.bottomLeft,
-          child: Text(
-            text,
-          ),
-        ),
-      ),
-    ),
-  );
+    );
+  }
 }
 
 Widget renderRecentlyAddedListElement(
@@ -207,26 +215,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 100,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    renderRecentlyUpdatedListElement(
-                      context,
-                      'Playlist name',
-                      Colors.red,
+                  children: const [
+                    RecentlyUpdatedListItem(
+                      text: 'Playlist name',
+                      color: Colors.red,
                     ),
-                    renderRecentlyUpdatedListElement(
-                      context,
-                      'Playlist name',
-                      Colors.teal,
+                    RecentlyUpdatedListItem(
+                      text: 'Playlist name',
+                      color: Colors.teal,
                     ),
-                    renderRecentlyUpdatedListElement(
-                      context,
-                      'Playlist name',
-                      Colors.amber,
+                    RecentlyUpdatedListItem(
+                      text: 'Playlist name',
+                      color: Colors.amber,
                     ),
-                    renderRecentlyUpdatedListElement(
-                      context,
-                      'Playlist name',
-                      Colors.purpleAccent,
+                    RecentlyUpdatedListItem(
+                      text: 'Playlist name',
+                      color: Colors.purpleAccent,
                     )
                   ],
                 ),
