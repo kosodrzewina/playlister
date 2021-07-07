@@ -284,6 +284,31 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[900],
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.white,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.list,
+            ),
+            label: 'Playlists',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.warning,
+            ),
+            label: 'Endangered',
+          ),
+        ],
+      ),
     );
   }
 }
