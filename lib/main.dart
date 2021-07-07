@@ -79,6 +79,62 @@ Widget renderRecentlyUpdatedListElement(
   );
 }
 
+Widget renderRecentlyAddedListElement(
+  BuildContext context,
+  String text,
+  Color color,
+) {
+  return Container(
+    margin: const EdgeInsets.only(
+      top: 5,
+      bottom: 5,
+    ),
+    child: SizedBox(
+      height: 45,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            Colors.grey[800],
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                15,
+              ),
+            ),
+          ),
+        ),
+        onPressed: () {},
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(
+                    15,
+                  ),
+                ),
+              ),
+              margin: const EdgeInsets.only(
+                right: 10,
+              ),
+              height: 25,
+              width: 25,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                text,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -183,299 +239,40 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ListView(
                     shrinkWrap: true,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.grey[800],
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    15,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(
-                                        15,
-                                      ),
-                                    ),
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    right: 10,
-                                  ),
-                                  height: 25,
-                                  width: 25,
-                                ),
-                                const Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Playlist name',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      renderRecentlyAddedListElement(
+                        context,
+                        'Playlist name',
+                        Colors.teal,
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.grey[800],
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    15,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(
-                                        15,
-                                      ),
-                                    ),
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    right: 10,
-                                  ),
-                                  height: 25,
-                                  width: 25,
-                                ),
-                                const Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Playlist name',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      renderRecentlyAddedListElement(
+                        context,
+                        'Playlist name',
+                        Colors.red,
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.grey[800],
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    15,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(
-                                        15,
-                                      ),
-                                    ),
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    right: 10,
-                                  ),
-                                  height: 25,
-                                  width: 25,
-                                ),
-                                const Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Playlist name',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      renderRecentlyAddedListElement(
+                        context,
+                        'Playlist name',
+                        Colors.purple,
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.grey[800],
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    15,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(
-                                        15,
-                                      ),
-                                    ),
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    right: 10,
-                                  ),
-                                  height: 25,
-                                  width: 25,
-                                ),
-                                const Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Playlist name',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      renderRecentlyAddedListElement(
+                        context,
+                        'Playlist name',
+                        Colors.yellow,
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.grey[800],
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    15,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(
-                                        15,
-                                      ),
-                                    ),
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    right: 10,
-                                  ),
-                                  height: 25,
-                                  width: 25,
-                                ),
-                                const Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Playlist name',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      renderRecentlyAddedListElement(
+                        context,
+                        'Playlist name',
+                        Colors.red,
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.grey[800],
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    15,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(
-                                        15,
-                                      ),
-                                    ),
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    right: 10,
-                                  ),
-                                  height: 25,
-                                  width: 25,
-                                ),
-                                const Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Playlist name',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      renderRecentlyAddedListElement(
+                        context,
+                        'Playlist name',
+                        Colors.teal,
+                      ),
+                      renderRecentlyAddedListElement(
+                        context,
+                        'Playlist name',
+                        Colors.purple,
                       ),
                     ],
                   ),
