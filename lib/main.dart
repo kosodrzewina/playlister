@@ -167,9 +167,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         title: Text(widget.title),
         elevation: 0,
-        leading: IconButton(
-          icon: SvgPicture.asset(iconLogo),
-          onPressed: () {},
+        leading: Container(
+          margin: const EdgeInsets.all(
+            10,
+          ),
+          child: SvgPicture.asset(iconLogo),
         ),
         actions: [
           Container(
