@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../gen/assets.gen.dart';
+import 'themes.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,27 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Playlister',
-      theme: ThemeData(
-        primaryColor: Colors.black,
-        scaffoldBackgroundColor: Colors.black,
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-          bodyText2: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-          headline4: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-          headline6: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ).apply(
-          bodyColor: Colors.white,
-          displayColor: Colors.white,
-        ),
-      ),
+      theme: darkTheme,
       home: const MyHomePage(title: 'Playlister'),
     );
   }
@@ -288,9 +269,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey[900],
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.white,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(
