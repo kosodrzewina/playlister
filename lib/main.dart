@@ -87,60 +87,68 @@ class RecentlyUpdatedListItem extends StatelessWidget {
   }
 }
 
-Widget renderRecentlyAddedListElement(
-  BuildContext context,
-  String text,
-  Color color,
-) {
-  return Container(
-    margin: const EdgeInsets.only(
-      top: 5,
-      bottom: 5,
-    ),
-    child: SizedBox(
-      height: 45,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            Colors.grey[800],
-          ),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                15,
-              ),
+class RecentlyAddedListItem extends StatelessWidget {
+  final String text;
+  final Color color;
+
+  const RecentlyAddedListItem({
+    Key? key,
+    required this.text,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 5,
+        bottom: 5,
+      ),
+      child: SizedBox(
+        height: 45,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(
+              Colors.grey[800],
             ),
-          ),
-        ),
-        onPressed: () {},
-        child: Row(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(
-                    15,
-                  ),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  15,
                 ),
               ),
-              margin: const EdgeInsets.only(
-                right: 10,
-              ),
-              height: 25,
-              width: 25,
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                text,
+          ),
+          onPressed: () {},
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(
+                      15,
+                    ),
+                  ),
+                ),
+                margin: const EdgeInsets.only(
+                  right: 10,
+                ),
+                height: 25,
+                width: 25,
               ),
-            ),
-          ],
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  text,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -245,41 +253,34 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   child: ListView(
                     shrinkWrap: true,
-                    children: [
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.teal,
+                    children: const [
+                      RecentlyAddedListItem(
+                        text: 'Playlist name',
+                        color: Colors.teal,
                       ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.red,
+                      RecentlyAddedListItem(
+                        text: 'Playlist name',
+                        color: Colors.red,
                       ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.purple,
+                      RecentlyAddedListItem(
+                        text: 'Playlist name',
+                        color: Colors.purple,
                       ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.yellow,
+                      RecentlyAddedListItem(
+                        text: 'Playlist name',
+                        color: Colors.yellow,
                       ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.red,
+                      RecentlyAddedListItem(
+                        text: 'Playlist name',
+                        color: Colors.red,
                       ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.teal,
+                      RecentlyAddedListItem(
+                        text: 'Playlist name',
+                        color: Colors.teal,
                       ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.purple,
+                      RecentlyAddedListItem(
+                        text: 'Playlist name',
+                        color: Colors.purple,
                       ),
                     ],
                   ),
