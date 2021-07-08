@@ -154,7 +154,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        brightness: Brightness.dark,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(0.5),
           child: Container(
