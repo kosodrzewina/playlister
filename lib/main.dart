@@ -296,24 +296,24 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.grey[900],
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.white,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.home,
             ),
-            label: 'Home',
+            label: L10n.of(context)!.bottomNavBar_home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.list,
             ),
-            label: 'Playlists',
+            label: L10n.of(context)!.bottomNavBar_playlists,
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.warning,
             ),
-            label: 'Endangered',
+            label: L10n.of(context)!.bottomNavBar_endangered,
           ),
         ],
       ),
