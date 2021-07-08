@@ -2,10 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import 'styles/custom_icons.dart';
-import 'styles/custom_images.dart';
+import '../gen/assets.gen.dart';
 
 void main() {
   runApp(MyApp());
@@ -188,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
           margin: const EdgeInsets.all(
             10,
           ),
-          child: SvgPicture.asset(iconLogo),
+          child: Assets.icons.logo.svg(),
         ),
         actions: [
           Container(
@@ -200,9 +198,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 3,
               ),
             ),
-            child: const CircleAvatar(
+            child: CircleAvatar(
               radius: 15,
-              backgroundImage: AssetImage(imageAvatar),
+              backgroundImage: Assets.images.avatar,
             ),
           ),
         ],
