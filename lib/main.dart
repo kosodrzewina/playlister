@@ -40,19 +40,15 @@ class RecentlyUpdatedListItem extends StatelessWidget {
         horizontal: 10,
       ),
       child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            color,
-          ),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                15,
-              ),
-              side: const BorderSide(
-                color: Colors.white,
-                width: 1.5,
-              ),
+        style: ElevatedButton.styleFrom(
+          primary: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              15,
+            ),
+            side: const BorderSide(
+              color: Colors.white,
+              width: 1.5,
             ),
           ),
         ),
