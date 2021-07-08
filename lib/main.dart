@@ -94,15 +94,12 @@ class RecentlyAddedListItem extends StatelessWidget {
       child: SizedBox(
         height: 45,
         child: ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
-              Colors.grey[800],
-            ),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  15,
-                ),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.grey[800],
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                15,
               ),
             ),
           ),
