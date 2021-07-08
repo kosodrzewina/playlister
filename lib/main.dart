@@ -19,10 +19,18 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
         textTheme: const TextTheme(
-          bodyText1: TextStyle(fontWeight: FontWeight.bold),
-          bodyText2: TextStyle(fontWeight: FontWeight.bold),
-          headline4: TextStyle(fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontWeight: FontWeight.bold),
+          bodyText1: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+          bodyText2: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+          headline4: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+          headline6: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ).apply(
           bodyColor: Colors.white,
           displayColor: Colors.white,
@@ -123,11 +131,7 @@ class RecentlyAddedListItem extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: color,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(
-                      15,
-                    ),
-                  ),
+                  shape: BoxShape.circle,
                 ),
                 margin: const EdgeInsets.only(
                   right: 10,
@@ -135,11 +139,8 @@ class RecentlyAddedListItem extends StatelessWidget {
                 height: 25,
                 width: 25,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  text,
-                ),
+              Text(
+                text,
               ),
             ],
           ),
@@ -183,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         elevation: 0,
         leading: Container(
-          margin: const EdgeInsets.all(
+          padding: const EdgeInsets.all(
             10,
           ),
           child: Assets.icons.logo.svg(),
@@ -205,87 +206,85 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text(
-                'Recently updated',
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Recently updated',
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                vertical: 10,
               ),
-              Container(
+              height: 100,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: const [
+                  RecentlyUpdatedListItem(
+                    text: 'Playlist name',
+                    color: Colors.red,
+                  ),
+                  RecentlyUpdatedListItem(
+                    text: 'Playlist name',
+                    color: Colors.teal,
+                  ),
+                  RecentlyUpdatedListItem(
+                    text: 'Playlist name',
+                    color: Colors.amber,
+                  ),
+                  RecentlyUpdatedListItem(
+                    text: 'Playlist name',
+                    color: Colors.purpleAccent,
+                  )
+                ],
+              ),
+            ),
+            const Text(
+              'Recently added',
+            ),
+            Expanded(
+              child: Container(
                 margin: const EdgeInsets.symmetric(
-                  vertical: 10,
+                  horizontal: 10,
                 ),
-                height: 100,
                 child: ListView(
-                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
                   children: const [
-                    RecentlyUpdatedListItem(
-                      text: 'Playlist name',
-                      color: Colors.red,
-                    ),
-                    RecentlyUpdatedListItem(
+                    RecentlyAddedListItem(
                       text: 'Playlist name',
                       color: Colors.teal,
                     ),
-                    RecentlyUpdatedListItem(
+                    RecentlyAddedListItem(
                       text: 'Playlist name',
-                      color: Colors.amber,
+                      color: Colors.red,
                     ),
-                    RecentlyUpdatedListItem(
+                    RecentlyAddedListItem(
                       text: 'Playlist name',
-                      color: Colors.purpleAccent,
-                    )
+                      color: Colors.purple,
+                    ),
+                    RecentlyAddedListItem(
+                      text: 'Playlist name',
+                      color: Colors.yellow,
+                    ),
+                    RecentlyAddedListItem(
+                      text: 'Playlist name',
+                      color: Colors.red,
+                    ),
+                    RecentlyAddedListItem(
+                      text: 'Playlist name',
+                      color: Colors.teal,
+                    ),
+                    RecentlyAddedListItem(
+                      text: 'Playlist name',
+                      color: Colors.purple,
+                    ),
                   ],
                 ),
               ),
-              const Text(
-                'Recently added',
-              ),
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                  ),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: const [
-                      RecentlyAddedListItem(
-                        text: 'Playlist name',
-                        color: Colors.teal,
-                      ),
-                      RecentlyAddedListItem(
-                        text: 'Playlist name',
-                        color: Colors.red,
-                      ),
-                      RecentlyAddedListItem(
-                        text: 'Playlist name',
-                        color: Colors.purple,
-                      ),
-                      RecentlyAddedListItem(
-                        text: 'Playlist name',
-                        color: Colors.yellow,
-                      ),
-                      RecentlyAddedListItem(
-                        text: 'Playlist name',
-                        color: Colors.red,
-                      ),
-                      RecentlyAddedListItem(
-                        text: 'Playlist name',
-                        color: Colors.teal,
-                      ),
-                      RecentlyAddedListItem(
-                        text: 'Playlist name',
-                        color: Colors.purple,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
