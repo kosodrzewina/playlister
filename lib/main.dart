@@ -57,8 +57,8 @@ class RecentlyUpdatedListItem extends StatelessWidget {
           ),
         ),
         onPressed: () {},
-        child: Container(
-          margin: const EdgeInsets.only(
+        child: Padding(
+          padding: const EdgeInsets.only(
             right: 10,
             bottom: 10,
           ),
@@ -86,8 +86,8 @@ class RecentlyAddedListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(
+    return Padding(
+      padding: const EdgeInsets.only(
         top: 5,
         bottom: 5,
       ),
@@ -160,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         title: Text(widget.title),
         elevation: 0,
-        leading: Container(
+        leading: Padding(
           padding: const EdgeInsets.all(
             10,
           ),
@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Container(
+      body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -222,8 +222,8 @@ class _MyHomePageState extends State<MyHomePage> {
               'Recently added',
             ),
             Expanded(
-              child: Container(
-                margin: const EdgeInsets.symmetric(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 10,
                 ),
                 child: ListView(
