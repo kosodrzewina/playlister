@@ -39,29 +39,32 @@ class RecentlyUpdatedListItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(
         horizontal: 10,
       ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: color,
-          shape: RoundedRectangleBorder(
+      child: InkWell(
+        onTap: () {},
+        borderRadius: BorderRadius.circular(
+          15,
+        ),
+        child: Ink(
+          decoration: BoxDecoration(
+            color: color,
+            border: Border.all(
+              color: Colors.white,
+            ),
             borderRadius: BorderRadius.circular(
               15,
             ),
-            side: const BorderSide(
-              color: Colors.white,
-              width: 1.5,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 10,
+              right: 10,
+              bottom: 10,
             ),
-          ),
-        ),
-        onPressed: () {},
-        child: Padding(
-          padding: const EdgeInsets.only(
-            right: 10,
-            bottom: 10,
-          ),
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              text,
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                text,
+              ),
             ),
           ),
         ),
@@ -126,15 +129,6 @@ class RecentlyAddedListItem extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
