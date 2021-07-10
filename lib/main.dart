@@ -85,41 +85,46 @@ class RecentlyAddedListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
+    return Container(
+      margin: const EdgeInsets.only(
         top: 5,
         bottom: 5,
       ),
-      child: SizedBox(
+      child: Container(
         height: 45,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.grey[800],
-            elevation: 0,
-            shape: RoundedRectangleBorder(
+        child: InkWell(
+          onTap: () {},
+          borderRadius: BorderRadius.circular(
+            15,
+          ),
+          child: Ink(
+            decoration: BoxDecoration(
+              color: Colors.grey[800],
               borderRadius: BorderRadius.circular(
                 15,
               ),
             ),
-          ),
-          onPressed: () {},
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: color,
-                  shape: BoxShape.circle,
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 10,
                 ),
-                height: 25,
-                width: 25,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                text,
-              ),
-            ],
+                Container(
+                  decoration: BoxDecoration(
+                    color: color,
+                    shape: BoxShape.circle,
+                  ),
+                  height: 25,
+                  width: 25,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  text,
+                ),
+              ],
+            ),
           ),
         ),
       ),
