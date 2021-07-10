@@ -90,7 +90,7 @@ class RecentlyAddedListItem extends StatelessWidget {
         top: 5,
         bottom: 5,
       ),
-      child: Container(
+      child: SizedBox(
         height: 45,
         child: InkWell(
           onTap: () {},
