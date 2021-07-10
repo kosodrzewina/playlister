@@ -178,19 +178,21 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(
+          10,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
               'Recently updated',
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                vertical: 10,
-              ),
-              height: 100,
+            SizedBox(
+              height: 115,
               child: ListView(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                ),
                 scrollDirection: Axis.horizontal,
                 children: const [
                   RecentlyUpdatedListItem(
@@ -216,43 +218,41 @@ class _MyHomePageState extends State<MyHomePage> {
               'Recently added',
             ),
             Expanded(
-              child: Padding(
+              child: ListView(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
                 ),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: const [
-                    RecentlyAddedListItem(
-                      text: 'Playlist name',
-                      color: Colors.teal,
-                    ),
-                    RecentlyAddedListItem(
-                      text: 'Playlist name',
-                      color: Colors.red,
-                    ),
-                    RecentlyAddedListItem(
-                      text: 'Playlist name',
-                      color: Colors.purple,
-                    ),
-                    RecentlyAddedListItem(
-                      text: 'Playlist name',
-                      color: Colors.yellow,
-                    ),
-                    RecentlyAddedListItem(
-                      text: 'Playlist name',
-                      color: Colors.red,
-                    ),
-                    RecentlyAddedListItem(
-                      text: 'Playlist name',
-                      color: Colors.teal,
-                    ),
-                    RecentlyAddedListItem(
-                      text: 'Playlist name',
-                      color: Colors.purple,
-                    ),
-                  ],
-                ),
+                shrinkWrap: true,
+                children: const [
+                  RecentlyAddedListItem(
+                    text: 'Playlist name',
+                    color: Colors.teal,
+                  ),
+                  RecentlyAddedListItem(
+                    text: 'Playlist name',
+                    color: Colors.red,
+                  ),
+                  RecentlyAddedListItem(
+                    text: 'Playlist name',
+                    color: Colors.purple,
+                  ),
+                  RecentlyAddedListItem(
+                    text: 'Playlist name',
+                    color: Colors.yellow,
+                  ),
+                  RecentlyAddedListItem(
+                    text: 'Playlist name',
+                    color: Colors.red,
+                  ),
+                  RecentlyAddedListItem(
+                    text: 'Playlist name',
+                    color: Colors.teal,
+                  ),
+                  RecentlyAddedListItem(
+                    text: 'Playlist name',
+                    color: Colors.purple,
+                  ),
+                ],
               ),
             ),
           ],
