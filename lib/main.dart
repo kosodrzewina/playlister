@@ -107,11 +107,11 @@ class RecentlyAddedListItem extends StatelessWidget {
                   color: color,
                   shape: BoxShape.circle,
                 ),
-                margin: const EdgeInsets.only(
-                  right: 10,
-                ),
                 height: 25,
                 width: 25,
+              ),
+              const SizedBox(
+                width: 10,
               ),
               Text(
                 text,
