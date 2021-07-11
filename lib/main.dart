@@ -62,12 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             child: CircleAvatar(
-              backgroundColor: Colors.red,
-              radius: 20,
-              child: CircleAvatar(
-                radius: 15,
-                backgroundImage: Assets.images.avatar,
-              ),
+              radius: 15,
+              backgroundImage: Assets.images.avatar,
             ),
           ),
         ],
