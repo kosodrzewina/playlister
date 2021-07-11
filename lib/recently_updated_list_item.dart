@@ -15,23 +15,21 @@ class RecentlyUpdatedListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 10,
-      ),
-      child: InkWell(
-        onTap: () {},
+      decoration: BoxDecoration(
+        color: color,
+        border: Border.all(
+          color: Colors.white,
+        ),
         borderRadius: BorderRadius.circular(
           15,
         ),
-        child: Ink(
-          decoration: BoxDecoration(
-            color: color,
-            border: Border.all(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.circular(
-              15,
-            ),
+      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: () {},
+          borderRadius: BorderRadius.circular(
+            15,
           ),
           child: Padding(
             padding: const EdgeInsets.only(

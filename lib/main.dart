@@ -88,14 +88,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     text: 'Playlist name',
                     color: Colors.red,
                   ),
+                  SizedBox(width: 10),
                   RecentlyUpdatedListItem(
                     text: 'Playlist name',
                     color: Colors.teal,
                   ),
+                  SizedBox(width: 10),
                   RecentlyUpdatedListItem(
                     text: 'Playlist name',
                     color: Colors.amber,
                   ),
+                  SizedBox(width: 10),
                   RecentlyUpdatedListItem(
                     text: 'Playlist name',
                     color: Colors.purpleAccent,
