@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           SizedBox(
-            height: 115,
+            height: 150,
             child: ListView(
               padding: const EdgeInsets.symmetric(
                 vertical: 10,

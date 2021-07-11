@@ -14,7 +14,7 @@ class RecentlyUpdatedListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: 130,
       decoration: BoxDecoration(
         color: color,
         border: Border.all(

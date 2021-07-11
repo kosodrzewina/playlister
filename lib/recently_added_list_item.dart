@@ -14,7 +14,7 @@ class RecentlyAddedListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45,
+      height: 55,
       decoration: BoxDecoration(
         color: Colors.grey[800],
         borderRadius: BorderRadius.circular(
@@ -40,8 +40,8 @@ class RecentlyAddedListItem extends StatelessWidget {
                     color: color,
                     shape: BoxShape.circle,
                   ),
-                  height: 25,
-                  width: 25,
+                  height: 35,
+                  width: 35,
                 ),
                 const SizedBox(
                   width: 10,
