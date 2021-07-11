@@ -120,26 +120,32 @@ class _MyHomePageState extends State<MyHomePage> {
                     text: 'Playlist name',
                     color: Colors.teal,
                   ),
+                  SizedBox(height: 10),
                   RecentlyAddedListItem(
                     text: 'Playlist name',
                     color: Colors.red,
                   ),
+                  SizedBox(height: 10),
                   RecentlyAddedListItem(
                     text: 'Playlist name',
                     color: Colors.purple,
                   ),
+                  SizedBox(height: 10),
                   RecentlyAddedListItem(
                     text: 'Playlist name',
                     color: Colors.yellow,
                   ),
+                  SizedBox(height: 10),
                   RecentlyAddedListItem(
                     text: 'Playlist name',
                     color: Colors.red,
                   ),
+                  SizedBox(height: 10),
                   RecentlyAddedListItem(
                     text: 'Playlist name',
                     color: Colors.teal,
                   ),
+                  SizedBox(height: 10),
                   RecentlyAddedListItem(
                     text: 'Playlist name',
                     color: Colors.purple,

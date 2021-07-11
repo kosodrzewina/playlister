@@ -14,24 +14,22 @@ class RecentlyAddedListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(
-        top: 5,
-        bottom: 5,
+      height: 45,
+      decoration: BoxDecoration(
+        color: Colors.grey[800],
+        borderRadius: BorderRadius.circular(
+          15,
+        ),
       ),
-      child: SizedBox(
-        height: 45,
+      child: Material(
+        type: MaterialType.transparency,
         child: InkWell(
           onTap: () {},
           borderRadius: BorderRadius.circular(
             15,
           ),
-          child: Ink(
-            decoration: BoxDecoration(
-              color: Colors.grey[800],
-              borderRadius: BorderRadius.circular(
-                15,
-              ),
-            ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
             child: Row(
               children: [
                 const SizedBox(
