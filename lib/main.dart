@@ -57,13 +57,17 @@ class _MyHomePageState extends State<MyHomePage> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.white,
+                color: Theme.of(context).hintColor,
                 width: 3,
               ),
             ),
             child: CircleAvatar(
-              radius: 15,
-              backgroundImage: Assets.images.avatar,
+              backgroundColor: Colors.red,
+              radius: 20,
+              child: CircleAvatar(
+                radius: 15,
+                backgroundImage: Assets.images.avatar,
+              ),
             ),
           ),
         ],
