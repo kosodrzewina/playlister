@@ -18,7 +18,7 @@ class RecentlyUpdatedListItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         border: Border.all(
-          color: Colors.white,
+          color: Theme.of(context).hintColor,
         ),
         borderRadius: BorderRadius.circular(
           15,

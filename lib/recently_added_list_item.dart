@@ -16,7 +16,7 @@ class RecentlyAddedListItem extends StatelessWidget {
     return Container(
       height: 55,
       decoration: BoxDecoration(
-        color: Colors.grey[800],
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(
           15,
         ),
