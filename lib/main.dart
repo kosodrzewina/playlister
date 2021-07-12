@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:playlister/l10n/l10n.dart';
 
-import 'l10n/l10n.dart';
-import 'styles/custom_icons.dart';
-import 'styles/custom_images.dart';
+import '../gen/assets.gen.dart';
+import 'recently_added_list_item.dart';
+import 'themes.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,21 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Playlister',
-      supportedLocales: L10n.supportedLocales,
-      localizationsDelegates: L10n.localizationsDelegates,
-      theme: ThemeData(
-        primaryColor: Colors.black,
-        scaffoldBackgroundColor: Colors.black,
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(fontWeight: FontWeight.bold),
-          bodyText2: TextStyle(fontWeight: FontWeight.bold),
-          headline4: TextStyle(fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontWeight: FontWeight.bold),
-        ).apply(
-          bodyColor: Colors.white,
-          displayColor: Colors.white,
-        ),
-      ),
+      themeMode: ThemeMode.light,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       home: const MyHomePage(title: 'Playlister'),
     );
   }
@@ -149,15 +137,6 @@ Widget renderRecentlyAddedListElement(
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -169,21 +148,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        brightness: Brightness.dark,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(0.5),
-          child: Container(
+        shape: const Border(
+          bottom: BorderSide(
             color: Colors.grey,
-            height: 0.5,
           ),
         ),
         title: Text(widget.title),
         elevation: 0,
-        leading: Container(
-          margin: const EdgeInsets.all(
+        leading: Padding(
+          padding: const EdgeInsets.all(
             10,
           ),
-          child: SvgPicture.asset(iconLogo),
+          child: Assets.icons.logo.svg(),
         ),
         actions: [
           Container(
@@ -191,111 +167,129 @@ class _MyHomePageState extends State<MyHomePage> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.white,
+                color: Theme.of(context).hintColor,
                 width: 3,
               ),
             ),
-            child: const CircleAvatar(
+            child: CircleAvatar(
               radius: 15,
-              backgroundImage: AssetImage(imageAvatar),
+              backgroundImage: Assets.images.avatar,
             ),
           ),
         ],
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
             children: [
+              const SizedBox(
+                width: 10,
+              ),
               Text(
                 L10n.of(context)!.homePage_recentlyUpdated,
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10,
+            ],
+          ),
+          SizedBox(
+            height: 150,
+            child: ListView(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+              ),
+              scrollDirection: Axis.horizontal,
+              children: const [
+                SizedBox(
+                  width: 10,
                 ),
-                height: 100,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: const [
-                    RecentlyUpdatedListItem(
-                      text: 'Playlist name',
-                      color: Colors.red,
-                    ),
-                    RecentlyUpdatedListItem(
-                      text: 'Playlist name',
-                      color: Colors.teal,
-                    ),
-                    RecentlyUpdatedListItem(
-                      text: 'Playlist name',
-                      color: Colors.amber,
-                    ),
-                    RecentlyUpdatedListItem(
-                      text: 'Playlist name',
-                      color: Colors.purpleAccent,
-                    )
-                  ],
+                RecentlyUpdatedListItem(
+                  text: 'Playlist name',
+                  color: Colors.red,
                 ),
+                SizedBox(width: 10),
+                RecentlyUpdatedListItem(
+                  text: 'Playlist name',
+                  color: Colors.teal,
+                ),
+                SizedBox(width: 10),
+                RecentlyUpdatedListItem(
+                  text: 'Playlist name',
+                  color: Colors.amber,
+                ),
+                SizedBox(width: 10),
+                RecentlyUpdatedListItem(
+                  text: 'Playlist name',
+                  color: Colors.purpleAccent,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 10,
               ),
               Text(
                 L10n.of(context)!.homePage_recentlyAdded,
               ),
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                  ),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.teal,
-                      ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.red,
-                      ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.purple,
-                      ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.yellow,
-                      ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.red,
-                      ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.teal,
-                      ),
-                      renderRecentlyAddedListElement(
-                        context,
-                        'Playlist name',
-                        Colors.purple,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ],
           ),
-        ),
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
+              shrinkWrap: true,
+              children: const [
+                RecentlyAddedListItem(
+                  text: 'Playlist name',
+                  color: Colors.teal,
+                ),
+                SizedBox(height: 10),
+                RecentlyAddedListItem(
+                  text: 'Playlist name',
+                  color: Colors.red,
+                ),
+                SizedBox(height: 10),
+                RecentlyAddedListItem(
+                  text: 'Playlist name',
+                  color: Colors.purple,
+                ),
+                SizedBox(height: 10),
+                RecentlyAddedListItem(
+                  text: 'Playlist name',
+                  color: Colors.yellow,
+                ),
+                SizedBox(height: 10),
+                RecentlyAddedListItem(
+                  text: 'Playlist name',
+                  color: Colors.red,
+                ),
+                SizedBox(height: 10),
+                RecentlyAddedListItem(
+                  text: 'Playlist name',
+                  color: Colors.teal,
+                ),
+                SizedBox(height: 10),
+                RecentlyAddedListItem(
+                  text: 'Playlist name',
+                  color: Colors.purple,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey[900],
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(
             icon: const Icon(

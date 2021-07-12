@@ -86,6 +86,25 @@ jobs:
         run: |
           flutter build linux
 
+  macos:
+    name: macOS
+    runs-on: macos-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Enable macos support
+        run: |
+          flutter config --enable-macos-desktop
+
+      - name: Build
+        run: |
+          flutter build macos
+
   windows:
     name: Windows
     runs-on: windows-latest
