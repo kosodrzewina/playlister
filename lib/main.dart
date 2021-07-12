@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../gen/assets.gen.dart';
+import 'l10n/l10n.dart';
 import 'recently_added_list_item.dart';
 import 'recently_updated_list_item.dart';
 import 'themes.dart';
@@ -75,12 +76,12 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 10,
           ),
           Row(
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 width: 10,
               ),
               Text(
-                'Recently updated',
+                L10n.of(context)!.homePage_recentlyUpdated,
               ),
             ],
           ),
@@ -121,12 +122,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Row(
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 width: 10,
               ),
               Text(
-                'Recently added',
+                L10n.of(context)!.homePage_recentlyAdded,
               ),
             ],
           ),
@@ -180,24 +181,24 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.home,
             ),
-            label: 'Home',
+            label: L10n.of(context)!.bottomNavBar_home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.list,
             ),
-            label: 'Playlists',
+            label: L10n.of(context)!.bottomNavBar_playlists,
           ),
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.warning,
             ),
-            label: 'Endangered',
+            label: L10n.of(context)!.bottomNavBar_endangered,
           ),
         ],
       ),

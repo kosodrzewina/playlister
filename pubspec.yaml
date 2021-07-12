@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
   cupertino_icons: ^1.0.2
   json_annotation: ^4.0.1
   http: ^0.13.3
@@ -30,7 +33,9 @@ flutter_gen:
     flutter_svg: true
 
 flutter:
+  generate: true
   uses-material-design: true
+
   assets:
     - assets/icons/
     - assets/images/
