@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:playlister/l10n/l10n.dart';
 
 import '../gen/assets.gen.dart';
+import 'l10n/l10n.dart';
 import 'recently_added_list_item.dart';
 import 'themes.dart';
 
