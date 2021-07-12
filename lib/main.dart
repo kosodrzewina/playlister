@@ -1,11 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../gen/assets.gen.dart';
 import 'l10n/l10n.dart';
 import 'recently_added_list_item.dart';
+import 'recently_updated_list_item.dart';
 import 'themes.dart';
 
 void main() {
@@ -24,114 +23,6 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Playlister'),
     );
   }
-}
-
-class RecentlyUpdatedListItem extends StatelessWidget {
-  final String text;
-  final Color color;
-
-  const RecentlyUpdatedListItem({
-    Key? key,
-    required this.text,
-    required this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 10,
-      ),
-      child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            color,
-          ),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                15,
-              ),
-              side: const BorderSide(
-                color: Colors.white,
-                width: 1.5,
-              ),
-            ),
-          ),
-        ),
-        onPressed: () {},
-        child: Container(
-          margin: const EdgeInsets.only(
-            right: 10,
-            bottom: 10,
-          ),
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              text,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Widget renderRecentlyAddedListElement(
-  BuildContext context,
-  String text,
-  Color color,
-) {
-  return Container(
-    margin: const EdgeInsets.only(
-      top: 5,
-      bottom: 5,
-    ),
-    child: SizedBox(
-      height: 45,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            Colors.grey[800],
-          ),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                15,
-              ),
-            ),
-          ),
-        ),
-        onPressed: () {},
-        child: Row(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(
-                    15,
-                  ),
-                ),
-              ),
-              margin: const EdgeInsets.only(
-                right: 10,
-              ),
-              height: 25,
-              width: 25,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                text,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
 }
 
 class MyHomePage extends StatefulWidget {
