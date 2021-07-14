@@ -10,7 +10,7 @@ abstract class _AuthStore with Store {
   static const apiKeyKey = 'API_KEY';
 
   _AuthStore() {
-    reaction<String?>((_) => this.apiKey, (apiKey) async {
+    reaction<String?>((_) => apiKey, (apiKey) async {
       final sharedPrefs = await SharedPreferences.getInstance();
 
       if (apiKey == null) {
