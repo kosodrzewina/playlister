@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: L10n.supportedLocales,
       localizationsDelegates: L10n.localizationsDelegates,
       title: 'Playlister',
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: lightTheme,
       darkTheme: darkTheme,
       home: const MyHomePage(title: 'Playlister'),
@@ -39,7 +39,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentBottomNavBarIndex = 0;
-  List<Widget> pages = [
+  static const pages = [
     HomePage(),
     PlaylistsPage(),
     EndangeredPage(),

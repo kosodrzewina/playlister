@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../widgets/playlists_list_item.dart';
 
 class PlaylistsPage extends StatefulWidget {
+  const PlaylistsPage();
+
   @override
   _PlaylistsPageState createState() => _PlaylistsPageState();
 }

@@ -6,6 +6,8 @@ import '../widgets/playlists_list_item.dart';
 import '../widgets/recently_updated_list_item.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage();
+
   @override
   Widget build(BuildContext context) {
     return Column(
