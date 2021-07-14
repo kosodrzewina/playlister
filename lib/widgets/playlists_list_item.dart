@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class RecentlyAddedListItem extends StatelessWidget {
+class PlaylistsListItem extends StatelessWidget {
   final String text;
   final Color color;
 
-  const RecentlyAddedListItem({
+  const PlaylistsListItem({
     Key? key,
     required this.text,
     required this.color,
