@@ -6,9 +6,14 @@ import 'l10n/l10n.dart';
 import 'pages/endangered_page.dart';
 import 'pages/home_page.dart';
 import 'pages/playlists_page.dart';
+import 'stores/auth_store.dart';
 import 'themes.dart';
 
-void main() {
+final authStore = AuthStore();
+
+Future<void> main() async {
+  await authStore.initialize();
+
   runApp(MyApp());
 }
 
