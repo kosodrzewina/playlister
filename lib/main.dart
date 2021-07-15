@@ -7,12 +7,14 @@ import 'pages/endangered_page.dart';
 import 'pages/home_page.dart';
 import 'pages/playlists_page.dart';
 import 'pages/profile_page.dart';
+import 'stores/auth_store.dart';
 import 'themes.dart';
 
-// final authStore = AuthStore();
+final authStore = AuthStore();
 
 Future<void> main() async {
-  // await authStore.initialize();
+  WidgetsFlutterBinding.ensureInitialized();
+  await authStore.initialize();
 
   runApp(MyApp());
 }
