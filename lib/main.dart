@@ -6,7 +6,7 @@ import 'l10n/l10n.dart';
 import 'pages/endangered_page.dart';
 import 'pages/home_page.dart';
 import 'pages/playlists_page.dart';
-import 'pages/profile_page.dart';
+import 'pages/profile_dialog.dart';
 import 'stores/auth_store.dart';
 import 'themes.dart';
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: L10n.supportedLocales,
       localizationsDelegates: L10n.localizationsDelegates,
       title: 'Playlister',
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: lightTheme,
       darkTheme: darkTheme,
       home: const MyHomePage(title: 'Playlister'),
