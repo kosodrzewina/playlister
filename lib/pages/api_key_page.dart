@@ -21,7 +21,6 @@ Future<void> showApiKeyDialog(BuildContext context) async {
                     child: TextField(
                       obscureText: true,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
                         labelText: 'API key',
                       ),
                     ),
