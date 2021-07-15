@@ -36,17 +36,20 @@ Future<void> showProfileDialog(BuildContext context) async {
                   ],
                 ),
                 const SizedBox(height: 20),
-                const OptionsListItem(
-                  icon: Icon(Icons.login),
+                OptionsListItem(
+                  icon: const Icon(Icons.login),
                   text: 'Log in',
+                  onTap: () {},
                 ),
-                const OptionsListItem(
-                  icon: Icon(Icons.vpn_key),
+                OptionsListItem(
+                  icon: const Icon(Icons.vpn_key),
                   text: 'Enter API key',
+                  onTap: () {},
                 ),
-                const OptionsListItem(
-                  icon: Icon(Icons.help),
+                OptionsListItem(
+                  icon: const Icon(Icons.help),
                   text: 'Help',
+                  onTap: () {},
                 ),
                 const SizedBox(height: 20),
               ],
