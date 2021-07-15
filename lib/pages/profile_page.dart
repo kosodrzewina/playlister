@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:playlister/pages/api_key_page.dart';
 
 import '../gen/assets.gen.dart';
 import '../widgets/options_list_item.dart';
@@ -44,7 +45,9 @@ Future<void> showProfileDialog(BuildContext context) async {
                 OptionsListItem(
                   icon: const Icon(Icons.vpn_key),
                   text: 'Enter API key',
-                  onTap: () {},
+                  onTap: () async {
+                    await showApiKeyDialog(context);
+                  },
                 ),
                 OptionsListItem(
                   icon: const Icon(Icons.help),
