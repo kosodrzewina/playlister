@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class OptionsListItem extends StatefulWidget {
   final Icon icon;
@@ -27,13 +28,26 @@ class _OptionsListItemState extends State<OptionsListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const SizedBox(width: 20),
-        icon,
-        const SizedBox(width: 20),
-        Text(text),
-      ],
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: () {},
+        borderRadius: BorderRadius.circular(15),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                const SizedBox(width: 20),
+                icon,
+                const SizedBox(width: 20),
+                Text(text),
+              ],
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
     );
   }
 }
