@@ -23,7 +23,7 @@ class OptionsListItem extends StatefulWidget {
 class _OptionsListItemState extends State<OptionsListItem> {
   final Icon icon;
   final String text;
-  final Function()? onTap;
+  final Function() onTap;
 
   _OptionsListItemState({
     required this.icon,
