@@ -11,6 +11,9 @@ ThemeData _buildTheme(Brightness brightness) {
     scaffoldBackgroundColor: isDark ? Colors.black : Colors.white,
     hintColor: isDark ? Colors.white : Colors.grey[700],
     cardColor: isDark ? Colors.grey[800] : Colors.grey[300],
+    iconTheme: IconThemeData(
+      color: isDark ? Colors.white : Colors.black,
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: isDark ? Colors.grey[900] : Colors.white,
       selectedItemColor: Colors.red,
