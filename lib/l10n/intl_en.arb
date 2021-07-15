@@ -9,5 +9,17 @@
     "bottomNavBar_playlists": "Playlists",
     "@bottomNavBar_playlists": {},
     "bottomNavBar_endangered": "Endangered",
-    "@bottomNavBar_endangered": {}
+    "@bottomNavBar_endangered": {},
+    "profileDialog_loggedInAs": "Logged in as: ",
+    "@profileDialog_loggedIn": {},
+    "profileDialog_notLoggedIn": "Not logged in",
+    "@profileDialog_notLoggedIn": {},
+    "profileDialog_logIn": "Log in",
+    "@profileDialog_logIn": {},
+    "profileDialog_logOut": "Log out",
+    "@profileDialog_logOut": {},
+    "profileDialog_enterApiKey": "Enter API key",
+    "@profileDialog_enterApiKey": {},
+    "profileDialog_help": "Help",
+    "@profileDialog_help": {}
 }
