@@ -12,6 +12,8 @@ class ApiKeyDialog extends StatelessWidget {
   final apiKeyIndicatorText = authStore.apiKey == null
       ? L10nStrings.apiKeyDialog_apiKeyIsNotSaved
       : L10nStrings.apiKeyDialog_apiKeyIsSaved;
+  final TextEditingController apiKeyTextFieldEditingController =
+      TextEditingController()..text = authStore.apiKey ?? '';
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class ApiKeyDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
+                  controller: apiKeyTextFieldEditingController,
                   onSubmitted: (apiKey) {
                     if (apiKey.isNotEmpty) {
                       authStore.setApiKey(apiKey);
