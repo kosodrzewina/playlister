@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../l10n/l10n.dart';
-import '../stores/auth_store.dart';
+import '../main.dart';
 import '../widgets/options_list_item.dart';
 
 class ApiKeyDialog extends StatelessWidget {
   final apiKeyIndicatorColor =
-      AuthStore().apiKey == null ? Colors.red : Colors.green;
-  final apiKeyIndicatorText = AuthStore().apiKey == null
+      authStore.apiKey == null ? Colors.red : Colors.green;
+  final apiKeyIndicatorText = authStore.apiKey == null
       ? L10nStrings.apiKeyDialog_apiKeyIsNotSaved
       : L10nStrings.apiKeyDialog_apiKeyIsSaved;
 
@@ -53,7 +53,7 @@ class ApiKeyDialog extends StatelessWidget {
                   ),
                   onSubmitted: (apiKey) {
                     if (apiKey.isNotEmpty) {
-                      AuthStore().setApiKey(apiKey);
+                      authStore.setApiKey(apiKey);
                       Fluttertoast.showToast(
                         msg: L10n.of(context)!.apiKeyDialog_apiKeySaved,
                       );
@@ -71,7 +71,7 @@ class ApiKeyDialog extends StatelessWidget {
             icon: const Icon(Icons.delete),
             text: L10n.of(context)!.apiKeyDialog_removeApiKey,
             onTap: () {
-              AuthStore().setApiKey(null);
+              authStore.setApiKey(null);
               Fluttertoast.showToast(
                 msg: L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
               );
