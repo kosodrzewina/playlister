@@ -13,30 +13,16 @@ class OptionsListItem extends StatefulWidget {
   });
 
   @override
-  _OptionsListItemState createState() => _OptionsListItemState(
-        icon: icon,
-        text: text,
-        onTap: onTap,
-      );
+  _OptionsListItemState createState() => _OptionsListItemState();
 }
 
 class _OptionsListItemState extends State<OptionsListItem> {
-  final Icon icon;
-  final String text;
-  final Function() onTap;
-
-  _OptionsListItemState({
-    required this.icon,
-    required this.text,
-    required this.onTap,
-  });
-
   @override
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: onTap,
+        onTap: widget.onTap,
         borderRadius: BorderRadius.circular(15),
         child: Column(
           children: [
@@ -44,9 +30,9 @@ class _OptionsListItemState extends State<OptionsListItem> {
             Row(
               children: [
                 const SizedBox(width: 20),
-                icon,
+                widget.icon,
                 const SizedBox(width: 20),
-                Text(text),
+                Text(widget.text),
               ],
             ),
             const SizedBox(height: 10),

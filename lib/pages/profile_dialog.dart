@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../gen/assets.gen.dart';
+import '../l10n/l10n.dart';
 import '../widgets/options_list_item.dart';
 import 'api_key_page.dart';
 
@@ -11,6 +12,10 @@ class ProfileDialog extends StatefulWidget {
 }
 
 class _ProfileDialogState extends State<ProfileDialog> {
+  bool loggedIn = false;
+  String logText = 'Log in';
+  Icon logIcon = const Icon(Icons.login);
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -42,9 +47,18 @@ class _ProfileDialogState extends State<ProfileDialog> {
               ),
               const SizedBox(height: 20),
               OptionsListItem(
-                icon: const Icon(Icons.login),
-                text: 'Log in',
-                onTap: () {},
+                icon: logIcon,
+                text: logText,
+                onTap: () {
+                  setState(() {
+                    loggedIn = !loggedIn;
+
+                    logText = loggedIn
+                        ? L10n.of(context)!.profileDialog_logOut
+                        : L10n.of(context)!.profileDialog_logIn;
+                    logIcon = Icon(loggedIn ? Icons.logout : Icons.login);
+                  });
+                },
               ),
               OptionsListItem(
                 icon: const Icon(Icons.vpn_key),
