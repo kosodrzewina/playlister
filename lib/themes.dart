@@ -14,6 +14,9 @@ ThemeData _buildTheme(Brightness brightness) {
     iconTheme: IconThemeData(
       color: isDark ? Colors.white : Colors.black,
     ),
+    dialogTheme: DialogTheme(
+      backgroundColor: isDark ? Colors.grey[800] : Colors.grey[200],
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: isDark ? Colors.grey[900] : Colors.white,
       selectedItemColor: Colors.red,
