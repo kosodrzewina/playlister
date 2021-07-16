@@ -17,6 +17,11 @@ abstract class L10nStrings {
   static const profileDialog_enterApiKey = 'profileDialog_enterApiKey';
   static const profileDialog_help = 'profileDialog_help';
   static const apiKeyDialog_apiKey = 'apiKeyDialog_apiKey';
+  static const apiKeyDialog_apiKeyRemoved = 'apiKeyDialog_apiKeyRemoved';
+  static const apiKeyDialog_apiKeyIsSaved = 'apiKeyDialog_apiKeyIsSaved';
+  static const apiKeyDialog_apiKeyIsNotSaved = 'apiKeyDialog_apiKeyIsNotSaved';
+  static const apiKeyDialog_removeApiKey = 'apiKeyDialog_removeApiKey';
+  static const apiKeyDialog_apiKeySaved = 'apiKeyDialog_apiKeySaved';
 }
 
 extension L10nFromString on String {
@@ -46,6 +51,16 @@ extension L10nFromString on String {
         return L10n.of(context)!.profileDialog_help;
       case L10nStrings.apiKeyDialog_apiKey:
         return L10n.of(context)!.apiKeyDialog_apiKey;
+      case L10nStrings.apiKeyDialog_apiKeyRemoved:
+        return L10n.of(context)!.apiKeyDialog_apiKeyRemoved;
+      case L10nStrings.apiKeyDialog_apiKeyIsSaved:
+        return L10n.of(context)!.apiKeyDialog_apiKeyIsSaved;
+      case L10nStrings.apiKeyDialog_apiKeyIsNotSaved:
+        return L10n.of(context)!.apiKeyDialog_apiKeyIsNotSaved;
+      case L10nStrings.apiKeyDialog_removeApiKey:
+        return L10n.of(context)!.apiKeyDialog_removeApiKey;
+      case L10nStrings.apiKeyDialog_apiKeySaved:
+        return L10n.of(context)!.apiKeyDialog_apiKeySaved;
 
       default:
         return this;

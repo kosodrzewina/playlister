@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:playlister/stores/auth_store.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../l10n/l10n.dart';
+import '../stores/auth_store.dart';
+import '../widgets/options_list_item.dart';
 
 class ApiKeyDialog extends StatelessWidget {
+  final apiKeyIndicatorColor =
+      AuthStore().apiKey == null ? Colors.red : Colors.green;
+  final apiKeyIndicatorText = AuthStore().apiKey == null
+      ? L10nStrings.apiKeyDialog_apiKeyIsNotSaved
+      : L10nStrings.apiKeyDialog_apiKeyIsSaved;
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -15,19 +23,40 @@ class ApiKeyDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
+          Row(
+            children: [
+              const SizedBox(width: 20),
+              Container(
+                decoration: BoxDecoration(
+                  color: apiKeyIndicatorColor,
+                  shape: BoxShape.circle,
+                ),
+                height: 10,
+                width: 10,
+              ),
+              const SizedBox(width: 10),
+              Text(apiKeyIndicatorText.tr(context)),
+            ],
+          ),
+          const SizedBox(height: 20),
           Row(
             children: [
               const SizedBox(width: 10),
               Expanded(
                 child: TextField(
-                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: L10n.of(context)!.apiKeyDialog_apiKey,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
                   onSubmitted: (apiKey) {
                     if (apiKey.isNotEmpty) {
                       AuthStore().setApiKey(apiKey);
+                      Fluttertoast.showToast(
+                        msg: L10n.of(context)!.apiKeyDialog_apiKeySaved,
+                      );
                     }
 
                     Navigator.pop(context);
@@ -38,6 +67,18 @@ class ApiKeyDialog extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
+          OptionsListItem(
+            icon: const Icon(Icons.delete),
+            text: L10n.of(context)!.apiKeyDialog_removeApiKey,
+            onTap: () {
+              AuthStore().setApiKey(null);
+              Fluttertoast.showToast(
+                msg: L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
+              );
+              Navigator.pop(context);
+            },
+          ),
+          const SizedBox(height: 20),
         ],
       ),
     );

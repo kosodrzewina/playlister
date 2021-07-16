@@ -23,5 +23,15 @@
     "profileDialog_help": "Pomoc",
     "@profileDialog_help": {},
     "apiKeyDialog_apiKey": "klucz API",
-    "@apiKeyDialog_apiKey": {}
+    "@apiKeyDialog_apiKey": {},
+    "apiKeyDialog_apiKeyRemoved": "🗑️ klucz API został pomyślnie usunięty",
+    "@apiKeyDialog_apiKeyRemoved": {},
+    "apiKeyDialog_apiKeyIsSaved": "Twój klucz API jest zapisany",
+    "@apiKeyDialog_apiKeyIsSaved": {},
+    "apiKeyDialog_apiKeyIsNotSaved": "Nie ma zapisanego żadnego klucza API",
+    "@apiKeyDialog_apiKeyIsNotSaved": {},
+    "apiKeyDialog_removeApiKey": "Usuń klucz API",
+    "@apiKeyDialog_removeApiKey": {},
+    "apiKeyDialog_apiKeySaved": "✔️ Klucz API został pomyślnie dodany",
+    "@apiKeyDialog_apiKeySaved": {}
 }
