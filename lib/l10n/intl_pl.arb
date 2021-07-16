@@ -21,5 +21,7 @@
     "profileDialog_enterApiKey": "Wprowadź klucz API",
     "@profileDialog_enterApiKey": {},
     "profileDialog_help": "Pomoc",
-    "@profileDialog_help": {}
+    "@profileDialog_help": {},
+    "apiKeyDialog_apiKey": "klucz API",
+    "@apiKeyDialog_apiKey": {}
 }

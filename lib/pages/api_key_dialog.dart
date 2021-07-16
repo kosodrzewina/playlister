@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
+
 class ApiKeyDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,17 +16,17 @@ class ApiKeyDialog extends StatelessWidget {
         children: [
           const SizedBox(height: 10),
           Row(
-            children: const [
-              SizedBox(width: 10),
+            children: [
+              const SizedBox(width: 10),
               Expanded(
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: 'API key',
+                    labelText: L10n.of(context)!.apiKeyDialog_apiKey,
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
             ],
           ),
           const SizedBox(height: 10),
