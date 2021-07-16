@@ -13,7 +13,7 @@ class ProfileDialog extends StatefulWidget {
 
 class _ProfileDialogState extends State<ProfileDialog> {
   bool loggedIn = false;
-  String logText = 'Log in';
+  String logText = L10nStrings.profileDialog_logIn;
   Icon logIcon = const Icon(Icons.login);
 
   @override
@@ -37,9 +37,9 @@ class _ProfileDialogState extends State<ProfileDialog> {
                     backgroundImage: Assets.images.avatar,
                   ),
                   const SizedBox(width: 20),
-                  const Text(
-                    'Not logged in',
-                    style: TextStyle(
+                  Text(
+                    L10n.of(context)!.profileDialog_notLoggedIn,
+                    style: const TextStyle(
                       fontSize: 19,
                     ),
                   ),
@@ -48,7 +48,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
               const SizedBox(height: 20),
               OptionsListItem(
                 icon: logIcon,
-                text: logText,
+                text: logText.tr(context),
                 onTap: () {
                   setState(() {
                     loggedIn = !loggedIn;
@@ -62,14 +62,14 @@ class _ProfileDialogState extends State<ProfileDialog> {
               ),
               OptionsListItem(
                 icon: const Icon(Icons.vpn_key),
-                text: 'Enter API key',
+                text: L10n.of(context)!.profileDialog_enterApiKey,
                 onTap: () async {
                   await showApiKeyDialog(context);
                 },
               ),
               OptionsListItem(
                 icon: const Icon(Icons.help),
-                text: 'Help',
+                text: L10n.of(context)!.profileDialog_help,
                 onTap: () {},
               ),
               const SizedBox(height: 20),

@@ -11,7 +11,7 @@
     "bottomNavBar_endangered": "Endangered",
     "@bottomNavBar_endangered": {},
     "profileDialog_loggedInAs": "Logged in as: ",
-    "@profileDialog_loggedIn": {},
+    "@profileDialog_loggedInAs": {},
     "profileDialog_notLoggedIn": "Not logged in",
     "@profileDialog_notLoggedIn": {},
     "profileDialog_logIn": "Log in",
