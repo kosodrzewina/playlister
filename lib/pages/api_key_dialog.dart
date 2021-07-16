@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:playlister/stores/auth_store.dart';
 
 import '../l10n/l10n.dart';
 
@@ -24,6 +25,13 @@ class ApiKeyDialog extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: L10n.of(context)!.apiKeyDialog_apiKey,
                   ),
+                  onSubmitted: (apiKey) {
+                    if (apiKey.isNotEmpty) {
+                      AuthStore().setApiKey(apiKey);
+                    }
+
+                    Navigator.pop(context);
+                  },
                 ),
               ),
               const SizedBox(width: 10),
