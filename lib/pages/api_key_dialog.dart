@@ -64,9 +64,6 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: L10n.of(context)!.apiKeyDialog_apiKey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
                   ),
                   controller: apiKeyTextFieldEditingController,
                   onSubmitted: (apiKey) {

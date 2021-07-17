@@ -32,26 +32,39 @@ ThemeData _buildTheme(Brightness brightness) {
         ),
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: isDark ? Colors.white : Colors.black,
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: isDark ? Colors.grey[900] : Colors.white,
       selectedItemColor: Colors.red,
       unselectedItemColor: isDark ? Colors.white : Colors.black,
     ),
     textTheme: const TextTheme(
-      bodyText1: TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
-      bodyText2: TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
-      headline4: TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
-      headline6: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 19,
-      ),
-    ).apply(
+        bodyText1: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+        bodyText2: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+        headline4: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+        headline6: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 19,
+        ),
+        subtitle1: TextStyle(
+          fontWeight: FontWeight.bold,
+        )).apply(
       bodyColor: isDark ? Colors.white : Colors.black,
       displayColor: isDark ? Colors.white : Colors.black,
     ),
