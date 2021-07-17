@@ -43,7 +43,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
             text: loggedIn
                 ? L10n.of(context)!.profileDialog_logOut
                 : L10n.of(context)!.profileDialog_logIn,
-            onTap: () {
+            onPressed: () {
               setState(() {
                 loggedIn = !loggedIn;
               });
@@ -52,14 +52,14 @@ class _ProfileDialogState extends State<ProfileDialog> {
           TextButtonIcon(
             icon: const Icon(Icons.vpn_key),
             text: L10n.of(context)!.profileDialog_enterApiKey,
-            onTap: () async {
+            onPressed: () async {
               await showApiKeyDialog(context);
             },
           ),
           TextButtonIcon(
             icon: const Icon(Icons.help),
             text: L10n.of(context)!.profileDialog_help,
-            onTap: () {},
+            onPressed: () {},
           ),
           const SizedBox(height: 20),
         ],

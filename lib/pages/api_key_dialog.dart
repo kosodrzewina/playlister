@@ -88,7 +88,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
           TextButtonIcon(
             icon: const Icon(Icons.delete),
             text: L10n.of(context)!.apiKeyDialog_removeApiKey,
-            onTap: () {
+            onPressed: () {
               context.read<AuthStore>().setApiKey(null);
               Fluttertoast.showToast(
                 msg: L10n.of(context)!.apiKeyDialog_apiKeyRemoved,

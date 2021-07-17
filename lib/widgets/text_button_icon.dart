@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 class TextButtonIcon extends StatefulWidget {
   final Icon icon;
   final String text;
-  final Function() onTap;
+  final Function() onPressed;
 
   const TextButtonIcon({
     required this.icon,
     required this.text,
-    required this.onTap,
+    required this.onPressed,
   });
 
   @override
@@ -20,7 +20,7 @@ class _TextButtonIconState extends State<TextButtonIcon> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: widget.onTap,
+      onPressed: widget.onPressed,
       child: Row(
         children: [
           const SizedBox(width: 10),
