@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
-import '../main.dart';
+import '../stores/auth_store.dart';
 import '../widgets/text_button_icon.dart';
 
 class ApiKeyDialog extends StatefulWidget {
@@ -12,8 +13,14 @@ class ApiKeyDialog extends StatefulWidget {
 }
 
 class _ApiKeyDialogState extends State<ApiKeyDialog> {
-  final apiKeyTextFieldEditingController = TextEditingController()
-    ..text = authStore.apiKey ?? '';
+  final apiKeyTextFieldEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    apiKeyTextFieldEditingController.text =
+        context.read<AuthStore>().apiKey ?? '';
+  }
 
   @override
   void dispose() {
@@ -37,7 +44,9 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
               const SizedBox(width: 20),
               Container(
                 decoration: BoxDecoration(
-                  color: authStore.apiKey == null ? Colors.red : Colors.green,
+                  color: context.read<AuthStore>().apiKey == null
+                      ? Colors.red
+                      : Colors.green,
                   shape: BoxShape.circle,
                 ),
                 height: 10,
@@ -45,7 +54,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
               ),
               const SizedBox(width: 10),
               Text(
-                authStore.apiKey == null
+                context.read<AuthStore>().apiKey == null
                     ? L10n.of(context)!.apiKeyDialog_apiKeyIsNotSaved
                     : L10n.of(context)!.apiKeyDialog_apiKeyIsSaved,
               ),
@@ -66,7 +75,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                   controller: apiKeyTextFieldEditingController,
                   onSubmitted: (apiKey) {
                     if (apiKey.isNotEmpty) {
-                      authStore.setApiKey(apiKey);
+                      context.read<AuthStore>().setApiKey(apiKey);
                       Fluttertoast.showToast(
                         msg: L10n.of(context)!.apiKeyDialog_apiKeySaved,
                       );
@@ -84,7 +93,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             icon: const Icon(Icons.delete),
             text: L10n.of(context)!.apiKeyDialog_removeApiKey,
             onTap: () {
-              authStore.setApiKey(null);
+              context.read<AuthStore>().setApiKey(null);
               Fluttertoast.showToast(
                 msg: L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
               );

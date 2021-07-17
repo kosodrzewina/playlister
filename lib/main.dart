@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import 'l10n/l10n.dart';
@@ -10,13 +11,18 @@ import 'pages/profile_dialog.dart';
 import 'stores/auth_store.dart';
 import 'themes.dart';
 
-final authStore = AuthStore();
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  final authStore = AuthStore();
   await authStore.initialize();
 
-  runApp(MyApp());
+  runApp(
+    Provider.value(
+      value: authStore,
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
