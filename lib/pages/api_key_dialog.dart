@@ -7,11 +7,6 @@ import '../main.dart';
 import '../widgets/text_button_icon.dart';
 
 class ApiKeyDialog extends StatelessWidget {
-  final apiKeyIndicatorColor =
-      authStore.apiKey == null ? Colors.red : Colors.green;
-  final apiKeyIndicatorText = authStore.apiKey == null
-      ? L10nStrings.apiKeyDialog_apiKeyIsNotSaved
-      : L10nStrings.apiKeyDialog_apiKeyIsSaved;
   final TextEditingController apiKeyTextFieldEditingController =
       TextEditingController()..text = authStore.apiKey ?? '';
 
@@ -31,14 +26,18 @@ class ApiKeyDialog extends StatelessWidget {
               const SizedBox(width: 20),
               Container(
                 decoration: BoxDecoration(
-                  color: apiKeyIndicatorColor,
+                  color: authStore.apiKey == null ? Colors.red : Colors.green,
                   shape: BoxShape.circle,
                 ),
                 height: 10,
                 width: 10,
               ),
               const SizedBox(width: 10),
-              Text(apiKeyIndicatorText.tr(context)),
+              Text(
+                authStore.apiKey == null
+                    ? L10n.of(context)!.apiKeyDialog_apiKeyIsNotSaved
+                    : L10n.of(context)!.apiKeyDialog_apiKeyIsSaved,
+              ),
             ],
           ),
           const SizedBox(height: 20),

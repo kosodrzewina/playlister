@@ -13,8 +13,6 @@ class ProfileDialog extends StatefulWidget {
 
 class _ProfileDialogState extends State<ProfileDialog> {
   bool loggedIn = false;
-  String logText = L10nStrings.profileDialog_logIn;
-  Icon logIcon = const Icon(Icons.login);
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +42,13 @@ class _ProfileDialogState extends State<ProfileDialog> {
           ),
           const SizedBox(height: 20),
           TextButtonIcon(
-            icon: logIcon,
-            text: logText.tr(context),
+            icon: Icon(loggedIn ? Icons.logout : Icons.login),
+            text: loggedIn
+                ? L10n.of(context)!.profileDialog_logOut
+                : L10n.of(context)!.profileDialog_logIn,
             onTap: () {
               setState(() {
                 loggedIn = !loggedIn;
-                logIcon = Icon(loggedIn ? Icons.logout : Icons.login);
-                logText = loggedIn
-                    ? L10n.of(context)!.profileDialog_logOut
-                    : L10n.of(context)!.profileDialog_logIn;
               });
             },
           ),
