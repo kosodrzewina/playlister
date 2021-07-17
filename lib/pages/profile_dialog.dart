@@ -17,9 +17,6 @@ class _ProfileDialogState extends State<ProfileDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -33,10 +30,10 @@ class _ProfileDialogState extends State<ProfileDialog> {
               ),
               const SizedBox(width: 20),
               Text(
-                L10n.of(context)!.profileDialog_notLoggedIn,
-                style: const TextStyle(
-                  fontSize: 19,
-                ),
+                loggedIn
+                    ? L10n.of(context)!.profileDialog_loggedInAs
+                    : L10n.of(context)!.profileDialog_notLoggedIn,
+                style: Theme.of(context).textTheme.headline6,
               ),
             ],
           ),

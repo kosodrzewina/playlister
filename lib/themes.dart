@@ -16,12 +16,19 @@ ThemeData _buildTheme(Brightness brightness) {
     ),
     dialogTheme: DialogTheme(
       backgroundColor: isDark ? Colors.grey[800] : Colors.grey[200],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(Colors.white),
+        foregroundColor: isDark
+            ? MaterialStateProperty.all(Colors.white)
+            : MaterialStateProperty.all(Colors.black),
         overlayColor: MaterialStateProperty.all(
-          Colors.white.withOpacity(0.2),
+          isDark
+              ? Colors.white.withOpacity(0.2)
+              : Colors.black.withOpacity(0.2),
         ),
       ),
     ),
@@ -42,6 +49,7 @@ ThemeData _buildTheme(Brightness brightness) {
       ),
       headline6: TextStyle(
         fontWeight: FontWeight.bold,
+        fontSize: 19,
       ),
     ).apply(
       bodyColor: isDark ? Colors.white : Colors.black,

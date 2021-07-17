@@ -31,10 +31,6 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Theme.of(context).cardColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
