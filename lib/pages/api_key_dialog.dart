@@ -6,9 +6,20 @@ import '../l10n/l10n.dart';
 import '../main.dart';
 import '../widgets/text_button_icon.dart';
 
-class ApiKeyDialog extends StatelessWidget {
-  final TextEditingController apiKeyTextFieldEditingController =
-      TextEditingController()..text = authStore.apiKey ?? '';
+class ApiKeyDialog extends StatefulWidget {
+  @override
+  _ApiKeyDialogState createState() => _ApiKeyDialogState();
+}
+
+class _ApiKeyDialogState extends State<ApiKeyDialog> {
+  final apiKeyTextFieldEditingController = TextEditingController()
+    ..text = authStore.apiKey ?? '';
+
+  @override
+  void dispose() {
+    apiKeyTextFieldEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
