@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../l10n/l10n.dart';
 import '../main.dart';
-import '../widgets/options_list_item.dart';
+import '../widgets/text_button_icon.dart';
 
 class ApiKeyDialog extends StatelessWidget {
   final apiKeyIndicatorColor =
@@ -70,7 +70,7 @@ class ApiKeyDialog extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          OptionsListItem(
+          TextButtonIcon(
             icon: const Icon(Icons.delete),
             text: L10n.of(context)!.apiKeyDialog_removeApiKey,
             onTap: () {

@@ -17,6 +17,14 @@ ThemeData _buildTheme(Brightness brightness) {
     dialogTheme: DialogTheme(
       backgroundColor: isDark ? Colors.grey[800] : Colors.grey[200],
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(Colors.white),
+        overlayColor: MaterialStateProperty.all(
+          Colors.white.withOpacity(0.2),
+        ),
+      ),
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: isDark ? Colors.grey[900] : Colors.white,
       selectedItemColor: Colors.red,

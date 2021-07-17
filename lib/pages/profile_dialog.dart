@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
-import '../widgets/options_list_item.dart';
+import '../widgets/text_button_icon.dart';
 import 'api_key_dialog.dart';
 
 class ProfileDialog extends StatefulWidget {
@@ -45,28 +45,27 @@ class _ProfileDialogState extends State<ProfileDialog> {
                 ],
               ),
               const SizedBox(height: 20),
-              OptionsListItem(
+              TextButtonIcon(
                 icon: logIcon,
                 text: logText.tr(context),
                 onTap: () {
                   setState(() {
                     loggedIn = !loggedIn;
-
+                    logIcon = Icon(loggedIn ? Icons.logout : Icons.login);
                     logText = loggedIn
                         ? L10n.of(context)!.profileDialog_logOut
                         : L10n.of(context)!.profileDialog_logIn;
-                    logIcon = Icon(loggedIn ? Icons.logout : Icons.login);
                   });
                 },
               ),
-              OptionsListItem(
+              TextButtonIcon(
                 icon: const Icon(Icons.vpn_key),
                 text: L10n.of(context)!.profileDialog_enterApiKey,
                 onTap: () async {
                   await showApiKeyDialog(context);
                 },
               ),
-              OptionsListItem(
+              TextButtonIcon(
                 icon: const Icon(Icons.help),
                 text: L10n.of(context)!.profileDialog_help,
                 onTap: () {},
