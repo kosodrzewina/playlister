@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import 'l10n/l10n.dart';
 import 'pages/endangered_page.dart';
 import 'pages/home_page.dart';
 import 'pages/playlists_page.dart';
+import 'pages/profile_dialog.dart';
+import 'stores/auth_store.dart';
 import 'themes.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final authStore = AuthStore();
+  await authStore.initialize();
+
+  runApp(
+    Provider.value(
+      value: authStore,
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +33,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: L10n.supportedLocales,
       localizationsDelegates: L10n.localizationsDelegates,
       title: 'Playlister',
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: lightTheme,
       darkTheme: darkTheme,
       home: const MyHomePage(title: 'Playlister'),
@@ -39,7 +52,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentBottomNavBarIndex = 0;
-  List<Widget> pages = [
+  static const pages = [
     HomePage(),
     PlaylistsPage(),
     EndangeredPage(),
@@ -72,9 +85,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 3,
               ),
             ),
-            child: CircleAvatar(
-              radius: 15,
-              backgroundImage: Assets.images.avatar,
+            child: GestureDetector(
+              onTap: () async {
+                await showProfileDialog(context);
+              },
+              child: CircleAvatar(
+                radius: 15,
+                backgroundImage: Assets.images.avatar,
+              ),
             ),
           ),
         ],
