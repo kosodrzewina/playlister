@@ -90,8 +90,9 @@ class ApiKeyDialog extends StatelessWidget {
 
 Future<void> showApiKeyDialog(BuildContext context) async {
   return await showDialog(
-      context: context,
-      builder: (context) {
-        return ApiKeyDialog();
-      });
+    context: context,
+    builder: (context) {
+      return ApiKeyDialog();
+    },
+  );
 }
