@@ -25,54 +25,50 @@ class _ProfileDialogState extends State<ProfileDialog> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Column(
+          const SizedBox(height: 20),
+          Row(
             children: [
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  const SizedBox(width: 20),
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: Assets.images.avatar,
-                  ),
-                  const SizedBox(width: 20),
-                  Text(
-                    L10n.of(context)!.profileDialog_notLoggedIn,
-                    style: const TextStyle(
-                      fontSize: 19,
-                    ),
-                  ),
-                ],
+              const SizedBox(width: 20),
+              CircleAvatar(
+                radius: 30,
+                backgroundImage: Assets.images.avatar,
               ),
-              const SizedBox(height: 20),
-              TextButtonIcon(
-                icon: logIcon,
-                text: logText.tr(context),
-                onTap: () {
-                  setState(() {
-                    loggedIn = !loggedIn;
-                    logIcon = Icon(loggedIn ? Icons.logout : Icons.login);
-                    logText = loggedIn
-                        ? L10n.of(context)!.profileDialog_logOut
-                        : L10n.of(context)!.profileDialog_logIn;
-                  });
-                },
+              const SizedBox(width: 20),
+              Text(
+                L10n.of(context)!.profileDialog_notLoggedIn,
+                style: const TextStyle(
+                  fontSize: 19,
+                ),
               ),
-              TextButtonIcon(
-                icon: const Icon(Icons.vpn_key),
-                text: L10n.of(context)!.profileDialog_enterApiKey,
-                onTap: () async {
-                  await showApiKeyDialog(context);
-                },
-              ),
-              TextButtonIcon(
-                icon: const Icon(Icons.help),
-                text: L10n.of(context)!.profileDialog_help,
-                onTap: () {},
-              ),
-              const SizedBox(height: 20),
             ],
           ),
+          const SizedBox(height: 20),
+          TextButtonIcon(
+            icon: logIcon,
+            text: logText.tr(context),
+            onTap: () {
+              setState(() {
+                loggedIn = !loggedIn;
+                logIcon = Icon(loggedIn ? Icons.logout : Icons.login);
+                logText = loggedIn
+                    ? L10n.of(context)!.profileDialog_logOut
+                    : L10n.of(context)!.profileDialog_logIn;
+              });
+            },
+          ),
+          TextButtonIcon(
+            icon: const Icon(Icons.vpn_key),
+            text: L10n.of(context)!.profileDialog_enterApiKey,
+            onTap: () async {
+              await showApiKeyDialog(context);
+            },
+          ),
+          TextButtonIcon(
+            icon: const Icon(Icons.help),
+            text: L10n.of(context)!.profileDialog_help,
+            onTap: () {},
+          ),
+          const SizedBox(height: 20),
         ],
       ),
     );
