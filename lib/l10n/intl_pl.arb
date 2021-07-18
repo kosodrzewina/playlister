@@ -33,5 +33,7 @@
     "apiKeyDialog_removeApiKey": "Usuń klucz API",
     "@apiKeyDialog_removeApiKey": {},
     "apiKeyDialog_apiKeySaved": "✔️ Klucz API został pomyślnie dodany",
-    "@apiKeyDialog_apiKeySaved": {}
+    "@apiKeyDialog_apiKeySaved": {},
+    "noPlaylistsFound": "Nie znaleziono playlist",
+    "@noPlaylistsFound": {}
 }
