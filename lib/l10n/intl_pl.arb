@@ -35,5 +35,7 @@
     "apiKeyDialog_apiKeySaved": "✔️ Klucz API został pomyślnie dodany",
     "@apiKeyDialog_apiKeySaved": {},
     "noPlaylistsFound": "Nie znaleziono playlist",
-    "@noPlaylistsFound": {}
+    "@noPlaylistsFound": {},
+    "endangeredPage_noDeletedVideosDetected": "Nie wykryto usuniętych filmów",
+    "@endangeredPage_noDeletedVideosDetected": {}
 }
