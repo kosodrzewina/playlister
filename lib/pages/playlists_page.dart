@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../gen/assets.gen.dart';
+import '../l10n/l10n.dart';
 
 class PlaylistsPage extends StatefulWidget {
   const PlaylistsPage();
@@ -25,8 +26,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
             child: Assets.icons.lookingAtVoid.svg(),
           ),
           const SizedBox(height: 10),
-          const Center(
-            child: Text('No playlists found'),
+          Center(
+            child: Text(
+              L10n.of(context)!.noPlaylistsFound,
+            ),
           ),
         ],
       ),
