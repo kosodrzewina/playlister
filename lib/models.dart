@@ -3,6 +3,105 @@ import 'package:json_annotation/json_annotation.dart';
 part 'models.g.dart';
 
 @JsonSerializable()
+class YTResponsePlaylistList {
+  final String kind;
+  final String etag;
+  final String nextPageToken;
+  final PageInfo pageInfo;
+  final List<Playlist> items;
+
+  const YTResponsePlaylistList({
+    required this.kind,
+    required this.etag,
+    required this.nextPageToken,
+    required this.pageInfo,
+    required this.items,
+  });
+
+  factory YTResponsePlaylistList.fromJson(Map<String, dynamic> json) =>
+      _$YTResponsePlaylistListFromJson(json);
+}
+
+@JsonSerializable()
+class Playlist {
+  final String kind;
+  final String etag;
+  final String id;
+  final SnippetPlaylist snippet;
+
+  const Playlist({
+    required this.kind,
+    required this.etag,
+    required this.id,
+    required this.snippet,
+  });
+
+  factory Playlist.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistFromJson(json);
+}
+
+@JsonSerializable()
+class SnippetPlaylist {
+  final String publishedAt;
+  final String channelId;
+  final String title;
+  final String description;
+  final ThumbnailsPlaylist thumbnails;
+  final String channelTitle;
+  final Localization localized;
+
+  const SnippetPlaylist({
+    required this.publishedAt,
+    required this.channelId,
+    required this.title,
+    required this.description,
+    required this.thumbnails,
+    required this.channelTitle,
+    required this.localized,
+  });
+
+  factory SnippetPlaylist.fromJson(Map<String, dynamic> json) =>
+      _$SnippetPlaylistFromJson(json);
+}
+
+@JsonSerializable()
+class Localization {
+  final String title;
+  final String description;
+
+  const Localization({
+    required this.title,
+    required this.description,
+  });
+
+  factory Localization.fromJson(Map<String, dynamic> json) =>
+      _$LocalizationFromJson(json);
+}
+
+@JsonSerializable()
+class ThumbnailsPlaylist {
+  @JsonKey(name: 'default')
+  // ignore: non_constant_identifier_names
+  final Thumbnail default_;
+  final Thumbnail medium;
+  final Thumbnail high;
+  final Thumbnail standard;
+  final Thumbnail maxres;
+
+  const ThumbnailsPlaylist({
+    // ignore: non_constant_identifier_names
+    required this.default_,
+    required this.medium,
+    required this.high,
+    required this.standard,
+    required this.maxres,
+  });
+
+  factory ThumbnailsPlaylist.fromJson(Map<String, dynamic> json) =>
+      _$ThumbnailsPlaylistFromJson(json);
+}
+
+@JsonSerializable()
 class YTResponsePlaylistItems {
   final String kind;
   final String etag;
@@ -23,11 +122,11 @@ class YTResponsePlaylistItems {
 @JsonSerializable()
 class PageInfo {
   final int totalResults;
-  final int resultsPerPAge;
+  final int resultsPerPage;
 
   const PageInfo({
     required this.totalResults,
-    required this.resultsPerPAge,
+    required this.resultsPerPage,
   });
 
   factory PageInfo.fromJson(Map<String, dynamic> json) =>
@@ -39,7 +138,7 @@ class PlaylistItem {
   final String kind;
   final String etag;
   final String id;
-  final Snippet snippet;
+  final SnippetVideo snippet;
   final ContentDetails? contentDetails;
   final Status? status;
 
@@ -88,12 +187,12 @@ class ContentDetails {
 }
 
 @JsonSerializable()
-class Snippet {
+class SnippetVideo {
   final String publishedAt;
   final String channelId;
   final String title;
   final String description;
-  final Thumbnails thumbnails;
+  final ThumbnailsVideo thumbnails;
   final String channelTitle;
   final String playlistId;
   final int position;
@@ -101,7 +200,7 @@ class Snippet {
   final String videoOwnerChannelTitle;
   final String videoOwnerChannelId;
 
-  const Snippet({
+  const SnippetVideo({
     required this.publishedAt,
     required this.channelId,
     required this.title,
@@ -115,8 +214,8 @@ class Snippet {
     required this.videoOwnerChannelId,
   });
 
-  factory Snippet.fromJson(Map<String, dynamic> json) =>
-      _$SnippetFromJson(json);
+  factory SnippetVideo.fromJson(Map<String, dynamic> json) =>
+      _$SnippetVideoFromJson(json);
 }
 
 @JsonSerializable()
@@ -136,22 +235,22 @@ class Thumbnail {
 }
 
 @JsonSerializable()
-class Thumbnails {
+class ThumbnailsVideo {
   @JsonKey(name: 'default')
   // ignore: non_constant_identifier_names
   final Thumbnail default_;
   final Thumbnail medium;
   final Thumbnail high;
 
-  const Thumbnails({
+  const ThumbnailsVideo({
     // ignore: non_constant_identifier_names
     required this.default_,
     required this.medium,
     required this.high,
   });
 
-  factory Thumbnails.fromJson(Map<String, dynamic> json) =>
-      _$ThumbnailsFromJson(json);
+  factory ThumbnailsVideo.fromJson(Map<String, dynamic> json) =>
+      _$ThumbnailsVideoFromJson(json);
 }
 
 @JsonSerializable()
