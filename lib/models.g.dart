@@ -6,8 +6,9 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-YTResponse _$YTResponseFromJson(Map<String, dynamic> json) {
-  return YTResponse(
+YTResponsePlaylistItems _$YTResponsePlaylistItemsFromJson(
+    Map<String, dynamic> json) {
+  return YTResponsePlaylistItems(
     kind: json['kind'] as String,
     etag: json['etag'] as String,
     nextPageToken: json['nextPageToken'] as String,
@@ -17,7 +18,8 @@ YTResponse _$YTResponseFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$YTResponseToJson(YTResponse instance) =>
+Map<String, dynamic> _$YTResponsePlaylistItemsToJson(
+        YTResponsePlaylistItems instance) =>
     <String, dynamic>{
       'kind': instance.kind,
       'etag': instance.etag,

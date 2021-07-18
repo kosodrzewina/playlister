@@ -3,8 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'models.g.dart';
 
 @JsonSerializable()
-class YTResponse {
-  const YTResponse({
+class YTResponsePlaylistItems {
+  const YTResponsePlaylistItems({
     required this.kind,
     required this.etag,
     required this.nextPageToken,
@@ -16,8 +16,8 @@ class YTResponse {
   final String nextPageToken;
   final List<PlaylistItem> items;
 
-  factory YTResponse.fromJson(Map<String, dynamic> json) =>
-      _$YTResponseFromJson(json);
+  factory YTResponsePlaylistItems.fromJson(Map<String, dynamic> json) =>
+      _$YTResponsePlaylistItemsFromJson(json);
 }
 
 @JsonSerializable()
