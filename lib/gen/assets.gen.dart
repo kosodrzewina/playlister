@@ -10,7 +10,11 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  SvgGenImage get emptyStreet =>
+      const SvgGenImage('assets/icons/empty_street.svg');
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
+  SvgGenImage get lookingAtVoid =>
+      const SvgGenImage('assets/icons/looking_at_void.svg');
 }
 
 class $AssetsImagesGen {

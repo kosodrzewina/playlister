@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/playlists_list_item.dart';
+import '../gen/assets.gen.dart';
 
 class PlaylistsPage extends StatefulWidget {
   const PlaylistsPage();
@@ -15,109 +15,21 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(right: 10),
-          child: DropdownButton<String>(
-            value: currentSort,
-            icon: const Icon(Icons.filter_list),
-            items: [
-              for (var item in ['Sort by 0', 'Sort by 1', 'Sort by 2'])
-                DropdownMenuItem(
-                  value: item,
-                  child: Text(item),
-                ),
-            ],
-            onChanged: (value) {
-              setState(() {
-                currentSort = value!;
-              });
-            },
+    return Center(
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          SizedBox(
+            height: 250,
+            width: 250,
+            child: Assets.icons.lookingAtVoid.svg(),
           ),
-        ),
-        Expanded(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-            ),
-            shrinkWrap: true,
-            children: const [
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.teal,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.red,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.purple,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.yellow,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.red,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.teal,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.purple,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.teal,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.red,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.purple,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.yellow,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.red,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.teal,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.purple,
-              ),
-            ],
+          const SizedBox(height: 10),
+          const Center(
+            child: Text('No playlists found'),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
