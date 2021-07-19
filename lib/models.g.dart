@@ -11,7 +11,7 @@ YTResponsePlaylistList _$YTResponsePlaylistListFromJson(
   return YTResponsePlaylistList(
     kind: json['kind'] as String,
     etag: json['etag'] as String,
-    nextPageToken: json['nextPageToken'] as String,
+    nextPageToken: json['nextPageToken'] as String?,
     pageInfo: PageInfo.fromJson(json['pageInfo'] as Map<String, dynamic>),
     items: (json['items'] as List<dynamic>)
         .map((e) => Playlist.fromJson(e as Map<String, dynamic>))
@@ -34,7 +34,9 @@ Playlist _$PlaylistFromJson(Map<String, dynamic> json) {
     kind: json['kind'] as String,
     etag: json['etag'] as String,
     id: json['id'] as String,
-    snippet: SnippetPlaylist.fromJson(json['snippet'] as Map<String, dynamic>),
+    snippet: json['snippet'] == null
+        ? null
+        : SnippetPlaylist.fromJson(json['snippet'] as Map<String, dynamic>),
   );
 }
 

@@ -6,14 +6,14 @@ part 'models.g.dart';
 class YTResponsePlaylistList {
   final String kind;
   final String etag;
-  final String nextPageToken;
+  final String? nextPageToken;
   final PageInfo pageInfo;
   final List<Playlist> items;
 
   const YTResponsePlaylistList({
     required this.kind,
     required this.etag,
-    required this.nextPageToken,
+    this.nextPageToken,
     required this.pageInfo,
     required this.items,
   });
@@ -27,13 +27,13 @@ class Playlist {
   final String kind;
   final String etag;
   final String id;
-  final SnippetPlaylist snippet;
+  final SnippetPlaylist? snippet;
 
   const Playlist({
     required this.kind,
     required this.etag,
     required this.id,
-    required this.snippet,
+    this.snippet,
   });
 
   factory Playlist.fromJson(Map<String, dynamic> json) =>
