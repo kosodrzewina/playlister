@@ -9,17 +9,24 @@ import 'pages/home_page.dart';
 import 'pages/playlists_page.dart';
 import 'pages/profile_dialog.dart';
 import 'stores/auth_store.dart';
+import 'stores/playlist_store.dart';
 import 'themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final authStore = AuthStore();
+  final playlistStore = PlaylistStore();
+
   await authStore.initialize();
+  await playlistStore.initialize();
 
   runApp(
-    Provider.value(
-      value: authStore,
+    MultiProvider(
+      providers: [
+        Provider.value(value: authStore),
+        Provider.value(value: playlistStore),
+      ],
       child: MyApp(),
     ),
   );
