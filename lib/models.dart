@@ -7,6 +7,7 @@ class YTResponsePlaylistList {
   final String kind;
   final String etag;
   final String? nextPageToken;
+  final String? prevPageToken;
   final PageInfo pageInfo;
   final List<Playlist> items;
 
@@ -14,6 +15,7 @@ class YTResponsePlaylistList {
     required this.kind,
     required this.etag,
     this.nextPageToken,
+    this.prevPageToken,
     required this.pageInfo,
     required this.items,
   });

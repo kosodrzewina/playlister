@@ -12,6 +12,7 @@ YTResponsePlaylistList _$YTResponsePlaylistListFromJson(
     kind: json['kind'] as String,
     etag: json['etag'] as String,
     nextPageToken: json['nextPageToken'] as String?,
+    prevPageToken: json['prevPageToken'] as String?,
     pageInfo: PageInfo.fromJson(json['pageInfo'] as Map<String, dynamic>),
     items: (json['items'] as List<dynamic>)
         .map((e) => Playlist.fromJson(e as Map<String, dynamic>))
@@ -25,6 +26,7 @@ Map<String, dynamic> _$YTResponsePlaylistListToJson(
       'kind': instance.kind,
       'etag': instance.etag,
       'nextPageToken': instance.nextPageToken,
+      'prevPageToken': instance.prevPageToken,
       'pageInfo': instance.pageInfo,
       'items': instance.items,
     };
