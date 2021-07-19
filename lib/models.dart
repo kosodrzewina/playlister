@@ -22,6 +22,8 @@ class YTResponsePlaylistList {
 
   factory YTResponsePlaylistList.fromJson(Map<String, dynamic> json) =>
       _$YTResponsePlaylistListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$YTResponsePlaylistListToJson(this);
 }
 
 @JsonSerializable()
@@ -40,6 +42,8 @@ class Playlist {
 
   factory Playlist.fromJson(Map<String, dynamic> json) =>
       _$PlaylistFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistToJson(this);
 }
 
 @JsonSerializable()
@@ -64,6 +68,8 @@ class SnippetPlaylist {
 
   factory SnippetPlaylist.fromJson(Map<String, dynamic> json) =>
       _$SnippetPlaylistFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SnippetPlaylistToJson(this);
 }
 
 @JsonSerializable()
@@ -78,6 +84,8 @@ class Localization {
 
   factory Localization.fromJson(Map<String, dynamic> json) =>
       _$LocalizationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LocalizationToJson(this);
 }
 
 @JsonSerializable()
@@ -101,6 +109,8 @@ class ThumbnailsPlaylist {
 
   factory ThumbnailsPlaylist.fromJson(Map<String, dynamic> json) =>
       _$ThumbnailsPlaylistFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ThumbnailsPlaylistToJson(this);
 }
 
 @JsonSerializable()
@@ -133,6 +143,8 @@ class PageInfo {
 
   factory PageInfo.fromJson(Map<String, dynamic> json) =>
       _$PageInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PageInfoToJson(this);
 }
 
 @JsonSerializable()
@@ -234,6 +246,8 @@ class Thumbnail {
 
   factory Thumbnail.fromJson(Map<String, dynamic> json) =>
       _$ThumbnailFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ThumbnailToJson(this);
 }
 
 @JsonSerializable()
