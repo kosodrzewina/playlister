@@ -74,7 +74,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                   in context.read<PlaylistStore>().playlists!.items) ...[
                 PlaylistsListItem(
                   text: item.snippet!.title,
-                  color: Colors.teal,
+                  image: NetworkImage(item.snippet!.thumbnails.default_.url),
                 ),
                 const SizedBox(height: 10),
               ]

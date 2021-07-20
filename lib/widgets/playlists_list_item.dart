@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 
 class PlaylistsListItem extends StatelessWidget {
   final String text;
-  final Color color;
+  final ImageProvider image;
 
-  const PlaylistsListItem({
-    Key? key,
-    required this.text,
-    required this.color,
-  }) : super(key: key);
+  const PlaylistsListItem({Key? key, required this.text, required this.image})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +32,9 @@ class PlaylistsListItem extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: color,
-                    shape: BoxShape.circle,
-                  ),
-                  height: 35,
-                  width: 35,
+                CircleAvatar(
+                  radius: 15,
+                  backgroundImage: image,
                 ),
                 const SizedBox(
                   width: 10,
