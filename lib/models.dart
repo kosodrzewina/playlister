@@ -3,6 +3,28 @@ import 'package:json_annotation/json_annotation.dart';
 part 'models.g.dart';
 
 @JsonSerializable()
+class PlaylistList {
+  List<Playlist> list = <Playlist>[];
+
+  PlaylistList({
+    required this.list,
+  });
+
+  List<Playlist> get playlists {
+    return list;
+  }
+
+  set playlists(List<Playlist> playlists) {
+    list = playlists;
+  }
+
+  factory PlaylistList.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistListToJson(this);
+}
+
+@JsonSerializable()
 class YTResponsePlaylistList {
   final String kind;
   final String etag;
@@ -49,20 +71,20 @@ class Playlist {
 @JsonSerializable()
 class SnippetPlaylist {
   final String publishedAt;
-  final String channelId;
+  final String? channelId;
   final String title;
   final String description;
   final ThumbnailsPlaylist thumbnails;
-  final String channelTitle;
+  final String? channelTitle;
   final Localization localized;
 
   const SnippetPlaylist({
     required this.publishedAt,
-    required this.channelId,
+    this.channelId,
     required this.title,
     required this.description,
     required this.thumbnails,
-    required this.channelTitle,
+    this.channelTitle,
     required this.localized,
   });
 
@@ -92,7 +114,7 @@ class Localization {
 class ThumbnailsPlaylist {
   @JsonKey(name: 'default')
   // ignore: non_constant_identifier_names
-  final Thumbnail default_;
+  final Thumbnail? default_;
   final Thumbnail? medium;
   final Thumbnail? high;
   final Thumbnail? standard;
@@ -100,7 +122,7 @@ class ThumbnailsPlaylist {
 
   const ThumbnailsPlaylist({
     // ignore: non_constant_identifier_names
-    required this.default_,
+    this.default_,
     this.medium,
     this.high,
     this.standard,

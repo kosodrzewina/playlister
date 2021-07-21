@@ -6,6 +6,22 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+PlaylistList _$PlaylistListFromJson(Map<String, dynamic> json) {
+  return PlaylistList(
+    list: (json['list'] as List<dynamic>)
+        .map((e) => Playlist.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  )..playlists = (json['playlists'] as List<dynamic>)
+      .map((e) => Playlist.fromJson(e as Map<String, dynamic>))
+      .toList();
+}
+
+Map<String, dynamic> _$PlaylistListToJson(PlaylistList instance) =>
+    <String, dynamic>{
+      'list': instance.list,
+      'playlists': instance.playlists,
+    };
+
 YTResponsePlaylistList _$YTResponsePlaylistListFromJson(
     Map<String, dynamic> json) {
   return YTResponsePlaylistList(
@@ -52,12 +68,12 @@ Map<String, dynamic> _$PlaylistToJson(Playlist instance) => <String, dynamic>{
 SnippetPlaylist _$SnippetPlaylistFromJson(Map<String, dynamic> json) {
   return SnippetPlaylist(
     publishedAt: json['publishedAt'] as String,
-    channelId: json['channelId'] as String,
+    channelId: json['channelId'] as String?,
     title: json['title'] as String,
     description: json['description'] as String,
     thumbnails:
         ThumbnailsPlaylist.fromJson(json['thumbnails'] as Map<String, dynamic>),
-    channelTitle: json['channelTitle'] as String,
+    channelTitle: json['channelTitle'] as String?,
     localized: Localization.fromJson(json['localized'] as Map<String, dynamic>),
   );
 }
@@ -88,7 +104,9 @@ Map<String, dynamic> _$LocalizationToJson(Localization instance) =>
 
 ThumbnailsPlaylist _$ThumbnailsPlaylistFromJson(Map<String, dynamic> json) {
   return ThumbnailsPlaylist(
-    default_: Thumbnail.fromJson(json['default'] as Map<String, dynamic>),
+    default_: json['default'] == null
+        ? null
+        : Thumbnail.fromJson(json['default'] as Map<String, dynamic>),
     medium: json['medium'] == null
         ? null
         : Thumbnail.fromJson(json['medium'] as Map<String, dynamic>),
