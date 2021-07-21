@@ -93,18 +93,18 @@ class ThumbnailsPlaylist {
   @JsonKey(name: 'default')
   // ignore: non_constant_identifier_names
   final Thumbnail default_;
-  final Thumbnail medium;
-  final Thumbnail high;
-  final Thumbnail standard;
-  final Thumbnail maxres;
+  final Thumbnail? medium;
+  final Thumbnail? high;
+  final Thumbnail? standard;
+  final Thumbnail? maxres;
 
   const ThumbnailsPlaylist({
     // ignore: non_constant_identifier_names
     required this.default_,
-    required this.medium,
-    required this.high,
-    required this.standard,
-    required this.maxres,
+    this.medium,
+    this.high,
+    this.standard,
+    this.maxres,
   });
 
   factory ThumbnailsPlaylist.fromJson(Map<String, dynamic> json) =>

@@ -89,10 +89,18 @@ Map<String, dynamic> _$LocalizationToJson(Localization instance) =>
 ThumbnailsPlaylist _$ThumbnailsPlaylistFromJson(Map<String, dynamic> json) {
   return ThumbnailsPlaylist(
     default_: Thumbnail.fromJson(json['default'] as Map<String, dynamic>),
-    medium: Thumbnail.fromJson(json['medium'] as Map<String, dynamic>),
-    high: Thumbnail.fromJson(json['high'] as Map<String, dynamic>),
-    standard: Thumbnail.fromJson(json['standard'] as Map<String, dynamic>),
-    maxres: Thumbnail.fromJson(json['maxres'] as Map<String, dynamic>),
+    medium: json['medium'] == null
+        ? null
+        : Thumbnail.fromJson(json['medium'] as Map<String, dynamic>),
+    high: json['high'] == null
+        ? null
+        : Thumbnail.fromJson(json['high'] as Map<String, dynamic>),
+    standard: json['standard'] == null
+        ? null
+        : Thumbnail.fromJson(json['standard'] as Map<String, dynamic>),
+    maxres: json['maxres'] == null
+        ? null
+        : Thumbnail.fromJson(json['maxres'] as Map<String, dynamic>),
   );
 }
 
