@@ -29,19 +29,22 @@ class PlaylistsListItem extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Row(
               children: [
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 CircleAvatar(
                   radius: 15,
                   backgroundImage: image,
                 ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    text,
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
+                  ),
+                ),
                 const SizedBox(
                   width: 10,
-                ),
-                Text(
-                  text,
-                ),
+                )
               ],
             ),
           ),
