@@ -50,7 +50,7 @@ abstract class _PlaylistStore with Store {
   // ignore: avoid_void_async
   Future<void> setPlaylistsByChannelId(String apiKey, String channelId) async {
     final response = await get(Uri.parse(
-        'https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=$channelId&key=$apiKey'));
+        'https://www.googleapis.com/youtube/v3/playlists?part=snippet&maxResults=50&channelId=$channelId&key=$apiKey'));
     playlists = YTResponsePlaylistList.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>);
   }

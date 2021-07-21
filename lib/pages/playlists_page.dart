@@ -72,10 +72,17 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
               const SizedBox(height: 10),
               for (var item
                   in context.read<PlaylistStore>().playlists!.items) ...[
-                PlaylistsListItem(
-                  text: item.snippet!.title,
-                  image: NetworkImage(item.snippet!.thumbnails.default_.url),
-                ),
+                if (!item.snippet!.thumbnails.default_.url
+                    .contains('no_thumbnail'))
+                  PlaylistsListItem(
+                    text: item.snippet!.title,
+                    image: NetworkImage(item.snippet!.thumbnails.default_.url),
+                  )
+                else
+                  PlaylistsListItem(
+                    text: item.snippet!.title,
+                    image: Assets.images.noThumbnail,
+                  ),
                 const SizedBox(height: 10),
               ]
             ],
