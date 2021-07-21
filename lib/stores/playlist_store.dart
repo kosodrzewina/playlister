@@ -37,21 +37,36 @@ abstract class _PlaylistStore with Store {
   }
 
   @observable
-  YTResponsePlaylistList? playlists;
+  PlaylistList? playlists;
 
   // ignore: use_setters_to_change_properties
   @action
   void setPlaylistsByJson(String playlistsJson) {
-    playlists = YTResponsePlaylistList.fromJson(
+    playlists = PlaylistList.fromJson(
         jsonDecode(playlistsJson) as Map<String, dynamic>);
   }
 
   @action
   // ignore: avoid_void_async
   Future<void> setPlaylistsByChannelId(String apiKey, String channelId) async {
-    final response = await get(Uri.parse(
+    playlists = PlaylistList(list: <Playlist>[]);
+
+    var response = await get(Uri.parse(
         'https://www.googleapis.com/youtube/v3/playlists?part=snippet&maxResults=50&channelId=$channelId&key=$apiKey'));
-    playlists = YTResponsePlaylistList.fromJson(
+    var responseDeserialized = YTResponsePlaylistList.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>);
+
+    playlists!.list = responseDeserialized.items;
+
+    while (responseDeserialized.nextPageToken != null) {
+      response = await get(Uri.parse(
+          'https://www.googleapis.com/youtube/v3/playlists?part=snippet&maxResults=50&pageToken=${responseDeserialized.nextPageToken}&channelId=$channelId&key=$apiKey'));
+      responseDeserialized = YTResponsePlaylistList.fromJson(
+          jsonDecode(response.body) as Map<String, dynamic>);
+
+      for (final item in responseDeserialized.items) {
+        playlists!.list.add(item);
+      }
+    }
   }
 }

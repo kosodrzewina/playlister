@@ -60,9 +60,10 @@ class HomePage extends StatelessWidget {
             children: [
               const SizedBox(width: 10),
               for (var item
-                  in context.read<PlaylistStore>().playlists!.items) ...[
-                if (!item.snippet!.thumbnails.default_.url
-                    .contains('no_thumbnail'))
+                  in context.read<PlaylistStore>().playlists!.list) ...[
+                if (item.snippet!.thumbnails.default_ != null &&
+                    !item.snippet!.thumbnails.default_!.url
+                        .contains('no_thumbnail'))
                   RecentlyUpdatedListItem(
                     text: item.snippet!.title,
                     color: Colors.red,
@@ -98,12 +99,13 @@ class HomePage extends StatelessWidget {
             shrinkWrap: true,
             children: [
               for (var item
-                  in context.read<PlaylistStore>().playlists!.items) ...[
-                if (!item.snippet!.thumbnails.default_.url
-                    .contains('no_thumbnail'))
+                  in context.read<PlaylistStore>().playlists!.list) ...[
+                if (item.snippet!.thumbnails.default_ != null &&
+                    !item.snippet!.thumbnails.default_!.url
+                        .contains('no_thumbnail'))
                   PlaylistsListItem(
                     text: item.snippet!.title,
-                    image: NetworkImage(item.snippet!.thumbnails.default_.url),
+                    image: NetworkImage(item.snippet!.thumbnails.default_!.url),
                   )
                 else
                   PlaylistsListItem(

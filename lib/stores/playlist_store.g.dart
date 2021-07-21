@@ -12,13 +12,13 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
   final _$playlistsAtom = Atom(name: '_PlaylistStore.playlists');
 
   @override
-  YTResponsePlaylistList? get playlists {
+  PlaylistList? get playlists {
     _$playlistsAtom.reportRead();
     return super.playlists;
   }
 
   @override
-  set playlists(YTResponsePlaylistList? value) {
+  set playlists(PlaylistList? value) {
     _$playlistsAtom.reportWrite(value, super.playlists, () {
       super.playlists = value;
     });
