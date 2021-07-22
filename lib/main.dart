@@ -21,6 +21,13 @@ Future<void> main() async {
   await authStore.initialize();
   await playlistStore.initialize();
 
+  if (authStore.apiKey != null) {
+    await playlistStore.setPlaylistsByChannelId(
+      authStore.apiKey!,
+      'UC-lHJZR3Gqxm24_Vd_AJ5Yw', // PewDiePie channelId for testing purposes
+    );
+  }
+
   runApp(
     MultiProvider(
       providers: [
@@ -40,7 +47,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: L10n.supportedLocales,
       localizationsDelegates: L10n.localizationsDelegates,
       title: 'Playlister',
-      themeMode: ThemeMode.dark,
       theme: lightTheme,
       darkTheme: darkTheme,
       home: const MyHomePage(title: 'Playlister'),
