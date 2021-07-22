@@ -39,7 +39,6 @@ abstract class _PlaylistStore with Store {
   @observable
   PlaylistList? playlists;
 
-  // ignore: use_setters_to_change_properties
   @action
   void setPlaylistsByJson(String playlistsJson) {
     playlists = PlaylistList.fromJson(
@@ -47,7 +46,6 @@ abstract class _PlaylistStore with Store {
   }
 
   @action
-  // ignore: avoid_void_async
   Future<void> setPlaylistsByChannelId(String apiKey, String channelId) async {
     playlists = PlaylistList(list: <Playlist>[]);
 
