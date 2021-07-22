@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (context.read<PlaylistStore>() == null) {
+    if (context.read<PlaylistStore>().playlists == null) {
       return Center(
         child: ListView(
           shrinkWrap: true,
