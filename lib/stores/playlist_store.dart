@@ -47,13 +47,12 @@ abstract class _PlaylistStore with Store {
 
   @action
   Future<void> setPlaylistsByChannelId(String apiKey, String channelId) async {
-    playlists = PlaylistList(list: <Playlist>[]);
-
     var response = await get(Uri.parse(
         'https://www.googleapis.com/youtube/v3/playlists?part=snippet&maxResults=50&channelId=$channelId&key=$apiKey'));
     var responseDeserialized = YTResponsePlaylistList.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>);
 
+    playlists = PlaylistList(list: <Playlist>[]);
     playlists!.list = responseDeserialized.items;
 
     while (responseDeserialized.nextPageToken != null) {
