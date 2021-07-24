@@ -6,22 +6,6 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlaylistList _$PlaylistListFromJson(Map<String, dynamic> json) {
-  return PlaylistList(
-    list: (json['list'] as List<dynamic>)
-        .map((e) => Playlist.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  )..playlists = (json['playlists'] as List<dynamic>)
-      .map((e) => Playlist.fromJson(e as Map<String, dynamic>))
-      .toList();
-}
-
-Map<String, dynamic> _$PlaylistListToJson(PlaylistList instance) =>
-    <String, dynamic>{
-      'list': instance.list,
-      'playlists': instance.playlists,
-    };
-
 YTResponsePlaylistList _$YTResponsePlaylistListFromJson(
     Map<String, dynamic> json) {
   return YTResponsePlaylistList(

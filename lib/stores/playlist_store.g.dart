@@ -12,13 +12,13 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
   final _$playlistsAtom = Atom(name: '_PlaylistStore.playlists');
 
   @override
-  PlaylistList? get playlists {
+  ObservableList<Playlist>? get playlists {
     _$playlistsAtom.reportRead();
     return super.playlists;
   }
 
   @override
-  set playlists(PlaylistList? value) {
+  set playlists(ObservableList<Playlist>? value) {
     _$playlistsAtom.reportWrite(value, super.playlists, () {
       super.playlists = value;
     });

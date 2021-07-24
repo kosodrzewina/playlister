@@ -21,7 +21,7 @@ Future<void> main() async {
   await authStore.initialize();
   await playlistStore.initialize();
 
-  if (authStore.apiKey != null) {
+  if (authStore.apiKey != null && playlistStore.playlists == null) {
     await playlistStore.setPlaylistsByChannelId(
       authStore.apiKey!,
       'UC-lHJZR3Gqxm24_Vd_AJ5Yw', // PewDiePie channelId for testing purposes

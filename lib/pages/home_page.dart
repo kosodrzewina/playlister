@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
+import '../models.dart';
 import '../stores/playlist_store.dart';
 import '../widgets/playlists_list_item.dart';
 import '../widgets/recently_updated_list_item.dart';
@@ -59,8 +60,8 @@ class HomePage extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: [
               const SizedBox(width: 10),
-              for (var item
-                  in context.read<PlaylistStore>().playlists!.list) ...[
+              for (var item in context.read<PlaylistStore>().playlists ??
+                  <Playlist>[]) ...[
                 if (item.snippet!.thumbnails.default_ != null &&
                     !item.snippet!.thumbnails.default_!.url
                         .contains('no_thumbnail'))
@@ -98,8 +99,8 @@ class HomePage extends StatelessWidget {
             ),
             shrinkWrap: true,
             children: [
-              for (var item
-                  in context.read<PlaylistStore>().playlists!.list) ...[
+              for (var item in context.read<PlaylistStore>().playlists ??
+                  <Playlist>[]) ...[
                 if (item.snippet!.thumbnails.default_ != null &&
                     !item.snippet!.thumbnails.default_!.url
                         .contains('no_thumbnail'))

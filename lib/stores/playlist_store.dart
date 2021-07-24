@@ -22,7 +22,7 @@ abstract class _PlaylistStore with Store {
       } else {
         await sharedPrefs.setString(
           playlistsKey,
-          jsonEncode(this.playlists?.toJson()),
+          jsonEncode(this.playlists),
         );
       }
     });
@@ -37,12 +37,13 @@ abstract class _PlaylistStore with Store {
   }
 
   @observable
-  PlaylistList? playlists;
+  ObservableList<Playlist>? playlists;
 
   @action
   void setPlaylistsByJson(String playlistsJson) {
-    playlists = PlaylistList.fromJson(
-        jsonDecode(playlistsJson) as Map<String, dynamic>);
+    for (final item in jsonDecode(playlistsJson)) {
+      playlists?.add(item as Playlist);
+    }
   }
 
   @action
@@ -52,8 +53,11 @@ abstract class _PlaylistStore with Store {
     var responseDeserialized = YTResponsePlaylistList.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>);
 
-    playlists = PlaylistList(list: <Playlist>[]);
-    playlists!.list = responseDeserialized.items;
+    playlists = ObservableList<Playlist>();
+
+    for (final item in responseDeserialized.items) {
+      playlists?.add(item);
+    }
 
     while (responseDeserialized.nextPageToken != null) {
       response = await get(Uri.parse(
@@ -62,7 +66,7 @@ abstract class _PlaylistStore with Store {
           jsonDecode(response.body) as Map<String, dynamic>);
 
       for (final item in responseDeserialized.items) {
-        playlists!.list.add(item);
+        playlists?.add(item);
       }
     }
   }

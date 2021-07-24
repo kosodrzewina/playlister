@@ -3,28 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 part 'models.g.dart';
 
 @JsonSerializable()
-class PlaylistList {
-  List<Playlist> list = <Playlist>[];
-
-  PlaylistList({
-    required this.list,
-  });
-
-  List<Playlist> get playlists {
-    return list;
-  }
-
-  set playlists(List<Playlist> playlists) {
-    list = playlists;
-  }
-
-  factory PlaylistList.fromJson(Map<String, dynamic> json) =>
-      _$PlaylistListFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PlaylistListToJson(this);
-}
-
-@JsonSerializable()
 class YTResponsePlaylistList {
   final String kind;
   final String etag;

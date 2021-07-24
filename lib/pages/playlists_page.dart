@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
+import '../models.dart';
 import '../stores/playlist_store.dart';
 import '../widgets/playlists_list_item.dart';
 
@@ -70,8 +71,8 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
             shrinkWrap: true,
             children: [
               const SizedBox(height: 10),
-              for (var item
-                  in context.read<PlaylistStore>().playlists!.list) ...[
+              for (var item in context.read<PlaylistStore>().playlists ??
+                  <Playlist>[]) ...[
                 if (item.snippet!.thumbnails.default_ != null &&
                     !item.snippet!.thumbnails.default_!.url
                         .contains('no_thumbnail'))
