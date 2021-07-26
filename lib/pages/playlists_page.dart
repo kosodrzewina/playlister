@@ -25,9 +25,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
           shrinkWrap: true,
           children: [
             SizedBox(
-              height: 250,
-              width: 250,
-              child: Assets.icons.lookingAtVoid.svg(),
+              child: Assets.icons.lookingAtVoid.svg(
+                height: 250,
+                width: 250,
+              ),
             ),
             const SizedBox(height: 10),
             Center(

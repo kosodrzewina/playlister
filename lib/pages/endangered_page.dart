@@ -13,9 +13,10 @@ class EndangeredPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: 250,
-            width: 250,
-            child: Assets.icons.secure.svg(),
+            child: Assets.icons.secure.svg(
+              height: 250,
+              width: 250,
+            ),
           ),
           const SizedBox(height: 10),
           Center(
