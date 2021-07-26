@@ -28,23 +28,9 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
       AsyncAction('_PlaylistStore.addPlaylistsByChannelId');
 
   @override
-  Future<void> addPlaylistsByChannelId(String apiKey, String channelId) {
+  Future<void> addPlaylistsByChannelId(String channelId) {
     return _$addPlaylistsByChannelIdAsyncAction
-        .run(() => super.addPlaylistsByChannelId(apiKey, channelId));
-  }
-
-  final _$_PlaylistStoreActionController =
-      ActionController(name: '_PlaylistStore');
-
-  @override
-  void setPlaylistsByJson(String playlistsJson) {
-    final _$actionInfo = _$_PlaylistStoreActionController.startAction(
-        name: '_PlaylistStore.setPlaylistsByJson');
-    try {
-      return super.setPlaylistsByJson(playlistsJson);
-    } finally {
-      _$_PlaylistStoreActionController.endAction(_$actionInfo);
-    }
+        .run(() => super.addPlaylistsByChannelId(channelId));
   }
 
   @override
