@@ -26,10 +26,12 @@ class PlaylistsListItem extends StatelessWidget {
             15,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 20,
+            ),
             child: Row(
               children: [
-                const SizedBox(width: 10),
                 CircleAvatar(
                   radius: 15,
                   backgroundImage: image,
@@ -42,9 +44,6 @@ class PlaylistsListItem extends StatelessWidget {
                     softWrap: false,
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
-                )
               ],
             ),
           ),
