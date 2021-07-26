@@ -31,32 +31,33 @@ abstract class _PlaylistStore with Store {
   Future<void> initialize() async {
     final sharedPrefs = await SharedPreferences.getInstance();
 
-    if (sharedPrefs.getString(playlistsKey) != null) {
-      setPlaylistsByJson(sharedPrefs.getString(playlistsKey)!);
+    final playlists = sharedPrefs.getString(playlistsKey);
+    if (playlists != null) {
+      setPlaylistsByJson(playlists);
     }
   }
 
   @observable
-  ObservableList<Playlist>? playlists;
+  ObservableList<Playlist> playlists = ObservableList<Playlist>();
 
   @action
   void setPlaylistsByJson(String playlistsJson) {
+    playlists = ObservableList<Playlist>();
+
     for (final item in jsonDecode(playlistsJson)) {
-      playlists?.add(item as Playlist);
+      playlists.add(Playlist.fromJson(item as Map<String, dynamic>));
     }
   }
 
   @action
-  Future<void> setPlaylistsByChannelId(String apiKey, String channelId) async {
+  Future<void> addPlaylistsByChannelId(String apiKey, String channelId) async {
     var response = await get(Uri.parse(
         'https://www.googleapis.com/youtube/v3/playlists?part=snippet&maxResults=50&channelId=$channelId&key=$apiKey'));
     var responseDeserialized = YTResponsePlaylistList.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>);
 
-    playlists = ObservableList<Playlist>();
-
     for (final item in responseDeserialized.items) {
-      playlists?.add(item);
+      playlists.add(item);
     }
 
     while (responseDeserialized.nextPageToken != null) {
@@ -66,7 +67,7 @@ abstract class _PlaylistStore with Store {
           jsonDecode(response.body) as Map<String, dynamic>);
 
       for (final item in responseDeserialized.items) {
-        playlists?.add(item);
+        playlists.add(item);
       }
     }
   }

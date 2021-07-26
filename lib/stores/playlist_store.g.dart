@@ -12,25 +12,25 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
   final _$playlistsAtom = Atom(name: '_PlaylistStore.playlists');
 
   @override
-  ObservableList<Playlist>? get playlists {
+  ObservableList<Playlist> get playlists {
     _$playlistsAtom.reportRead();
     return super.playlists;
   }
 
   @override
-  set playlists(ObservableList<Playlist>? value) {
+  set playlists(ObservableList<Playlist> value) {
     _$playlistsAtom.reportWrite(value, super.playlists, () {
       super.playlists = value;
     });
   }
 
-  final _$setPlaylistsByChannelIdAsyncAction =
-      AsyncAction('_PlaylistStore.setPlaylistsByChannelId');
+  final _$addPlaylistsByChannelIdAsyncAction =
+      AsyncAction('_PlaylistStore.addPlaylistsByChannelId');
 
   @override
-  Future<void> setPlaylistsByChannelId(String apiKey, String channelId) {
-    return _$setPlaylistsByChannelIdAsyncAction
-        .run(() => super.setPlaylistsByChannelId(apiKey, channelId));
+  Future<void> addPlaylistsByChannelId(String apiKey, String channelId) {
+    return _$addPlaylistsByChannelIdAsyncAction
+        .run(() => super.addPlaylistsByChannelId(apiKey, channelId));
   }
 
   final _$_PlaylistStoreActionController =
