@@ -15,8 +15,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (context.read<PlaylistStore>().playlists.isEmpty) {
       return Center(
-        child: ListView(
-          shrinkWrap: true,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               child: Assets.icons.lookingAtVoid.svg(
