@@ -48,6 +48,15 @@ abstract class _PlaylistStore with Store {
       throw Exception('failed to fetch playlists');
     }
 
-    playlists.addAll(res);
+    final ids = <String>[];
+    for (final playlist in playlists) {
+      ids.add(playlist.id);
+    }
+
+    for (final playlist in res) {
+      if (!ids.contains(playlist.id)) {
+        playlists.add(playlist);
+      }
+    }
   }
 }
