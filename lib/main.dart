@@ -69,7 +69,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentBottomNavBarIndex = 0;
+  int currentBottomNavBarIndex = 1;
   static const pages = [
     HomePage(),
     PlaylistsPage(),
