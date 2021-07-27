@@ -33,5 +33,9 @@
     "apiKeyDialog_removeApiKey": "Remove API key",
     "@apiKeyDialog_removeApiKey": {},
     "apiKeyDialog_apiKeySaved": "✔️ Your API key has been successfully added",
-    "@apiKeyDialog_apiKeySaved": {}
+    "@apiKeyDialog_apiKeySaved": {},
+    "noPlaylistsFound": "No playlists found",
+    "@noPlaylistsFound": {},
+    "endangeredPage_noDeletedVideosDetected": "No deleted videos detected",
+    "@endangeredPage_noDeletedVideosDetected": {}
 }

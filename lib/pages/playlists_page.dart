@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../gen/assets.gen.dart';
+import '../l10n/l10n.dart';
+import '../stores/playlist_store.dart';
 import '../widgets/playlists_list_item.dart';
 
 class PlaylistsPage extends StatefulWidget {
@@ -15,6 +19,26 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final playlists = context.watch<PlaylistStore>().playlists;
+
+    if (playlists.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.icons.lookingAtVoid.svg(
+              height: 250,
+              width: 250,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              L10n.of(context)!.noPlaylistsFound,
+            ),
+          ],
+        ),
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -38,83 +62,34 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
           ),
         ),
         Expanded(
-          child: ListView(
+          child: ListView.separated(
+            itemCount: playlists.length,
             padding: const EdgeInsets.symmetric(
               horizontal: 10,
+              vertical: 10,
             ),
-            shrinkWrap: true,
-            children: const [
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.teal,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.red,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.purple,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.yellow,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.red,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.teal,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.purple,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.teal,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.red,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.purple,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.yellow,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.red,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.teal,
-              ),
-              SizedBox(height: 10),
-              PlaylistsListItem(
-                text: 'Playlist name',
-                color: Colors.purple,
-              ),
-            ],
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            itemBuilder: (context, index) {
+              final item = playlists[index];
+
+              return PlaylistsListItem(
+                text: item.snippet!.title,
+                image: Image.network(
+                  item.snippet!.thumbnails.default_?.url ??
+                      item.snippet!.thumbnails.standard?.url ??
+                      '',
+                  errorBuilder: (context, err, st) =>
+                      Assets.images.noThumbnail.image(
+                    fit: BoxFit.cover,
+                    width: 62,
+                    height: 50,
+                  ),
+                  fit: BoxFit.cover,
+                  width: 62,
+                  height: 50,
+                ),
+              );
+            },
           ),
         ),
       ],

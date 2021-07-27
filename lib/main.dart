@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../gen/assets.gen.dart';
 import 'l10n/l10n.dart';
@@ -8,18 +9,36 @@ import 'pages/endangered_page.dart';
 import 'pages/home_page.dart';
 import 'pages/playlists_page.dart';
 import 'pages/profile_dialog.dart';
+import 'repositories/youtube_repository.dart';
 import 'stores/auth_store.dart';
+import 'stores/playlist_store.dart';
 import 'themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final authStore = AuthStore();
-  await authStore.initialize();
+  final sharedPrefs = await SharedPreferences.getInstance();
+
+  final authStore = AuthStore(sharedPrefs: sharedPrefs);
+  final youtubeRepository = YoutubeRepository(authStore);
+  final playlistStore = PlaylistStore(
+    sharedPrefs: sharedPrefs,
+    youtubeRepository: youtubeRepository,
+  );
+
+  if (authStore.apiKey != null) {
+    await playlistStore.addPlaylistsByChannelId(
+      'UC-lHJZR3Gqxm24_Vd_AJ5Yw', // PewDiePie channelId for testing purposes
+    );
+  }
 
   runApp(
-    Provider.value(
-      value: authStore,
+    MultiProvider(
+      providers: [
+        Provider.value(value: authStore),
+        Provider.value(value: playlistStore),
+        Provider.value(value: sharedPrefs),
+      ],
       child: MyApp(),
     ),
   );
@@ -33,7 +52,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: L10n.supportedLocales,
       localizationsDelegates: L10n.localizationsDelegates,
       title: 'Playlister',
-      themeMode: ThemeMode.dark,
       theme: lightTheme,
       darkTheme: darkTheme,
       home: const MyHomePage(title: 'Playlister'),
@@ -51,7 +69,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentBottomNavBarIndex = 0;
+  int currentBottomNavBarIndex = 1;
   static const pages = [
     HomePage(),
     PlaylistsPage(),

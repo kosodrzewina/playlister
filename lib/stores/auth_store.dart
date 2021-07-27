@@ -9,26 +9,23 @@ class AuthStore = _AuthStore with _$AuthStore;
 abstract class _AuthStore with Store {
   static const apiKeyKey = 'API_KEY';
 
-  _AuthStore() {
-    reaction<String?>((_) => apiKey, (apiKey) async {
-      final sharedPrefs = await SharedPreferences.getInstance();
-
-      if (apiKey == null) {
-        await sharedPrefs.remove(apiKeyKey);
-      } else {
-        await sharedPrefs.setString(apiKeyKey, apiKey);
-      }
-    });
-  }
-
-  Future<void> initialize() async {
-    final sharedPrefs = await SharedPreferences.getInstance();
-
-    setApiKey(sharedPrefs.getString(apiKeyKey));
-  }
-
   @observable
   String? apiKey;
+
+  _AuthStore({required SharedPreferences sharedPrefs}) {
+    setApiKey(sharedPrefs.getString(apiKeyKey));
+
+    reaction<String?>(
+      (_) => apiKey,
+      (apiKey) async {
+        if (apiKey == null) {
+          await sharedPrefs.remove(apiKeyKey);
+        } else {
+          await sharedPrefs.setString(apiKeyKey, apiKey);
+        }
+      },
+    );
+  }
 
   @action
   void setApiKey(String? apiKey) {

@@ -11,12 +11,17 @@ class $AssetsIconsGen {
   const $AssetsIconsGen();
 
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
+  SvgGenImage get lookingAtVoid =>
+      const SvgGenImage('assets/icons/looking_at_void.svg');
+  SvgGenImage get secure => const SvgGenImage('assets/icons/secure.svg');
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   AssetGenImage get avatar => const AssetGenImage('assets/images/avatar.png');
+  AssetGenImage get noThumbnail =>
+      const AssetGenImage('assets/images/no_thumbnail.png');
 }
 
 class Assets {

@@ -9,10 +9,12 @@ void main() {
   group('Models', () {
     final key = Platform.environment['API_KEY']!;
 
-    test('Deserialization of YouTube API response', () async {
+    test('Deserialization of YouTube API response [list of playlist items]',
+        () async {
       final res = await get(Uri.parse(
           'https://content-youtube.googleapis.com/youtube/v3/playlistItems?playlistId=PLZJ2yOBfQ1hr3wacUOgHhY_ZFZ2ujxAEo&part=snippet&key=$key'));
-      YTResponse.fromJson(jsonDecode(res.body) as Map<String, dynamic>);
+      YTResponsePlaylistItems.fromJson(
+          jsonDecode(res.body) as Map<String, dynamic>);
     });
   });
 }
