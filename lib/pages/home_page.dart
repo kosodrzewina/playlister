@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 import '../stores/playlist_store.dart';
-import '../widgets/playlists_list_item.dart';
 import '../widgets/recently_updated_list_item.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,17 +17,13 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              child: Assets.icons.lookingAtVoid.svg(
-                height: 250,
-                width: 250,
-              ),
+            Assets.icons.lookingAtVoid.svg(
+              height: 250,
+              width: 250,
             ),
             const SizedBox(height: 10),
-            Center(
-              child: Text(
-                L10n.of(context)!.noPlaylistsFound,
-              ),
+            Text(
+              L10n.of(context)!.noPlaylistsFound,
             ),
           ],
         ),
@@ -98,21 +93,21 @@ class HomePage extends StatelessWidget {
             ),
             shrinkWrap: true,
             children: [
-              for (var item in context.read<PlaylistStore>().playlists) ...[
-                if (item.snippet!.thumbnails.default_ != null &&
-                    !item.snippet!.thumbnails.default_!.url
-                        .contains('no_thumbnail'))
-                  PlaylistsListItem(
-                    text: item.snippet!.title,
-                    image: NetworkImage(item.snippet!.thumbnails.default_!.url),
-                  )
-                else
-                  PlaylistsListItem(
-                    text: item.snippet!.title,
-                    image: Assets.images.noThumbnail,
-                  ),
-                const SizedBox(height: 10),
-              ]
+              // for (var item in context.read<PlaylistStore>().playlists) ...[
+              //   if (item.snippet!.thumbnails.default_ != null &&
+              //       !item.snippet!.thumbnails.default_!.url
+              //           .contains('no_thumbnail'))
+              //     PlaylistsListItem(
+              //       text: item.snippet!.title,
+              //       image: NetworkImage(item.snippet!.thumbnails.default_!.url),
+              //     )
+              //   else
+              //     PlaylistsListItem(
+              //       text: item.snippet!.title,
+              //       image: Assets.images.noThumbnail,
+              //     ),
+              //   const SizedBox(height: 10),
+              // ]
             ],
           ),
         ),

@@ -12,17 +12,13 @@ class EndangeredPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            child: Assets.icons.secure.svg(
-              height: 250,
-              width: 250,
-            ),
+          Assets.icons.secure.svg(
+            height: 250,
+            width: 250,
           ),
           const SizedBox(height: 10),
-          Center(
-            child: Text(
-              L10n.of(context)!.endangeredPage_noDeletedVideosDetected,
-            ),
+          Text(
+            L10n.of(context)!.endangeredPage_noDeletedVideosDetected,
           ),
         ],
       ),

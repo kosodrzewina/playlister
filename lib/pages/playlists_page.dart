@@ -19,22 +19,20 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (context.read<PlaylistStore>().playlists.isEmpty) {
+    final playlists = context.watch<PlaylistStore>().playlists;
+
+    if (playlists.isEmpty) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              child: Assets.icons.lookingAtVoid.svg(
-                height: 250,
-                width: 250,
-              ),
+            Assets.icons.lookingAtVoid.svg(
+              height: 250,
+              width: 250,
             ),
             const SizedBox(height: 10),
-            Center(
-              child: Text(
-                L10n.of(context)!.noPlaylistsFound,
-              ),
+            Text(
+              L10n.of(context)!.noPlaylistsFound,
             ),
           ],
         ),
@@ -64,29 +62,34 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
           ),
         ),
         Expanded(
-          child: ListView(
+          child: ListView.separated(
+            itemCount: playlists.length,
             padding: const EdgeInsets.symmetric(
               horizontal: 10,
+              vertical: 10,
             ),
-            shrinkWrap: true,
-            children: [
-              const SizedBox(height: 10),
-              for (var item in context.read<PlaylistStore>().playlists) ...[
-                if (item.snippet!.thumbnails.default_ != null &&
-                    !item.snippet!.thumbnails.default_!.url
-                        .contains('no_thumbnail'))
-                  PlaylistsListItem(
-                    text: item.snippet!.title,
-                    image: NetworkImage(item.snippet!.thumbnails.default_!.url),
-                  )
-                else
-                  PlaylistsListItem(
-                    text: item.snippet!.title,
-                    image: Assets.images.noThumbnail,
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            itemBuilder: (context, index) {
+              final item = playlists[index];
+
+              return PlaylistsListItem(
+                text: item.snippet!.title,
+                image: Image.network(
+                  item.snippet!.thumbnails.default_?.url ??
+                      item.snippet!.thumbnails.standard?.url ??
+                      '',
+                  errorBuilder: (context, err, st) =>
+                      Assets.images.noThumbnail.image(
+                    fit: BoxFit.cover,
+                    width: 62,
+                    height: 50,
                   ),
-                const SizedBox(height: 10),
-              ]
-            ],
+                  fit: BoxFit.cover,
+                  width: 62,
+                  height: 50,
+                ),
+              );
+            },
           ),
         ),
       ],

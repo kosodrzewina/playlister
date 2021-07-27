@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class PlaylistsListItem extends StatelessWidget {
   final String text;
-  final ImageProvider image;
+  final Image image;
 
   const PlaylistsListItem({Key? key, required this.text, required this.image})
       : super(key: key);
@@ -32,9 +32,9 @@ class PlaylistsListItem extends StatelessWidget {
             ),
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 15,
-                  backgroundImage: image,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: image,
                 ),
                 const SizedBox(width: 10),
                 Expanded(
