@@ -29,6 +29,7 @@ class _TextButtonIconState extends State<TextButtonIcon> {
           Text(
             widget.text,
           ),
+          const SizedBox(width: 10),
         ],
       ),
     );

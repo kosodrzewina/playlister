@@ -38,6 +38,7 @@ Future<void> main() async {
         Provider.value(value: authStore),
         Provider.value(value: playlistStore),
         Provider.value(value: sharedPrefs),
+        Provider.value(value: youtubeRepository),
       ],
       child: MyApp(),
     ),

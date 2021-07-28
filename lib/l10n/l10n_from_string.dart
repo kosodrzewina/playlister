@@ -21,6 +21,8 @@ abstract class L10nStrings {
   static const apiKeyDialog_removeApiKey = 'apiKeyDialog_removeApiKey';
   static const apiKeyDialog_apiKeySaved = 'apiKeyDialog_apiKeySaved';
   static const noPlaylistsFound = 'noPlaylistsFound';
+  static const searchPage_addByChannelId = 'searchPage_addByChannelId';
+  static const channelIdDialog_channelId = 'channelIdDialog_channelId';
   static const endangeredPage_noDeletedVideosDetected = 'endangeredPage_noDeletedVideosDetected';
 }
 
@@ -59,6 +61,10 @@ extension L10nFromString on String {
         return L10n.of(context)!.apiKeyDialog_apiKeySaved;
       case L10nStrings.noPlaylistsFound:
         return L10n.of(context)!.noPlaylistsFound;
+      case L10nStrings.searchPage_addByChannelId:
+        return L10n.of(context)!.searchPage_addByChannelId;
+      case L10nStrings.channelIdDialog_channelId:
+        return L10n.of(context)!.channelIdDialog_channelId;
       case L10nStrings.endangeredPage_noDeletedVideosDetected:
         return L10n.of(context)!.endangeredPage_noDeletedVideosDetected;
 
