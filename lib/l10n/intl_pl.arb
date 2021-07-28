@@ -1,11 +1,7 @@
 {
     "@@locale": "pl",
-    "homePage_recentlyUpdated": "Ostatnio zaktualizowane",
-    "@homePage_recentlyUpdated": {},
-    "homePage_recentlyAdded": "Ostatnio dodane",
-    "@homePage_recentlyAdded": {},
-    "bottomNavBar_home": "Ekran główny",
-    "@bottomNavBar_home": {},
+    "bottomNavBar_search": "Szukaj",
+    "@bottomNavBar_search": {},
     "bottomNavBar_playlists": "Playlisty",
     "@bottomNavBar_playlists": {},
     "bottomNavBar_endangered": "Zagrożone",

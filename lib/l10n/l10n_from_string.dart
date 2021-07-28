@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 abstract class L10nStrings {
-  static const homePage_recentlyUpdated = 'homePage_recentlyUpdated';
-  static const homePage_recentlyAdded = 'homePage_recentlyAdded';
-  static const bottomNavBar_home = 'bottomNavBar_home';
+  static const bottomNavBar_search = 'bottomNavBar_search';
   static const bottomNavBar_playlists = 'bottomNavBar_playlists';
   static const bottomNavBar_endangered = 'bottomNavBar_endangered';
   static const profileDialog_loggedInAs = 'profileDialog_loggedInAs';
@@ -22,17 +20,15 @@ abstract class L10nStrings {
   static const apiKeyDialog_apiKeyIsNotSaved = 'apiKeyDialog_apiKeyIsNotSaved';
   static const apiKeyDialog_removeApiKey = 'apiKeyDialog_removeApiKey';
   static const apiKeyDialog_apiKeySaved = 'apiKeyDialog_apiKeySaved';
+  static const noPlaylistsFound = 'noPlaylistsFound';
+  static const endangeredPage_noDeletedVideosDetected = 'endangeredPage_noDeletedVideosDetected';
 }
 
 extension L10nFromString on String {
   String tr(BuildContext context) {
     switch (this) {
-      case L10nStrings.homePage_recentlyUpdated:
-        return L10n.of(context)!.homePage_recentlyUpdated;
-      case L10nStrings.homePage_recentlyAdded:
-        return L10n.of(context)!.homePage_recentlyAdded;
-      case L10nStrings.bottomNavBar_home:
-        return L10n.of(context)!.bottomNavBar_home;
+      case L10nStrings.bottomNavBar_search:
+        return L10n.of(context)!.bottomNavBar_search;
       case L10nStrings.bottomNavBar_playlists:
         return L10n.of(context)!.bottomNavBar_playlists;
       case L10nStrings.bottomNavBar_endangered:
@@ -61,6 +57,10 @@ extension L10nFromString on String {
         return L10n.of(context)!.apiKeyDialog_removeApiKey;
       case L10nStrings.apiKeyDialog_apiKeySaved:
         return L10n.of(context)!.apiKeyDialog_apiKeySaved;
+      case L10nStrings.noPlaylistsFound:
+        return L10n.of(context)!.noPlaylistsFound;
+      case L10nStrings.endangeredPage_noDeletedVideosDetected:
+        return L10n.of(context)!.endangeredPage_noDeletedVideosDetected;
 
       default:
         return this;

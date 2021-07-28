@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage();
+class SearchPage extends StatelessWidget {
+  const SearchPage();
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,7 @@
 {
     "@@locale": "en",
-    "homePage_recentlyUpdated": "Recently updated",
-    "@homePage_recentlyUpdated": {},
-    "homePage_recentlyAdded": "Recently added",
-    "@homePage_recentlyAdded": {},
-    "bottomNavBar_home": "Home",
-    "@bottomNavBar_home": {},
+    "bottomNavBar_search": "Search",
+    "@bottomNavBar_search": {},
     "bottomNavBar_playlists": "Playlists",
     "@bottomNavBar_playlists": {},
     "bottomNavBar_endangered": "Endangered",
