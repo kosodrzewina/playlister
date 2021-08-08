@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:mobx/mobx.dart';
-import 'package:playlister/l10n/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../l10n/l10n.dart';
 import '../models.dart';
 import '../repositories/youtube_repository.dart';
 

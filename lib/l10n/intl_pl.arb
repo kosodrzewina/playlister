@@ -34,6 +34,8 @@
     "@noPlaylistsFound": {},
     "searchPage_addByChannelId": "Dodaj playlisty przez Channel ID",
     "@searchPage_addByChannelId": {},
+    "searchPage_searchForPlaylists": "Wyszukaj playlisty...",
+    "@searchPage_searchForPlaylists": {},
     "channelIdDialog_channelId": "Channel ID",
     "@channelIdDialog_channelId": {},
     "endangeredPage_noDeletedVideosDetected": "Nie wykryto usuniętych filmów",

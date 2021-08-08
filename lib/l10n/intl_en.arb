@@ -34,6 +34,8 @@
     "@noPlaylistsFound": {},
     "searchPage_addByChannelId": "Add playlists by Channel ID",
     "@searchPage_addByChannelId": {},
+    "searchPage_searchForPlaylists": "Search for playlists...",
+    "@searchPage_searchForPlaylists": {},
     "channelIdDialog_channelId": "Channel ID",
     "@channelIdDialog_channelId": {},
     "endangeredPage_noDeletedVideosDetected": "No deleted videos detected",
