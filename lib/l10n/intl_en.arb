@@ -40,7 +40,7 @@
     "@channelIdDialog_channelId": {},
     "endangeredPage_noDeletedVideosDetected": "No deleted videos detected",
     "@endangeredPage_noDeletedVideosDetected": {},
-    "error_fetchingPlaylists": "Failed to fetch playlists!",
+    "error_fetchingPlaylists": "❌ Failed to fetch playlists!",
     "@error_fetchingPlaylists": {},
     "error_noInternet": "No Internet connection!",
     "@error_noInternet": {},
