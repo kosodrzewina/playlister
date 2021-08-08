@@ -24,6 +24,36 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
     });
   }
 
+  final _$fetchingAtom = Atom(name: '_PlaylistStore.fetching');
+
+  @override
+  bool get fetching {
+    _$fetchingAtom.reportRead();
+    return super.fetching;
+  }
+
+  @override
+  set fetching(bool value) {
+    _$fetchingAtom.reportWrite(value, super.fetching, () {
+      super.fetching = value;
+    });
+  }
+
+  final _$errorMessageAtom = Atom(name: '_PlaylistStore.errorMessage');
+
+  @override
+  String? get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String? value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   final _$addPlaylistsByChannelIdAsyncAction =
       AsyncAction('_PlaylistStore.addPlaylistsByChannelId');
 
@@ -36,7 +66,9 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
   @override
   String toString() {
     return '''
-playlists: ${playlists}
+playlists: ${playlists},
+fetching: ${fetching},
+errorMessage: ${errorMessage}
     ''';
   }
 }

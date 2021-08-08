@@ -37,5 +37,11 @@
     "channelIdDialog_channelId": "Channel ID",
     "@channelIdDialog_channelId": {},
     "endangeredPage_noDeletedVideosDetected": "Nie wykryto usuniętych filmów",
-    "@endangeredPage_noDeletedVideosDetected": {}
+    "@endangeredPage_noDeletedVideosDetected": {},
+    "error_fetchingPlaylists": "Nie udało się pobrać playlist!",
+    "@error_fetchingPlaylists": {},
+    "error_noInternet": "Brak połączenia z internetem!",
+    "@error_noInternet": {},
+    "error_unknown": "Wystąpił nieznany błąd!",
+    "@error_unknown": {}
 }

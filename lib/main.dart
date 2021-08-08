@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -76,6 +77,26 @@ class _MyHomePageState extends State<MyHomePage> {
     PlaylistsPage(),
     EndangeredPage(),
   ];
+
+  @override
+  void initState() {
+    final playlistStore = context.read<PlaylistStore>();
+
+    autorun((_) {
+      final errorMessage = playlistStore.errorMessage;
+      if (errorMessage != null) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(errorMessage.tr(context)),
+            ),
+          );
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

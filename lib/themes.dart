@@ -43,6 +43,10 @@ ThemeData _buildTheme(Brightness brightness) {
         borderRadius: BorderRadius.circular(15),
       ),
     ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: isDark ? Colors.grey[800] : Colors.grey[400],
+      contentTextStyle: TextStyle(color: isDark ? Colors.white : Colors.black),
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: isDark ? Colors.grey[900] : Colors.white,
       selectedItemColor: Colors.red,
