@@ -42,8 +42,8 @@
     "@endangeredPage_noDeletedVideosDetected": {},
     "error_fetchingPlaylists": "❌ Failed to fetch playlists!",
     "@error_fetchingPlaylists": {},
-    "error_noInternet": "No Internet connection!",
+    "error_noInternet": "❌ No Internet connection!",
     "@error_noInternet": {},
-    "error_unknown": "An unknown error occurred!",
+    "error_unknown": "❌ An unknown error occurred!",
     "@error_unknown": {}
 }

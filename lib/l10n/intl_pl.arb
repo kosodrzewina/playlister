@@ -42,8 +42,8 @@
     "@endangeredPage_noDeletedVideosDetected": {},
     "error_fetchingPlaylists": "❌ Nie udało się pobrać playlist!",
     "@error_fetchingPlaylists": {},
-    "error_noInternet": "Brak połączenia z internetem!",
+    "error_noInternet": "❌ Brak połączenia z internetem!",
     "@error_noInternet": {},
-    "error_unknown": "Wystąpił nieznany błąd!",
+    "error_unknown": "❌ Wystąpił nieznany błąd!",
     "@error_unknown": {}
 }
