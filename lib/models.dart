@@ -27,6 +27,59 @@ class YTResponsePlaylistList {
 }
 
 @JsonSerializable()
+class YTSearchListResponse {
+  final String? kind;
+  final String etag;
+  final String? nextPageToken;
+  final String? prevPageToken;
+  final String regionCode;
+  final PageInfo pageInfo;
+  final List<SearchResult> items;
+
+  const YTSearchListResponse({
+    this.kind,
+    required this.etag,
+    this.nextPageToken,
+    this.prevPageToken,
+    required this.regionCode,
+    required this.pageInfo,
+    required this.items,
+  });
+
+  factory YTSearchListResponse.fromJson(Map<String, dynamic> json) =>
+      _$YTSearchListResponseFromJson(json);
+}
+
+@JsonSerializable()
+class SearchResult {
+  final String kind;
+  final String etag;
+  final ID id;
+
+  const SearchResult({
+    required this.kind,
+    required this.etag,
+    required this.id,
+  });
+
+  factory SearchResult.fromJson(Map<String, dynamic> json) =>
+      _$SearchResultFromJson(json);
+}
+
+@JsonSerializable()
+class ID {
+  final String kind;
+  final String? playlistId;
+
+  const ID({
+    required this.kind,
+    this.playlistId,
+  });
+
+  factory ID.fromJson(Map<String, dynamic> json) => _$IDFromJson(json);
+}
+
+@JsonSerializable()
 class Playlist {
   final String kind;
   final String etag;
