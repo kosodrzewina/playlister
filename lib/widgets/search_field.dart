@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class SearchField extends StatefulWidget {
   final String labelText;
   final Color accentColor;
+  final Function(String) onSubmitted;
 
   const SearchField({
     required this.labelText,
     required this.accentColor,
+    required this.onSubmitted,
   });
 
   @override
@@ -55,7 +57,7 @@ class _SearchFieldState extends State<SearchField> {
       ),
       focusNode: _focusNode,
       cursorColor: widget.accentColor,
-      onSubmitted: (input) {},
+      onSubmitted: widget.onSubmitted,
     );
   }
 }
