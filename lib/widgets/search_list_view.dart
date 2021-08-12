@@ -1,0 +1,103 @@
+import 'package:flutter/cupertino.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
+import '../gen/assets.gen.dart';
+import '../models.dart';
+import '../repositories/youtube_repository.dart';
+import 'playlists_list_item.dart';
+
+class SearchListView extends StatefulWidget {
+  final YoutubeRepository youtubeRepository;
+  final String? searchPhrase;
+
+  const SearchListView({
+    required this.youtubeRepository,
+    required this.searchPhrase,
+  });
+
+  @override
+  _SearchListViewState createState() => _SearchListViewState();
+}
+
+class _SearchListViewState extends State<SearchListView> {
+  static const _pageSize = 10;
+  final PagingController<String?, Playlist> _pagingController =
+      PagingController(firstPageKey: null);
+
+  @override
+  void initState() {
+    _pagingController.addPageRequestListener(_fetchPage);
+    super.initState();
+  }
+
+  Future<void> _fetchPage(String? pageKey) async {
+    final searchPhrase = widget.searchPhrase;
+    if (searchPhrase == null) {
+      return;
+    }
+
+    final fetched = await widget.youtubeRepository
+        .searchedPlaylistsPage(searchPhrase, _pageSize);
+    final newItems = fetched.item1;
+    final nextPageToken = fetched.item2;
+
+    if (newItems == null) {
+      return;
+    }
+
+    if (nextPageToken == null) {
+      _pagingController.appendLastPage(newItems);
+    } else {
+      _pagingController.appendPage(newItems, nextPageToken);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.searchPhrase == null) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.icons.lookingAtVoid.svg(
+              height: 250,
+              width: 250,
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Void',
+            ),
+          ],
+        ),
+      );
+    }
+
+    return PagedListView(
+      pagingController: _pagingController,
+      builderDelegate: PagedChildBuilderDelegate<Playlist>(
+        itemBuilder: (context, item, index) => PlaylistsListItem(
+          text: item.snippet!.title,
+          image: Image.network(
+            item.snippet!.thumbnails.default_?.url ??
+                item.snippet!.thumbnails.standard?.url ??
+                '',
+            errorBuilder: (context, err, st) => Assets.images.noThumbnail.image(
+              fit: BoxFit.cover,
+              width: 62,
+              height: 50,
+            ),
+            fit: BoxFit.cover,
+            width: 62,
+            height: 50,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
+  }
+}

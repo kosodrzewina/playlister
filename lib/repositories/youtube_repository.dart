@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:tuple/tuple.dart';
 
 import '../models.dart';
 import '../stores/auth_store.dart';
@@ -16,29 +17,44 @@ class YoutubeRepository {
 
   const YoutubeRepository(this._authStore);
 
-  Future<List<Playlist>?> searchedPlaylists(String searchPhrase) async {
+  // item1: fetched playlists
+  // item2: next page token
+  Future<Tuple2<List<Playlist>?, String?>> searchedPlaylistsPage(
+      String searchPhrase, int itemCount,
+      {String nextPageToken = ''}) async {
+    if (itemCount < 1 || itemCount > 50) {
+      return const Tuple2(null, null);
+    }
+
     final apiKey = _authStore.apiKey;
 
     if (apiKey == null) {
-      return null;
+      return const Tuple2(null, null);
+    }
+
+    final queryParameters = {
+      'key': apiKey,
+      'maxResults': itemCount.toString(),
+      'type': 'playlist',
+      'q': searchPhrase,
+    };
+
+    if (nextPageToken.isNotEmpty) {
+      queryParameters['pageToken'] = nextPageToken;
     }
 
     final url = baseUri.replace(
       path: '${baseUri.path}/search',
-      queryParameters: <String, String>{
-        'key': apiKey,
-        // 'maxResults': '50',
-        'type': 'playlist',
-        'q': searchPhrase,
-      },
+      queryParameters: queryParameters,
     );
-    var response = await get(url);
+
+    final response = await get(url);
 
     if (!response.ok) {
-      return null;
+      return const Tuple2(null, null);
     }
 
-    var responseDeserialized = YTSearchListResponse.fromJson(
+    final responseDeserialized = YTSearchListResponse.fromJson(
       jsonDecode(response.body) as Map<String, dynamic>,
     );
 
@@ -47,24 +63,10 @@ class YoutubeRepository {
         .map((i) => i.id.playlistId ?? '')
         .toList();
 
-    // while (responseDeserialized.nextPageToken != null) {
-    //   response = await get(
-    //     url.replace(
-    //       queryParameters: <String, String>{
-    //         ...url.queryParameters,
-    //         'pageToken': responseDeserialized.nextPageToken!,
-    //       },
-    //     ),
-    //   );
-    //   responseDeserialized = YTSearchListResponse.fromJson(
-    //     jsonDecode(response.body) as Map<String, dynamic>,
-    //   );
-    //   ids.addAll(responseDeserialized.items
-    //       .where((i) => i.id.playlistId != null)
-    //       .map((i) => i.id.playlistId ?? ''));
-    // }
-
-    return playlistByPlaylistId(ids);
+    return Tuple2(
+      await playlistByPlaylistId(ids),
+      responseDeserialized.nextPageToken,
+    );
   }
 
   Future<List<Playlist>?> playlistByPlaylistId(List<String> playlistIds) async {

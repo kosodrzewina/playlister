@@ -13,7 +13,6 @@ import 'pages/search_page.dart';
 import 'repositories/youtube_repository.dart';
 import 'stores/auth_store.dart';
 import 'stores/playlist_store.dart';
-import 'stores/searched_store.dart';
 import 'themes.dart';
 
 Future<void> main() async {
@@ -27,7 +26,6 @@ Future<void> main() async {
     sharedPrefs: sharedPrefs,
     youtubeRepository: youtubeRepository,
   );
-  final searchedStore = SearchedStore(youtubeRepository: youtubeRepository);
 
   if (authStore.apiKey != null) {
     await playlistStore.addPlaylistsByChannelId(
@@ -42,7 +40,6 @@ Future<void> main() async {
         Provider.value(value: playlistStore),
         Provider.value(value: sharedPrefs),
         Provider.value(value: youtubeRepository),
-        Provider.value(value: searchedStore),
       ],
       child: MyApp(),
     ),
@@ -84,18 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     final playlistStore = context.read<PlaylistStore>();
-    final searchedStore = context.read<SearchedStore>();
 
     autorun((_) {
       final errorMessagePlaylistStore = playlistStore.errorMessage;
-      final errorMessageSearchedStore = searchedStore.errorMessage;
 
       if (errorMessagePlaylistStore != null) {
         showError(errorMessagePlaylistStore.tr(context));
-      }
-
-      if (errorMessageSearchedStore != null) {
-        showError(errorMessageSearchedStore.tr(context));
       }
     });
 
