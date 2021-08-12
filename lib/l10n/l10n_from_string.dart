@@ -23,6 +23,7 @@ abstract class L10nStrings {
   static const noPlaylistsFound = 'noPlaylistsFound';
   static const searchPage_addByChannelId = 'searchPage_addByChannelId';
   static const searchPage_searchForPlaylists = 'searchPage_searchForPlaylists';
+  static const searchPage_readyToSearch = 'searchPage_readyToSearch';
   static const channelIdDialog_channelId = 'channelIdDialog_channelId';
   static const endangeredPage_noDeletedVideosDetected = 'endangeredPage_noDeletedVideosDetected';
   static const error_fetchingPlaylists = 'error_fetchingPlaylists';
@@ -69,6 +70,8 @@ extension L10nFromString on String {
         return L10n.of(context)!.searchPage_addByChannelId;
       case L10nStrings.searchPage_searchForPlaylists:
         return L10n.of(context)!.searchPage_searchForPlaylists;
+      case L10nStrings.searchPage_readyToSearch:
+        return L10n.of(context)!.searchPage_readyToSearch;
       case L10nStrings.channelIdDialog_channelId:
         return L10n.of(context)!.channelIdDialog_channelId;
       case L10nStrings.endangeredPage_noDeletedVideosDetected:

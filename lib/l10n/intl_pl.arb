@@ -36,6 +36,8 @@
     "@searchPage_addByChannelId": {},
     "searchPage_searchForPlaylists": "Wyszukaj playlisty...",
     "@searchPage_searchForPlaylists": {},
+    "searchPage_readyToSearch": "Gotowy do wyszukiwania!",
+    "@searchPage_readyToSearch": {},
     "channelIdDialog_channelId": "Channel ID",
     "@channelIdDialog_channelId": {},
     "endangeredPage_noDeletedVideosDetected": "Nie wykryto usuniętych filmów",

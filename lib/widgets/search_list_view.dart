@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:playlister/l10n/l10n.dart';
 
 import '../gen/assets.gen.dart';
 import '../models.dart';
@@ -59,14 +60,12 @@ class _SearchListViewState extends State<SearchListView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Assets.icons.lookingAtVoid.svg(
-              height: 250,
-              width: 250,
+            Assets.icons.search.svg(
+              height: 200,
+              width: 200,
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Void',
-            ),
+            Text(L10n.of(context)!.searchPage_readyToSearch),
           ],
         ),
       );

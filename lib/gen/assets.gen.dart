@@ -13,6 +13,7 @@ class $AssetsIconsGen {
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
   SvgGenImage get lookingAtVoid =>
       const SvgGenImage('assets/icons/looking_at_void.svg');
+  SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
   SvgGenImage get secure => const SvgGenImage('assets/icons/secure.svg');
 }
 
