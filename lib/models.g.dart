@@ -33,7 +33,7 @@ Map<String, dynamic> _$YTResponsePlaylistListToJson(
 
 YTSearchListResponse _$YTSearchListResponseFromJson(Map<String, dynamic> json) {
   return YTSearchListResponse(
-    kind: json['kind'] as String,
+    kind: json['kind'] as String?,
     etag: json['etag'] as String,
     nextPageToken: json['nextPageToken'] as String?,
     prevPageToken: json['prevPageToken'] as String?,
