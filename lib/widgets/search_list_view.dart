@@ -56,6 +56,7 @@ class _SearchListViewState extends State<SearchListView> {
   @override
   Widget build(BuildContext context) {
     if (widget.searchPhrase == null) {
+      // TODO: keyboard should not push away the svg
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +72,8 @@ class _SearchListViewState extends State<SearchListView> {
       );
     }
 
-    return PagedListView(
+    return PagedListView.separated(
+      separatorBuilder: (context, index) => const SizedBox(height: 10),
       pagingController: _pagingController,
       builderDelegate: PagedChildBuilderDelegate<Playlist>(
         itemBuilder: (context, item, index) => PlaylistsListItem(
