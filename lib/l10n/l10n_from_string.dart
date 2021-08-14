@@ -25,7 +25,8 @@ abstract class L10nStrings {
   static const searchPage_searchForPlaylists = 'searchPage_searchForPlaylists';
   static const searchPage_readyToSearch = 'searchPage_readyToSearch';
   static const channelIdDialog_channelId = 'channelIdDialog_channelId';
-  static const endangeredPage_noDeletedVideosDetected = 'endangeredPage_noDeletedVideosDetected';
+  static const endangeredPage_noDeletedVideosDetected =
+      'endangeredPage_noDeletedVideosDetected';
   static const error_fetchingPlaylists = 'error_fetchingPlaylists';
   static const error_noInternet = 'error_noInternet';
   static const error_unknown = 'error_unknown';
