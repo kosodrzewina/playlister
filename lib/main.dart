@@ -27,12 +27,6 @@ Future<void> main() async {
     youtubeRepository: youtubeRepository,
   );
 
-  if (authStore.apiKey != null) {
-    await playlistStore.addPlaylistsByChannelId(
-      'UC-lHJZR3Gqxm24_Vd_AJ5Yw', // PewDiePie channelId for testing purposes
-    );
-  }
-
   runApp(
     MultiProvider(
       providers: [
