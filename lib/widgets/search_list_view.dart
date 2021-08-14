@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:playlister/l10n/l10n.dart';
 
 import '../gen/assets.gen.dart';
+import '../l10n/l10n.dart';
 import '../models.dart';
 import '../repositories/youtube_repository.dart';
 import 'playlists_list_item.dart';
