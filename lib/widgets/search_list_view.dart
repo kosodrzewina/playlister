@@ -75,6 +75,7 @@ class _SearchListViewState extends State<SearchListView> {
     return PagedListView.separated(
       separatorBuilder: (context, index) => const SizedBox(height: 10),
       pagingController: _pagingController,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       builderDelegate: PagedChildBuilderDelegate<Playlist>(
         itemBuilder: (context, item, index) => PlaylistsListItem(
           text: item.snippet!.title,
