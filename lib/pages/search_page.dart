@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
@@ -54,12 +53,10 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ],
         ),
-        Observer(
-          builder: (_) => Expanded(
-            child: SearchListView(
-              searchPhrase: searchPhrase,
-              youtubeRepository: context.read<YoutubeRepository>(),
-            ),
+        Expanded(
+          child: SearchListView(
+            searchPhrase: searchPhrase,
+            youtubeRepository: context.read<YoutubeRepository>(),
           ),
         ),
       ],
