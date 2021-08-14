@@ -86,21 +86,17 @@ class _MyHomePageState extends State<MyHomePage> {
       final errorMessagePlaylistStore = playlistStore.errorMessage;
 
       if (errorMessagePlaylistStore != null) {
-        showError(errorMessagePlaylistStore.tr(context));
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(errorMessagePlaylistStore.tr(context)),
+            ),
+          );
       }
     });
 
     super.initState();
-  }
-
-  void showError(String errorMessage) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          content: Text(errorMessage.tr(context)),
-        ),
-      );
   }
 
   @override
