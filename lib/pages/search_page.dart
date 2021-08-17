@@ -33,15 +33,10 @@ class _SearchPageState extends State<SearchPage> {
             },
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButtonIcon(
-              icon: const Icon(Icons.add),
-              text: L10n.of(context)!.searchPage_addByChannelId,
-              onPressed: () async => await showChannelIdDialog(context),
-            ),
-          ],
+        TextButtonIcon(
+          icon: const Icon(Icons.add),
+          text: L10n.of(context)!.searchPage_addByChannelId,
+          onPressed: () async => await showChannelIdDialog(context),
         ),
         Expanded(
           child: SearchListView(searchTerm: searchTerm),
