@@ -7,6 +7,7 @@ ThemeData _buildTheme(Brightness brightness) {
   final isDark = Brightness.dark == brightness;
 
   return ThemeData(
+    accentColor: Colors.red,
     primaryColor: isDark ? Colors.black : Colors.white,
     scaffoldBackgroundColor: isDark ? Colors.black : Colors.white,
     hintColor: isDark ? Colors.white : Colors.grey[700],

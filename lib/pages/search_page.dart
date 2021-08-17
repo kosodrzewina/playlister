@@ -26,7 +26,7 @@ class _SearchPageState extends State<SearchPage> {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: SearchField(
             labelText: L10n.of(context)!.searchPage_searchForPlaylists,
-            accentColor: Colors.red,
+            accentColor: Theme.of(context).accentColor,
             onSubmitted: (searchTerm) {
               setState(() =>
                   this.searchTerm = searchTerm.isEmpty ? null : searchTerm);
