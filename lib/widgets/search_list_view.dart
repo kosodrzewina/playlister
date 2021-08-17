@@ -9,9 +9,9 @@ import '../repositories/youtube_repository.dart';
 import 'playlists_list_item.dart';
 
 class SearchListView extends StatefulWidget {
-  final String? searchPhrase;
+  final String? searchTerm;
 
-  const SearchListView({required this.searchPhrase});
+  const SearchListView({required this.searchTerm});
 
   @override
   _SearchListViewState createState() => _SearchListViewState();
@@ -29,14 +29,14 @@ class _SearchListViewState extends State<SearchListView> {
   }
 
   Future<void> _fetchPage(String? pageKey) async {
-    final searchPhrase = widget.searchPhrase;
-    if (searchPhrase == null) {
+    final searchTerm = widget.searchTerm;
+    if (searchTerm == null) {
       return;
     }
 
     final fetched = await context
         .read<YoutubeRepository>()
-        .searchedPlaylistsPage(searchPhrase, _pageSize);
+        .searchedPlaylistsPage(searchTerm, _pageSize);
     final newItems = fetched.item1;
     final nextPageToken = fetched.item2;
 
@@ -53,7 +53,7 @@ class _SearchListViewState extends State<SearchListView> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.searchPhrase == null) {
+    if (widget.searchTerm == null) {
       // TODO: keyboard should not push away the svg
       return Center(
         child: Column(

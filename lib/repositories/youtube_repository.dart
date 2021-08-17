@@ -20,7 +20,7 @@ class YoutubeRepository {
   // item1: fetched playlists
   // item2: next page token
   Future<Tuple2<List<Playlist>?, String?>> searchedPlaylistsPage(
-      String searchPhrase, int itemCount,
+      String searchTerm, int itemCount,
       {String nextPageToken = ''}) async {
     if (itemCount < 1 || itemCount > 50) {
       return const Tuple2(null, null);
@@ -36,7 +36,7 @@ class YoutubeRepository {
       'key': apiKey,
       'maxResults': itemCount.toString(),
       'type': 'playlist',
-      'q': searchPhrase,
+      'q': searchTerm,
     };
 
     if (nextPageToken.isNotEmpty) {

@@ -15,7 +15,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  String? searchPhrase;
+  String? searchTerm;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,9 @@ class _SearchPageState extends State<SearchPage> {
               child: SearchField(
                 labelText: L10n.of(context)!.searchPage_searchForPlaylists,
                 accentColor: Colors.red,
-                onSubmitted: (searchPhrase) {
+                onSubmitted: (searchTerm) {
                   setState(() {
-                    this.searchPhrase =
-                        searchPhrase.isEmpty ? null : searchPhrase;
+                    this.searchTerm = searchTerm.isEmpty ? null : searchTerm;
                   });
                 },
               ),
@@ -52,7 +51,7 @@ class _SearchPageState extends State<SearchPage> {
           ],
         ),
         Expanded(
-          child: SearchListView(searchPhrase: searchPhrase),
+          child: SearchListView(searchTerm: searchTerm),
         ),
       ],
     );
