@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
-import '../model_extensions.dart';
 import '../models.dart';
 import '../repositories/youtube_repository.dart';
 import 'playlists_list_item.dart';
