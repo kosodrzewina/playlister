@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
+import '../model_extensions.dart';
 import '../stores/playlist_store.dart';
 import '../widgets/playlists_list_item.dart';
 
@@ -77,9 +78,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                 return PlaylistsListItem(
                   text: item.snippet!.title,
                   image: Image.network(
-                    item.snippet!.thumbnails.default_?.url ??
-                        item.snippet!.thumbnails.standard?.url ??
-                        '',
+                    item.snippet!.thumbnails.thumbnail,
                     errorBuilder: (context, err, st) =>
                         Assets.images.noThumbnail.image(
                       fit: BoxFit.cover,

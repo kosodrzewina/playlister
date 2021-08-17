@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
+import '../model_extensions.dart';
 import '../models.dart';
 import '../repositories/youtube_repository.dart';
 import 'playlists_list_item.dart';
@@ -78,9 +79,7 @@ class _SearchListViewState extends State<SearchListView> {
         itemBuilder: (context, item, index) => PlaylistsListItem(
           text: item.snippet!.title,
           image: Image.network(
-            item.snippet!.thumbnails.default_?.url ??
-                item.snippet!.thumbnails.standard?.url ??
-                '',
+            item.snippet!.thumbnails.thumbnail,
             errorBuilder: (context, err, st) => Assets.images.noThumbnail.image(
               fit: BoxFit.cover,
               width: 62,
