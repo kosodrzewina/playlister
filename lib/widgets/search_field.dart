@@ -22,7 +22,8 @@ class _SearchFieldState extends State<SearchField> {
 
   @override
   void initState() {
-    _focusNode.addListener(() => setState(() => _isFocused = !_isFocused));
+    _focusNode
+        .addListener(() => setState(() => _isFocused = _focusNode.hasFocus));
     super.initState();
   }
 
