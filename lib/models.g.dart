@@ -31,6 +31,59 @@ Map<String, dynamic> _$YTResponsePlaylistListToJson(
       'items': instance.items,
     };
 
+YTSearchListResponse _$YTSearchListResponseFromJson(Map<String, dynamic> json) {
+  return YTSearchListResponse(
+    kind: json['kind'] as String?,
+    etag: json['etag'] as String,
+    nextPageToken: json['nextPageToken'] as String?,
+    prevPageToken: json['prevPageToken'] as String?,
+    regionCode: json['regionCode'] as String,
+    pageInfo: PageInfo.fromJson(json['pageInfo'] as Map<String, dynamic>),
+    items: (json['items'] as List<dynamic>)
+        .map((e) => SearchResult.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
+
+Map<String, dynamic> _$YTSearchListResponseToJson(
+        YTSearchListResponse instance) =>
+    <String, dynamic>{
+      'kind': instance.kind,
+      'etag': instance.etag,
+      'nextPageToken': instance.nextPageToken,
+      'prevPageToken': instance.prevPageToken,
+      'regionCode': instance.regionCode,
+      'pageInfo': instance.pageInfo,
+      'items': instance.items,
+    };
+
+SearchResult _$SearchResultFromJson(Map<String, dynamic> json) {
+  return SearchResult(
+    kind: json['kind'] as String,
+    etag: json['etag'] as String,
+    id: ID.fromJson(json['id'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$SearchResultToJson(SearchResult instance) =>
+    <String, dynamic>{
+      'kind': instance.kind,
+      'etag': instance.etag,
+      'id': instance.id,
+    };
+
+ID _$IDFromJson(Map<String, dynamic> json) {
+  return ID(
+    kind: json['kind'] as String,
+    playlistId: json['playlistId'] as String?,
+  );
+}
+
+Map<String, dynamic> _$IDToJson(ID instance) => <String, dynamic>{
+      'kind': instance.kind,
+      'playlistId': instance.playlistId,
+    };
+
 Playlist _$PlaylistFromJson(Map<String, dynamic> json) {
   return Playlist(
     kind: json['kind'] as String,

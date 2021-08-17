@@ -7,6 +7,7 @@ ThemeData _buildTheme(Brightness brightness) {
   final isDark = Brightness.dark == brightness;
 
   return ThemeData(
+    accentColor: Colors.red,
     primaryColor: isDark ? Colors.black : Colors.white,
     scaffoldBackgroundColor: isDark ? Colors.black : Colors.white,
     hintColor: isDark ? Colors.white : Colors.grey[700],
@@ -42,6 +43,10 @@ ThemeData _buildTheme(Brightness brightness) {
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
       ),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: isDark ? Colors.grey[800] : Colors.grey[400],
+      contentTextStyle: TextStyle(color: isDark ? Colors.white : Colors.black),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: isDark ? Colors.grey[900] : Colors.white,

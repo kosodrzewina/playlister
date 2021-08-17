@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../l10n/l10n.dart';
 import '../models.dart';
 import '../repositories/youtube_repository.dart';
 
@@ -17,6 +19,12 @@ abstract class _PlaylistStore with Store {
 
   @observable
   ObservableList<Playlist> playlists = ObservableList<Playlist>();
+
+  @observable
+  bool fetching = false;
+
+  @observable
+  String? errorMessage;
 
   _PlaylistStore({
     required SharedPreferences sharedPrefs,
@@ -42,13 +50,22 @@ abstract class _PlaylistStore with Store {
 
   @action
   Future<void> addPlaylistsByChannelId(String channelId) async {
-    final res = await _youtubeRepository.playlistsByChannelId(channelId);
-    if (res == null) {
-      // TODO: handle failed request
-      throw Exception('failed to fetch playlists');
-    }
+    fetching = true;
 
-    final ids = playlists.map((p) => p.id).toSet();
-    playlists.addAll(res.where((p) => !ids.contains(p.id)));
+    try {
+      final res = await _youtubeRepository.playlistsByChannelId(channelId);
+      if (res == null) {
+        errorMessage = L10nStrings.error_fetchingPlaylists;
+      } else {
+        final ids = playlists.map((p) => p.id).toSet();
+        playlists.addAll(res.where((p) => !ids.contains(p.id)));
+      }
+    } on SocketException {
+      errorMessage = L10nStrings.error_noInternet;
+    } catch (e) {
+      errorMessage = L10nStrings.error_unknown;
+    } finally {
+      fetching = false;
+    }
   }
 }

@@ -22,6 +22,7 @@ class _TextButtonIconState extends State<TextButtonIcon> {
     return TextButton(
       onPressed: widget.onPressed,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(width: 10),
           widget.icon,
@@ -29,6 +30,7 @@ class _TextButtonIconState extends State<TextButtonIcon> {
           Text(
             widget.text,
           ),
+          const SizedBox(width: 10),
         ],
       ),
     );

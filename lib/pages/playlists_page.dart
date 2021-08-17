@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
@@ -61,35 +62,23 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
             },
           ),
         ),
-        Expanded(
-          child: ListView.separated(
-            itemCount: playlists.length,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 10,
-            ),
-            separatorBuilder: (context, index) => const SizedBox(height: 10),
-            itemBuilder: (context, index) {
-              final item = playlists[index];
+        Observer(
+          builder: (_) => Expanded(
+            child: ListView.separated(
+              itemCount: playlists.length,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 10,
+              ),
+              separatorBuilder: (context, index) => const SizedBox(height: 10),
+              itemBuilder: (context, index) {
+                final item = playlists[index];
 
-              return PlaylistsListItem(
-                text: item.snippet!.title,
-                image: Image.network(
-                  item.snippet!.thumbnails.default_?.url ??
-                      item.snippet!.thumbnails.standard?.url ??
-                      '',
-                  errorBuilder: (context, err, st) =>
-                      Assets.images.noThumbnail.image(
-                    fit: BoxFit.cover,
-                    width: 62,
-                    height: 50,
-                  ),
-                  fit: BoxFit.cover,
-                  width: 62,
-                  height: 50,
-                ),
-              );
-            },
+                return PlaylistsListItem(
+                  snippet: item.snippet!,
+                );
+              },
+            ),
           ),
         ),
       ],

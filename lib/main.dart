@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../gen/assets.gen.dart';
 import 'l10n/l10n.dart';
 import 'pages/endangered_page.dart';
-import 'pages/home_page.dart';
 import 'pages/playlists_page.dart';
 import 'pages/profile_dialog.dart';
+import 'pages/search_page.dart';
 import 'repositories/youtube_repository.dart';
 import 'stores/auth_store.dart';
 import 'stores/playlist_store.dart';
@@ -26,18 +27,13 @@ Future<void> main() async {
     youtubeRepository: youtubeRepository,
   );
 
-  if (authStore.apiKey != null) {
-    await playlistStore.addPlaylistsByChannelId(
-      'UC-lHJZR3Gqxm24_Vd_AJ5Yw', // PewDiePie channelId for testing purposes
-    );
-  }
-
   runApp(
     MultiProvider(
       providers: [
         Provider.value(value: authStore),
         Provider.value(value: playlistStore),
         Provider.value(value: sharedPrefs),
+        Provider.value(value: youtubeRepository),
       ],
       child: MyApp(),
     ),
@@ -71,10 +67,31 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentBottomNavBarIndex = 1;
   static const pages = [
-    HomePage(),
+    SearchPage(),
     PlaylistsPage(),
     EndangeredPage(),
   ];
+
+  @override
+  void initState() {
+    final playlistStore = context.read<PlaylistStore>();
+
+    autorun((_) {
+      final errorMessagePlaylistStore = playlistStore.errorMessage;
+
+      if (errorMessagePlaylistStore != null) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(errorMessagePlaylistStore.tr(context)),
+            ),
+          );
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,9 +146,9 @@ class _MyHomePageState extends State<MyHomePage> {
         items: [
           BottomNavigationBarItem(
             icon: const Icon(
-              Icons.home,
+              Icons.search,
             ),
-            label: L10n.of(context)!.bottomNavBar_home,
+            label: L10n.of(context)!.bottomNavBar_search,
           ),
           BottomNavigationBarItem(
             icon: const Icon(
