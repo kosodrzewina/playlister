@@ -22,22 +22,17 @@ class _SearchPageState extends State<SearchPage> {
     return Column(
       children: [
         const SizedBox(height: 10),
-        Row(
-          children: [
-            const SizedBox(width: 10),
-            Expanded(
-              child: SearchField(
-                labelText: L10n.of(context)!.searchPage_searchForPlaylists,
-                accentColor: Colors.red,
-                onSubmitted: (searchTerm) {
-                  setState(() {
-                    this.searchTerm = searchTerm.isEmpty ? null : searchTerm;
-                  });
-                },
-              ),
-            ),
-            const SizedBox(width: 10),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: SearchField(
+            labelText: L10n.of(context)!.searchPage_searchForPlaylists,
+            accentColor: Colors.red,
+            onSubmitted: (searchTerm) {
+              setState(() {
+                this.searchTerm = searchTerm.isEmpty ? null : searchTerm;
+              });
+            },
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
