@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
 import '../stores/auth_store.dart';
+import '../widgets/app_snack_bar.dart';
 import '../widgets/text_button_icon.dart';
 
 class ApiKeyDialog extends StatefulWidget {
@@ -69,9 +69,17 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                   onSubmitted: (apiKey) {
                     if (apiKey.isNotEmpty) {
                       context.read<AuthStore>().setApiKey(apiKey);
-                      Fluttertoast.showToast(
-                        msg: L10n.of(context)!.apiKeyDialog_apiKeySaved,
-                      );
+
+                      // TODO: snackbar appears in the root scaffold, make it appear higher
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          AppSnackBar.success(
+                            content: Text(
+                              L10n.of(context)!.apiKeyDialog_apiKeySaved,
+                            ),
+                          ),
+                        );
                     }
 
                     Navigator.pop(context);
@@ -87,9 +95,18 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             text: L10n.of(context)!.apiKeyDialog_removeApiKey,
             onPressed: () {
               context.read<AuthStore>().setApiKey(null);
-              Fluttertoast.showToast(
-                msg: L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
-              );
+
+              // TODO: snackbar appears in the root scaffold, make it appear higher
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  AppSnackBar.success(
+                    content: Text(
+                      L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
+                    ),
+                  ),
+                );
+
               Navigator.pop(context);
             },
           ),
