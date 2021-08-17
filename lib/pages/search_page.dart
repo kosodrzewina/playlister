@@ -28,9 +28,8 @@ class _SearchPageState extends State<SearchPage> {
             labelText: L10n.of(context)!.searchPage_searchForPlaylists,
             accentColor: Colors.red,
             onSubmitted: (searchTerm) {
-              setState(() {
-                this.searchTerm = searchTerm.isEmpty ? null : searchTerm;
-              });
+              setState(() =>
+                  this.searchTerm = searchTerm.isEmpty ? null : searchTerm);
             },
           ),
         ),
