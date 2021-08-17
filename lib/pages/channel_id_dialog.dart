@@ -24,8 +24,9 @@ class ChannelIdDialog extends StatelessWidget {
 
 Future<void> showChannelIdDialog(BuildContext context) async {
   return await showDialog(
-      context: context,
-      builder: (context) {
-        return ChannelIdDialog();
-      });
+    context: context,
+    builder: (context) {
+      return ChannelIdDialog();
+    },
+  );
 }
