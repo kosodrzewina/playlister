@@ -19,17 +19,19 @@ class YoutubeRepository {
 
   // item1: fetched playlists
   // item2: next page token
-  Future<Tuple2<List<Playlist>?, String?>> searchedPlaylistsPage(
-      String searchTerm, int itemCount,
-      {String nextPageToken = ''}) async {
+  Future<Tuple2<List<Playlist>, String?>?> searchedPlaylistsPage(
+    String searchTerm,
+    int itemCount, {
+    String? nextPageToken,
+  }) async {
     if (itemCount < 1 || itemCount > 50) {
-      return const Tuple2(null, null);
+      return null;
     }
 
     final apiKey = _authStore.apiKey;
 
     if (apiKey == null) {
-      return const Tuple2(null, null);
+      return null;
     }
 
     final queryParameters = {
@@ -37,11 +39,8 @@ class YoutubeRepository {
       'maxResults': itemCount.toString(),
       'type': 'playlist',
       'q': searchTerm,
+      if (nextPageToken != null) 'pageToken': nextPageToken,
     };
-
-    if (nextPageToken.isNotEmpty) {
-      queryParameters['pageToken'] = nextPageToken;
-    }
 
     final url = baseUri.replace(
       path: '${baseUri.path}/search',
@@ -51,7 +50,7 @@ class YoutubeRepository {
     final response = await get(url);
 
     if (!response.ok) {
-      return const Tuple2(null, null);
+      return null;
     }
 
     final responseDeserialized = YTSearchListResponse.fromJson(
@@ -60,16 +59,16 @@ class YoutubeRepository {
 
     final ids = responseDeserialized.items
         .where((i) => i.id.playlistId != null)
-        .map((i) => i.id.playlistId ?? '')
-        .toList();
+        .map((i) => i.id.playlistId!)
+        .toSet();
 
     return Tuple2(
-      await playlistByPlaylistId(ids),
+      await playlistByPlaylistId(ids) ?? [],
       responseDeserialized.nextPageToken,
     );
   }
 
-  Future<List<Playlist>?> playlistByPlaylistId(List<String> playlistIds) async {
+  Future<List<Playlist>?> playlistByPlaylistId(Set<String> playlistIds) async {
     final apiKey = _authStore.apiKey;
     if (apiKey == null) {
       return null;
