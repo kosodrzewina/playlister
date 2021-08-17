@@ -15,6 +15,7 @@ class PlaylistStore = _PlaylistStore with _$PlaylistStore;
 abstract class _PlaylistStore with Store {
   static const playlistsKey = 'PLAYLISTS';
 
+  late ReactionDisposer _saveDisposer;
   final YoutubeRepository _youtubeRepository;
 
   @observable
@@ -40,7 +41,7 @@ abstract class _PlaylistStore with Store {
       ),
     );
 
-    reaction((_) => playlists.asObservable(), (_) async {
+    _saveDisposer = reaction((_) => playlists.asObservable(), (_) async {
       await sharedPrefs.setString(
         playlistsKey,
         jsonEncode(playlists),
@@ -67,5 +68,9 @@ abstract class _PlaylistStore with Store {
     } finally {
       fetching = false;
     }
+  }
+
+  void dispose() {
+    _saveDisposer();
   }
 }

@@ -66,6 +66,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  ReactionDisposer? _reactionDisposer;
+
   int currentBottomNavBarIndex = 1;
   static const pages = [
     SearchPage(),
@@ -77,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     final playlistStore = context.read<PlaylistStore>();
 
-    autorun((_) {
+    _reactionDisposer = autorun((_) {
       final errorMessagePlaylistStore = playlistStore.errorMessage;
 
       if (errorMessagePlaylistStore != null) {
@@ -166,5 +168,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _reactionDisposer?.call();
+    super.dispose();
   }
 }

@@ -9,13 +9,15 @@ class AuthStore = _AuthStore with _$AuthStore;
 abstract class _AuthStore with Store {
   static const apiKeyKey = 'API_KEY';
 
+  late ReactionDisposer _saveDisposer;
+
   @observable
   String? apiKey;
 
   _AuthStore({required SharedPreferences sharedPrefs}) {
     setApiKey(sharedPrefs.getString(apiKeyKey));
 
-    reaction<String?>(
+    _saveDisposer = reaction<String?>(
       (_) => apiKey,
       (apiKey) async {
         if (apiKey == null) {
@@ -30,5 +32,9 @@ abstract class _AuthStore with Store {
   @action
   void setApiKey(String? apiKey) {
     this.apiKey = apiKey;
+  }
+
+  void dispose() {
+    _saveDisposer();
   }
 }
