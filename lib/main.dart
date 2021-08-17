@@ -14,6 +14,7 @@ import 'repositories/youtube_repository.dart';
 import 'stores/auth_store.dart';
 import 'stores/playlist_store.dart';
 import 'themes.dart';
+import 'widgets/app_snack_bar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -83,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(
-            SnackBar(
+            AppSnackBar.error(
               content: Text(errorMessagePlaylistStore.tr(context)),
             ),
           );
