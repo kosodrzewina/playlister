@@ -18,17 +18,11 @@ class SearchField extends StatefulWidget {
 
 class _SearchFieldState extends State<SearchField> {
   final FocusNode _focusNode = FocusNode();
-  var _currentColor = Colors.white;
+  var _isFocused = false;
 
   @override
   void initState() {
-    _focusNode.addListener(() {
-      setState(() {
-        _currentColor = _currentColor == widget.accentColor
-            ? Colors.white
-            : widget.accentColor;
-      });
-    });
+    _focusNode.addListener(() => setState(() => _isFocused = !_isFocused));
     super.initState();
   }
 
@@ -38,19 +32,23 @@ class _SearchFieldState extends State<SearchField> {
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
+          borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
+          borderSide: BorderSide.none,
         ),
-        fillColor: Colors.grey[800],
-        focusColor: Colors.amber,
+        fillColor: Theme.of(context).cardColor,
         filled: true,
         prefixIcon: Icon(
           Icons.search,
-          color: _currentColor,
+          color: _isFocused
+              ? widget.accentColor
+              : Theme.of(context).iconTheme.color,
         ),
         labelText: widget.labelText,
         floatingLabelBehavior: FloatingLabelBehavior.never,
