@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PlaylistsListItem extends StatelessWidget {
-  final String text;
-  final Image image;
+import '../gen/assets.gen.dart';
+import '../model_extensions.dart';
+import '../models.dart';
 
-  const PlaylistsListItem({Key? key, required this.text, required this.image})
-      : super(key: key);
+class PlaylistsListItem extends StatelessWidget {
+  final SnippetPlaylist snippet;
+
+  const PlaylistsListItem({
+    Key? key,
+    required this.snippet,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +39,23 @@ class PlaylistsListItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: image,
+                  child: Image.network(
+                    snippet.thumbnails.thumbnail,
+                    errorBuilder: (context, err, st) =>
+                        Assets.images.noThumbnail.image(
+                      fit: BoxFit.cover,
+                      width: 62,
+                      height: 50,
+                    ),
+                    fit: BoxFit.cover,
+                    width: 62,
+                    height: 50,
+                  ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    text,
+                    snippet.title,
                     overflow: TextOverflow.fade,
                     softWrap: false,
                   ),

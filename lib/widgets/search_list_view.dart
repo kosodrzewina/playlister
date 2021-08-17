@@ -77,18 +77,7 @@ class _SearchListViewState extends State<SearchListView> {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       builderDelegate: PagedChildBuilderDelegate<Playlist>(
         itemBuilder: (context, item, index) => PlaylistsListItem(
-          text: item.snippet!.title,
-          image: Image.network(
-            item.snippet!.thumbnails.thumbnail,
-            errorBuilder: (context, err, st) => Assets.images.noThumbnail.image(
-              fit: BoxFit.cover,
-              width: 62,
-              height: 50,
-            ),
-            fit: BoxFit.cover,
-            width: 62,
-            height: 50,
-          ),
+          snippet: item.snippet!,
         ),
       ),
     );
