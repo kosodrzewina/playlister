@@ -28,7 +28,7 @@
     "@apiKeyDialog_apiKeyIsNotSaved": {},
     "apiKeyDialog_removeApiKey": "Usuń klucz API",
     "@apiKeyDialog_removeApiKey": {},
-    "apiKeyDialog_apiKeySaved": "✔️ Klucz API został pomyślnie dodany",
+    "apiKeyDialog_apiKeySaved": "Klucz API został pomyślnie dodany",
     "@apiKeyDialog_apiKeySaved": {},
     "noPlaylistsFound": "Nie znaleziono playlist",
     "@noPlaylistsFound": {},
@@ -42,10 +42,10 @@
     "@channelIdDialog_channelId": {},
     "endangeredPage_noDeletedVideosDetected": "Nie wykryto usuniętych filmów",
     "@endangeredPage_noDeletedVideosDetected": {},
-    "error_fetchingPlaylists": "❌ Nie udało się pobrać playlist!",
+    "error_fetchingPlaylists": "Nie udało się pobrać playlist!",
     "@error_fetchingPlaylists": {},
-    "error_noInternet": "❌ Brak połączenia z internetem!",
+    "error_noInternet": "Brak połączenia z internetem!",
     "@error_noInternet": {},
-    "error_unknown": "❌ Wystąpił nieznany błąd!",
+    "error_unknown": "Wystąpił nieznany błąd!",
     "@error_unknown": {}
 }

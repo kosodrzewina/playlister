@@ -28,7 +28,7 @@
     "@apiKeyDialog_apiKeyIsNotSaved": {},
     "apiKeyDialog_removeApiKey": "Remove API key",
     "@apiKeyDialog_removeApiKey": {},
-    "apiKeyDialog_apiKeySaved": "✔️ Your API key has been successfully added",
+    "apiKeyDialog_apiKeySaved": "Your API key has been successfully added",
     "@apiKeyDialog_apiKeySaved": {},
     "noPlaylistsFound": "No playlists found",
     "@noPlaylistsFound": {},
@@ -42,10 +42,10 @@
     "@channelIdDialog_channelId": {},
     "endangeredPage_noDeletedVideosDetected": "No deleted videos detected",
     "@endangeredPage_noDeletedVideosDetected": {},
-    "error_fetchingPlaylists": "❌ Failed to fetch playlists!",
+    "error_fetchingPlaylists": "Failed to fetch playlists!",
     "@error_fetchingPlaylists": {},
-    "error_noInternet": "❌ No Internet connection!",
+    "error_noInternet": "No Internet connection!",
     "@error_noInternet": {},
-    "error_unknown": "❌ An unknown error occurred!",
+    "error_unknown": "An unknown error occurred!",
     "@error_unknown": {}
 }
