@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
-import '../repositories/youtube_repository.dart';
 import '../widgets/search_field.dart';
 import '../widgets/search_list_view.dart';
 import '../widgets/text_button_icon.dart';
@@ -54,10 +52,7 @@ class _SearchPageState extends State<SearchPage> {
           ],
         ),
         Expanded(
-          child: SearchListView(
-            searchPhrase: searchPhrase,
-            youtubeRepository: context.read<YoutubeRepository>(),
-          ),
+          child: SearchListView(searchPhrase: searchPhrase),
         ),
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
@@ -8,13 +9,9 @@ import '../repositories/youtube_repository.dart';
 import 'playlists_list_item.dart';
 
 class SearchListView extends StatefulWidget {
-  final YoutubeRepository youtubeRepository;
   final String? searchPhrase;
 
-  const SearchListView({
-    required this.youtubeRepository,
-    required this.searchPhrase,
-  });
+  const SearchListView({required this.searchPhrase});
 
   @override
   _SearchListViewState createState() => _SearchListViewState();
@@ -37,7 +34,8 @@ class _SearchListViewState extends State<SearchListView> {
       return;
     }
 
-    final fetched = await widget.youtubeRepository
+    final fetched = await context
+        .read<YoutubeRepository>()
         .searchedPlaylistsPage(searchPhrase, _pageSize);
     final newItems = fetched.item1;
     final nextPageToken = fetched.item2;
