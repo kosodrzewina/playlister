@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class SearchField extends StatefulWidget {
   final String labelText;
   final Color accentColor;
-  final Function(String) onSubmitted;
+  final ValueChanged<String> onSubmitted;
 
   const SearchField({
     required this.labelText,
