@@ -62,7 +62,6 @@ abstract class _PlaylistStore with Store {
       }
     } on SocketException {
       errorMessage = L10nStrings.error_noInternet;
-      // ignore: avoid_catches_without_on_clauses
     } catch (e) {
       errorMessage = L10nStrings.error_unknown;
     } finally {
