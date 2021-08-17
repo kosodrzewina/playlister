@@ -39,7 +39,10 @@ class _SearchPageState extends State<SearchPage> {
           onPressed: () async => await showChannelIdDialog(context),
         ),
         Expanded(
-          child: SearchListView(searchTerm: searchTerm),
+          child: SearchListView(
+            searchTerm: searchTerm,
+            key: ValueKey(searchTerm),
+          ),
         ),
       ],
     );

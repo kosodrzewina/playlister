@@ -12,7 +12,7 @@ import 'playlists_list_item.dart';
 class SearchListView extends StatefulWidget {
   final String? searchTerm;
 
-  const SearchListView({required this.searchTerm});
+  const SearchListView({required this.searchTerm, Key? key}) : super(key: key);
 
   @override
   _SearchListViewState createState() => _SearchListViewState();
@@ -37,13 +37,14 @@ class _SearchListViewState extends State<SearchListView> {
 
     final fetched = await context
         .read<YoutubeRepository>()
-        .searchedPlaylistsPage(searchTerm, _pageSize);
-    final newItems = fetched.item1;
-    final nextPageToken = fetched.item2;
+        .searchedPlaylistsPage(searchTerm, _pageSize, nextPageToken: pageKey);
 
-    if (newItems == null) {
+    if (fetched == null) {
       return;
     }
+
+    final newItems = fetched.item1;
+    final nextPageToken = fetched.item2;
 
     if (nextPageToken == null) {
       _pagingController.appendLastPage(newItems);
