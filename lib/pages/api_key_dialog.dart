@@ -8,6 +8,10 @@ import '../widgets/app_snack_bar.dart';
 import '../widgets/text_button_icon.dart';
 
 class ApiKeyDialog extends StatefulWidget {
+  final GlobalKey<ScaffoldMessengerState> profileScaffoldMessengerKey;
+
+  const ApiKeyDialog({required this.profileScaffoldMessengerKey});
+
   @override
   _ApiKeyDialogState createState() => _ApiKeyDialogState();
 }
@@ -70,8 +74,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                     if (apiKey.isNotEmpty) {
                       context.read<AuthStore>().setApiKey(apiKey);
 
-                      // TODO: snackbar appears in the root scaffold, make it appear higher
-                      ScaffoldMessenger.of(context)
+                      widget.profileScaffoldMessengerKey.currentState!
                         ..hideCurrentSnackBar()
                         ..showSnackBar(
                           AppSnackBar.success(
@@ -96,8 +99,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             onPressed: () {
               context.read<AuthStore>().setApiKey(null);
 
-              // TODO: snackbar appears in the root scaffold, make it appear higher
-              ScaffoldMessenger.of(context)
+              widget.profileScaffoldMessengerKey.currentState!
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   AppSnackBar.success(
@@ -117,11 +119,16 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
   }
 }
 
-Future<void> showApiKeyDialog(BuildContext context) async {
+Future<void> showApiKeyDialog(
+  BuildContext context,
+  GlobalKey<ScaffoldMessengerState> profileScaffoldMessengerKey,
+) async {
   return await showDialog(
     context: context,
     builder: (context) {
-      return ApiKeyDialog();
+      return ApiKeyDialog(
+        profileScaffoldMessengerKey: profileScaffoldMessengerKey,
+      );
     },
   );
 }
