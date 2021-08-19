@@ -5,11 +5,13 @@ class TextButtonIcon extends StatefulWidget {
   final Icon icon;
   final String text;
   final Function() onPressed;
+  final bool matchParent;
 
   const TextButtonIcon({
     required this.icon,
     required this.text,
     required this.onPressed,
+    required this.matchParent,
   });
 
   @override
@@ -22,7 +24,7 @@ class _TextButtonIconState extends State<TextButtonIcon> {
     return TextButton(
       onPressed: widget.onPressed,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: widget.matchParent ? MainAxisSize.max : MainAxisSize.min,
         children: [
           const SizedBox(width: 10),
           widget.icon,

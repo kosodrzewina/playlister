@@ -27,6 +27,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
             onTap: () {},
             child: Dialog(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: 20),
@@ -52,6 +53,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                     text: loggedIn
                         ? L10n.of(context)!.profileDialog_logOut
                         : L10n.of(context)!.profileDialog_logIn,
+                    matchParent: true,
                     onPressed: () {
                       setState(() {
                         loggedIn = !loggedIn;
@@ -61,6 +63,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                   TextButtonIcon(
                     icon: const Icon(Icons.vpn_key),
                     text: L10n.of(context)!.profileDialog_enterApiKey,
+                    matchParent: true,
                     onPressed: () async {
                       await showApiKeyDialog(
                         context,
@@ -71,6 +74,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                   TextButtonIcon(
                     icon: const Icon(Icons.help),
                     text: L10n.of(context)!.profileDialog_help,
+                    matchParent: true,
                     onPressed: () {},
                   ),
                   const SizedBox(height: 20),
