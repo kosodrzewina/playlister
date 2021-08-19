@@ -93,7 +93,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             ],
           ),
           const SizedBox(height: 10),
-          TextButtonIcon(
+          IconTextButton(
             icon: const Icon(Icons.delete),
             text: L10n.of(context)!.apiKeyDialog_removeApiKey,
             matchParent: false,

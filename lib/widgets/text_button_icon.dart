@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TextButtonIcon extends StatefulWidget {
+class IconTextButton extends StatefulWidget {
   final Icon icon;
   final String text;
   final Function() onPressed;
   final bool matchParent;
 
-  const TextButtonIcon({
+  const IconTextButton({
     required this.icon,
     required this.text,
     required this.onPressed,
@@ -15,10 +15,10 @@ class TextButtonIcon extends StatefulWidget {
   });
 
   @override
-  _TextButtonIconState createState() => _TextButtonIconState();
+  _IconTextButtonState createState() => _IconTextButtonState();
 }
 
-class _TextButtonIconState extends State<TextButtonIcon> {
+class _IconTextButtonState extends State<IconTextButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton(

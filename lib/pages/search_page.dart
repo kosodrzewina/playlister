@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
             },
           ),
         ),
-        TextButtonIcon(
+        IconTextButton(
           icon: const Icon(Icons.add),
           text: L10n.of(context)!.searchPage_addByChannelId,
           matchParent: false,

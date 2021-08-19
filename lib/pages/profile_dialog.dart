@@ -48,7 +48,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  TextButtonIcon(
+                  IconTextButton(
                     icon: Icon(loggedIn ? Icons.logout : Icons.login),
                     text: loggedIn
                         ? L10n.of(context)!.profileDialog_logOut
@@ -60,7 +60,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                       });
                     },
                   ),
-                  TextButtonIcon(
+                  IconTextButton(
                     icon: const Icon(Icons.vpn_key),
                     text: L10n.of(context)!.profileDialog_enterApiKey,
                     matchParent: true,
@@ -71,7 +71,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                       );
                     },
                   ),
-                  TextButtonIcon(
+                  IconTextButton(
                     icon: const Icon(Icons.help),
                     text: L10n.of(context)!.profileDialog_help,
                     matchParent: true,
