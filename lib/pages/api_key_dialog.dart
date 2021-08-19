@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
 import '../stores/auth_store.dart';
+import '../widgets/app_snack_bar.dart';
 import '../widgets/text_button_icon.dart';
 
 class ApiKeyDialog extends StatefulWidget {
+  final GlobalKey<ScaffoldMessengerState> profileScaffoldMessengerKey;
+
+  const ApiKeyDialog({required this.profileScaffoldMessengerKey});
+
   @override
   _ApiKeyDialogState createState() => _ApiKeyDialogState();
 }
@@ -69,9 +73,16 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                   onSubmitted: (apiKey) {
                     if (apiKey.isNotEmpty) {
                       context.read<AuthStore>().setApiKey(apiKey);
-                      Fluttertoast.showToast(
-                        msg: L10n.of(context)!.apiKeyDialog_apiKeySaved,
-                      );
+
+                      widget.profileScaffoldMessengerKey.currentState!
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          AppSnackBar.success(
+                            content: Text(
+                              L10n.of(context)!.apiKeyDialog_apiKeySaved,
+                            ),
+                          ),
+                        );
                     }
 
                     Navigator.pop(context);
@@ -87,9 +98,17 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             text: L10n.of(context)!.apiKeyDialog_removeApiKey,
             onPressed: () {
               context.read<AuthStore>().setApiKey(null);
-              Fluttertoast.showToast(
-                msg: L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
-              );
+
+              widget.profileScaffoldMessengerKey.currentState!
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  AppSnackBar.success(
+                    content: Text(
+                      L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
+                    ),
+                  ),
+                );
+
               Navigator.pop(context);
             },
           ),
@@ -100,11 +119,16 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
   }
 }
 
-Future<void> showApiKeyDialog(BuildContext context) async {
+Future<void> showApiKeyDialog(
+  BuildContext context,
+  GlobalKey<ScaffoldMessengerState> profileScaffoldMessengerKey,
+) async {
   return await showDialog(
     context: context,
     builder: (context) {
-      return ApiKeyDialog();
+      return ApiKeyDialog(
+        profileScaffoldMessengerKey: profileScaffoldMessengerKey,
+      );
     },
   );
 }

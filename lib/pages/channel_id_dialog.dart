@@ -10,6 +10,7 @@ class ChannelIdDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: TextField(
+        autofocus: true,
         decoration: InputDecoration(
           labelText: L10n.of(context)!.channelIdDialog_channelId,
         ),

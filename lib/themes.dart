@@ -47,6 +47,8 @@ ThemeData _buildTheme(Brightness brightness) {
     snackBarTheme: SnackBarThemeData(
       backgroundColor: isDark ? Colors.grey[800] : Colors.grey[400],
       contentTextStyle: TextStyle(color: isDark ? Colors.white : Colors.black),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      behavior: SnackBarBehavior.floating,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: isDark ? Colors.grey[900] : Colors.white,

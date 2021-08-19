@@ -13,56 +13,72 @@ class ProfileDialog extends StatefulWidget {
 
 class _ProfileDialogState extends State<ProfileDialog> {
   bool loggedIn = false;
+  final profileScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              const SizedBox(width: 20),
-              CircleAvatar(
-                radius: 30,
-                backgroundImage: Assets.images.avatar,
+    return ScaffoldMessenger(
+      key: profileScaffoldMessengerKey,
+      child: GestureDetector(
+        onTap: () => Navigator.of(context).pop(),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: GestureDetector(
+            onTap: () {},
+            child: Dialog(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      const SizedBox(width: 20),
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundImage: Assets.images.avatar,
+                      ),
+                      const SizedBox(width: 20),
+                      Text(
+                        loggedIn
+                            ? L10n.of(context)!.profileDialog_loggedInAs
+                            : L10n.of(context)!.profileDialog_notLoggedIn,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  TextButtonIcon(
+                    icon: Icon(loggedIn ? Icons.logout : Icons.login),
+                    text: loggedIn
+                        ? L10n.of(context)!.profileDialog_logOut
+                        : L10n.of(context)!.profileDialog_logIn,
+                    onPressed: () {
+                      setState(() {
+                        loggedIn = !loggedIn;
+                      });
+                    },
+                  ),
+                  TextButtonIcon(
+                    icon: const Icon(Icons.vpn_key),
+                    text: L10n.of(context)!.profileDialog_enterApiKey,
+                    onPressed: () async {
+                      await showApiKeyDialog(
+                        context,
+                        profileScaffoldMessengerKey,
+                      );
+                    },
+                  ),
+                  TextButtonIcon(
+                    icon: const Icon(Icons.help),
+                    text: L10n.of(context)!.profileDialog_help,
+                    onPressed: () {},
+                  ),
+                  const SizedBox(height: 20),
+                ],
               ),
-              const SizedBox(width: 20),
-              Text(
-                loggedIn
-                    ? L10n.of(context)!.profileDialog_loggedInAs
-                    : L10n.of(context)!.profileDialog_notLoggedIn,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ],
+            ),
           ),
-          const SizedBox(height: 20),
-          TextButtonIcon(
-            icon: Icon(loggedIn ? Icons.logout : Icons.login),
-            text: loggedIn
-                ? L10n.of(context)!.profileDialog_logOut
-                : L10n.of(context)!.profileDialog_logIn,
-            onPressed: () {
-              setState(() {
-                loggedIn = !loggedIn;
-              });
-            },
-          ),
-          TextButtonIcon(
-            icon: const Icon(Icons.vpn_key),
-            text: L10n.of(context)!.profileDialog_enterApiKey,
-            onPressed: () async {
-              await showApiKeyDialog(context);
-            },
-          ),
-          TextButtonIcon(
-            icon: const Icon(Icons.help),
-            text: L10n.of(context)!.profileDialog_help,
-            onPressed: () {},
-          ),
-          const SizedBox(height: 20),
-        ],
+        ),
       ),
     );
   }
