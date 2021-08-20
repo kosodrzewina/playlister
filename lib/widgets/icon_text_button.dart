@@ -11,7 +11,7 @@ class IconTextButton extends StatefulWidget {
     required this.icon,
     required this.text,
     required this.onPressed,
-    required this.matchParent,
+    this.matchParent = false,
   });
 
   @override

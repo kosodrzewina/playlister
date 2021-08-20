@@ -36,7 +36,6 @@ class _SearchPageState extends State<SearchPage> {
         IconTextButton(
           icon: const Icon(Icons.add),
           text: L10n.of(context)!.searchPage_addByChannelId,
-          matchParent: false,
           onPressed: () async => await showChannelIdDialog(context),
         ),
         Expanded(
