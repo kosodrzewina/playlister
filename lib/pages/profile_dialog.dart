@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
-import '../widgets/text_button_icon.dart';
+import '../widgets/icon_text_button.dart';
 import 'api_key_dialog.dart';
 
 class ProfileDialog extends StatefulWidget {

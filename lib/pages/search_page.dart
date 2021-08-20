@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
+import '../widgets/icon_text_button.dart';
 import '../widgets/search_field.dart';
 import '../widgets/search_list_view.dart';
-import '../widgets/text_button_icon.dart';
 import 'channel_id_dialog.dart';
 
 class SearchPage extends StatefulWidget {
