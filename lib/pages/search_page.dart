@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
+import '../widgets/icon_text_button.dart';
 import '../widgets/search_field.dart';
 import '../widgets/search_list_view.dart';
-import '../widgets/text_button_icon.dart';
 import 'channel_id_dialog.dart';
 
 class SearchPage extends StatefulWidget {
@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
             },
           ),
         ),
-        TextButtonIcon(
+        IconTextButton(
           icon: const Icon(Icons.add),
           text: L10n.of(context)!.searchPage_addByChannelId,
           onPressed: () async => await showChannelIdDialog(context),

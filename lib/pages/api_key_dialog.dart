@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../l10n/l10n.dart';
 import '../stores/auth_store.dart';
 import '../widgets/app_snack_bar.dart';
-import '../widgets/text_button_icon.dart';
+import '../widgets/icon_text_button.dart';
 
 class ApiKeyDialog extends StatefulWidget {
   final GlobalKey<ScaffoldMessengerState> profileScaffoldMessengerKey;
@@ -93,7 +93,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             ],
           ),
           const SizedBox(height: 10),
-          TextButtonIcon(
+          IconTextButton(
             icon: const Icon(Icons.delete),
             text: L10n.of(context)!.apiKeyDialog_removeApiKey,
             onPressed: () {

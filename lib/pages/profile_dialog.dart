@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
-import '../widgets/text_button_icon.dart';
+import '../widgets/icon_text_button.dart';
 import 'api_key_dialog.dart';
 
 class ProfileDialog extends StatefulWidget {
@@ -27,6 +27,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
             onTap: () {},
             child: Dialog(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: 20),
@@ -47,20 +48,22 @@ class _ProfileDialogState extends State<ProfileDialog> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  TextButtonIcon(
+                  IconTextButton(
                     icon: Icon(loggedIn ? Icons.logout : Icons.login),
                     text: loggedIn
                         ? L10n.of(context)!.profileDialog_logOut
                         : L10n.of(context)!.profileDialog_logIn,
+                    matchParent: true,
                     onPressed: () {
                       setState(() {
                         loggedIn = !loggedIn;
                       });
                     },
                   ),
-                  TextButtonIcon(
+                  IconTextButton(
                     icon: const Icon(Icons.vpn_key),
                     text: L10n.of(context)!.profileDialog_enterApiKey,
+                    matchParent: true,
                     onPressed: () async {
                       await showApiKeyDialog(
                         context,
@@ -68,9 +71,10 @@ class _ProfileDialogState extends State<ProfileDialog> {
                       );
                     },
                   ),
-                  TextButtonIcon(
+                  IconTextButton(
                     icon: const Icon(Icons.help),
                     text: L10n.of(context)!.profileDialog_help,
+                    matchParent: true,
                     onPressed: () {},
                   ),
                   const SizedBox(height: 20),
