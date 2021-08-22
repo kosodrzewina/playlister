@@ -70,6 +70,29 @@ abstract class _PlaylistStore with Store {
     }
   }
 
+  @action
+  Future<void> addPlaylistById(String id) async {
+    try {
+      final res = await _youtubeRepository.playlistByPlaylistId(<String>{id});
+
+      if (res == null) {
+        errorMessage = L10nStrings.error_fetchingPlaylists;
+      } else {
+        final ids = playlists.map((p) => p.id).toSet();
+
+        if (!ids.contains(res.first.id)) {
+          playlists.add(res.first);
+        }
+      }
+    } on SocketException {
+      errorMessage = L10nStrings.error_noInternet;
+    } catch (e) {
+      errorMessage = L10nStrings.error_unknown;
+    } finally {
+      fetching = false;
+    }
+  }
+
   void dispose() {
     _saveDisposer();
   }

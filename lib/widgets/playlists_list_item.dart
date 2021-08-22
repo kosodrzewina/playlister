@@ -7,10 +7,14 @@ import '../models.dart';
 
 class PlaylistsListItem extends StatelessWidget {
   final SnippetPlaylist snippet;
+  final Icon? icon;
+  final Function()? onTap;
 
   const PlaylistsListItem({
     Key? key,
     required this.snippet,
+    this.icon,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -26,7 +30,7 @@ class PlaylistsListItem extends StatelessWidget {
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
-          onTap: () {},
+          onTap: onTap ?? () {},
           borderRadius: BorderRadius.circular(
             15,
           ),
@@ -60,6 +64,7 @@ class PlaylistsListItem extends StatelessWidget {
                     softWrap: false,
                   ),
                 ),
+                if (icon != null) icon!,
               ],
             ),
           ),
