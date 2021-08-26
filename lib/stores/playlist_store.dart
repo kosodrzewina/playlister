@@ -27,6 +27,9 @@ abstract class _PlaylistStore with Store {
   @observable
   String? errorMessage;
 
+  @observable
+  String? infoMessage;
+
   _PlaylistStore({
     required SharedPreferences sharedPrefs,
     required YoutubeRepository youtubeRepository,
@@ -80,7 +83,9 @@ abstract class _PlaylistStore with Store {
       } else {
         final ids = playlists.map((p) => p.id).toSet();
 
-        if (!ids.contains(res.first.id)) {
+        if (ids.contains(res.first.id)) {
+          infoMessage = L10nStrings.info_alreadyAdded;
+        } else {
           playlists.add(res.first);
         }
       }

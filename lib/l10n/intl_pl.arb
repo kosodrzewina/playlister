@@ -47,5 +47,7 @@
   "error_noInternet": "Brak połączenia z internetem!",
   "@error_noInternet": {},
   "error_unknown": "Wystąpił nieznany błąd!",
-  "@error_unknown": {}
+  "@error_unknown": {},
+  "info_alreadyAdded": "Ta playlista została już dodana!",
+  "@info_alreadyAdded": {}
 }
