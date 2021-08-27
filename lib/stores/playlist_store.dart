@@ -54,6 +54,8 @@ abstract class _PlaylistStore with Store {
 
   @action
   Future<void> addPlaylistsByChannelId(String channelId) async {
+    infoMessage = null;
+    errorMessage = null;
     fetching = true;
 
     try {
@@ -75,18 +77,22 @@ abstract class _PlaylistStore with Store {
 
   @action
   Future<void> addPlaylistById(String id) async {
+    infoMessage = null;
+    // errorMessage = null;
+    print('--------------');
     try {
-      final res = await _youtubeRepository.playlistByPlaylistId(<String>{id});
+      // TODO: check local stuff first, then network stuff
+      final res = await _youtubeRepository.playlistByPlaylistId({id});
 
       if (res == null) {
         errorMessage = L10nStrings.error_fetchingPlaylists;
       } else {
+        // TODO: playlists.firstWhere((p) => p.id)
         final ids = playlists.map((p) => p.id).toSet();
-
-        if (ids.contains(res.first.id)) {
+        if (ids.contains(res.single.id)) {
           infoMessage = L10nStrings.info_alreadyAdded;
         } else {
-          playlists.add(res.first);
+          playlists.add(res.single);
         }
       }
     } on SocketException {

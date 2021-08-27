@@ -54,6 +54,21 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
     });
   }
 
+  final _$infoMessageAtom = Atom(name: '_PlaylistStore.infoMessage');
+
+  @override
+  String? get infoMessage {
+    _$infoMessageAtom.reportRead();
+    return super.infoMessage;
+  }
+
+  @override
+  set infoMessage(String? value) {
+    _$infoMessageAtom.reportWrite(value, super.infoMessage, () {
+      super.infoMessage = value;
+    });
+  }
+
   final _$addPlaylistsByChannelIdAsyncAction =
       AsyncAction('_PlaylistStore.addPlaylistsByChannelId');
 
@@ -63,12 +78,21 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
         .run(() => super.addPlaylistsByChannelId(channelId));
   }
 
+  final _$addPlaylistByIdAsyncAction =
+      AsyncAction('_PlaylistStore.addPlaylistById');
+
+  @override
+  Future<void> addPlaylistById(String id) {
+    return _$addPlaylistByIdAsyncAction.run(() => super.addPlaylistById(id));
+  }
+
   @override
   String toString() {
     return '''
 playlists: ${playlists},
 fetching: ${fetching},
-errorMessage: ${errorMessage}
+errorMessage: ${errorMessage},
+infoMessage: ${infoMessage}
     ''';
   }
 }
