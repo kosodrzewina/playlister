@@ -78,8 +78,8 @@ abstract class _PlaylistStore with Store {
   @action
   Future<void> addPlaylistById(String id) async {
     infoMessage = null;
-    // errorMessage = null;
-    print('--------------');
+    errorMessage = null;
+
     try {
       // TODO: check local stuff first, then network stuff
       final res = await _youtubeRepository.playlistByPlaylistId({id});
@@ -102,6 +102,11 @@ abstract class _PlaylistStore with Store {
     } finally {
       fetching = false;
     }
+  }
+
+  @action
+  void removePlaylistById(String id) {
+    playlists.removeWhere((p) => p.id == id);
   }
 
   void dispose() {
