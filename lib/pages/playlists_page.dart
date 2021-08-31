@@ -77,7 +77,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                 return PlaylistsListItem(
                   snippet: item.snippet!,
                   icon: const Icon(Icons.delete),
-                  onTap: () =>
+                  onTapIcon: () =>
                       context.read<PlaylistStore>().removePlaylistById(item.id),
                 );
               },
