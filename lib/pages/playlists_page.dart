@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:playlister/widgets/app_snack_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 import '../stores/playlist_store.dart';
+import '../widgets/app_snack_bar.dart';
 import '../widgets/playlists_list_item.dart';
 
 class PlaylistsPage extends StatefulWidget {
