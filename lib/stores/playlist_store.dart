@@ -82,6 +82,7 @@ abstract class _PlaylistStore with Store {
   Future<void> addPlaylistById(String id) async {
     infoMessage = null;
     errorMessage = null;
+    successMessage = null;
 
     try {
       // TODO: check local stuff first, then network stuff
