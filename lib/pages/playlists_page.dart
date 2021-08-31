@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:playlister/widgets/app_snack_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
@@ -75,11 +76,19 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                 final item = playlists[index];
 
                 return PlaylistsListItem(
-                  snippet: item.snippet!,
-                  icon: const Icon(Icons.delete),
-                  onTapIcon: () =>
-                      context.read<PlaylistStore>().removePlaylistById(item.id),
-                );
+                    snippet: item.snippet!,
+                    icon: const Icon(Icons.delete),
+                    onTapIcon: () {
+                      context.read<PlaylistStore>().removePlaylistById(item.id);
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          AppSnackBar.success(
+                            content:
+                                Text(L10n.of(context)!.success_playlistRemoved),
+                          ),
+                        );
+                    });
               },
             ),
           ),
