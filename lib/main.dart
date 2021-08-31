@@ -82,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _reactionDisposer = autorun((_) {
       final errorMessage = playlistStore.errorMessage;
       final infoMessage = playlistStore.infoMessage;
+      final successMessage = playlistStore.successMessage;
 
       if (errorMessage != null) {
         ScaffoldMessenger.of(context)
@@ -99,6 +100,16 @@ class _MyHomePageState extends State<MyHomePage> {
           ..showSnackBar(
             AppSnackBar.info(
               content: Text(infoMessage.tr(context)),
+            ),
+          );
+      }
+
+      if (successMessage != null) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            AppSnackBar.success(
+              content: Text(successMessage.tr(context)),
             ),
           );
       }

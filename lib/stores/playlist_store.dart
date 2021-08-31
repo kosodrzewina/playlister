@@ -30,6 +30,9 @@ abstract class _PlaylistStore with Store {
   @observable
   String? infoMessage;
 
+  @observable
+  String? successMessage;
+
   _PlaylistStore({
     required SharedPreferences sharedPrefs,
     required YoutubeRepository youtubeRepository,
@@ -93,6 +96,7 @@ abstract class _PlaylistStore with Store {
           infoMessage = L10nStrings.info_alreadyAdded;
         } else {
           playlists.add(res.single);
+          successMessage = L10nStrings.success_playlistAdded;
         }
       }
     } on SocketException {
