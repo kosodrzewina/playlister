@@ -12,6 +12,8 @@ ThemeData _buildTheme(Brightness brightness) {
     scaffoldBackgroundColor: isDark ? Colors.black : Colors.white,
     hintColor: isDark ? Colors.white : Colors.grey[700],
     cardColor: isDark ? Colors.grey[800] : Colors.grey[300],
+    highlightColor: Colors.red.withOpacity(0.4),
+    splashColor: Colors.red,
     iconTheme: IconThemeData(
       color: isDark ? Colors.white : Colors.black,
     ),
