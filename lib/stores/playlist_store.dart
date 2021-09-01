@@ -83,6 +83,7 @@ abstract class _PlaylistStore with Store {
     infoMessage = null;
     errorMessage = null;
     successMessage = null;
+    fetching = true;
 
     try {
       // TODO: check local stuff first, then network stuff
