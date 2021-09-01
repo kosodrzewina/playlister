@@ -78,7 +78,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                 return PlaylistsListItem(
                     snippet: item.snippet!,
                     icon: const Icon(Icons.delete),
-                    onTapIcon: () {
+                    onPressedIcon: () {
                       context.read<PlaylistStore>().removePlaylistById(item.id);
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()

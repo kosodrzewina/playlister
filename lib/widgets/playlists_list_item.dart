@@ -9,14 +9,14 @@ class PlaylistsListItem extends StatelessWidget {
   final SnippetPlaylist snippet;
   final Icon? icon;
   final Function()? onTap;
-  final Function()? onTapIcon;
+  final Function()? onPressedIcon;
 
   const PlaylistsListItem({
     Key? key,
     required this.snippet,
     this.icon,
     this.onTap,
-    this.onTapIcon,
+    this.onPressedIcon,
   }) : super(key: key);
 
   @override
@@ -67,13 +67,9 @@ class PlaylistsListItem extends StatelessWidget {
                   ),
                 ),
                 if (icon != null)
-                  Material(
-                    type: MaterialType.transparency,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(15),
-                      onTap: onTapIcon,
-                      child: icon,
-                    ),
+                  IconButton(
+                    onPressed: onPressedIcon,
+                    icon: icon!,
                   ),
               ],
             ),

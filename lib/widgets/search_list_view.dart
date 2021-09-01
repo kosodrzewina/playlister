@@ -81,7 +81,7 @@ class _SearchListViewState extends State<SearchListView> {
         itemBuilder: (context, item, index) => PlaylistsListItem(
             snippet: item.snippet!,
             icon: const Icon(Icons.add),
-            onTapIcon: () =>
+            onPressedIcon: () =>
                 context.read<PlaylistStore>().addPlaylistById(item.id)),
       ),
     );
