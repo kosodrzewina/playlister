@@ -8,8 +8,8 @@ import '../models.dart';
 class PlaylistsListItem extends StatelessWidget {
   final SnippetPlaylist snippet;
   final Icon? icon;
-  final Function()? onTap;
-  final Function()? onPressedIcon;
+  final VoidCallback? onTap;
+  final VoidCallback? onPressedIcon;
 
   const PlaylistsListItem({
     Key? key,
