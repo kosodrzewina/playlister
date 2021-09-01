@@ -86,7 +86,11 @@ abstract class _PlaylistStore with Store {
     fetching = true;
 
     try {
-      // TODO: check local stuff first, then network stuff
+      if (playlists.any((p) => p.id == id)) {
+        infoMessage = L10nStrings.info_alreadyAdded;
+        return;
+      }
+
       final res = await _youtubeRepository.playlistByPlaylistId({id});
 
       if (res == null) {
