@@ -47,5 +47,11 @@
   "error_noInternet": "Brak połączenia z internetem!",
   "@error_noInternet": {},
   "error_unknown": "Wystąpił nieznany błąd!",
-  "@error_unknown": {}
+  "@error_unknown": {},
+  "info_alreadyAdded": "Ta playlista została już dodana!",
+  "@info_alreadyAdded": {},
+  "success_playlistAdded": "Playlista została pomyślnie dodana",
+  "@success_playlistAdded": {},
+  "success_playlistRemoved": "Playlista została pomyślnie usunięta",
+  "@success_playlistRemoved": {}
 }

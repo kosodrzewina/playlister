@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
@@ -6,6 +7,7 @@ import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 import '../models.dart';
 import '../repositories/youtube_repository.dart';
+import '../stores/playlist_store.dart';
 import 'playlists_list_item.dart';
 
 class SearchListView extends StatefulWidget {
@@ -77,8 +79,10 @@ class _SearchListViewState extends State<SearchListView> {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       builderDelegate: PagedChildBuilderDelegate<Playlist>(
         itemBuilder: (context, item, index) => PlaylistsListItem(
-          snippet: item.snippet!,
-        ),
+            snippet: item.snippet!,
+            icon: const Icon(Icons.add),
+            onPressedIcon: () =>
+                context.read<PlaylistStore>().addPlaylistById(item.id)),
       ),
     );
   }

@@ -27,6 +27,12 @@ abstract class _PlaylistStore with Store {
   @observable
   String? errorMessage;
 
+  @observable
+  String? infoMessage;
+
+  @observable
+  String? successMessage;
+
   _PlaylistStore({
     required SharedPreferences sharedPrefs,
     required YoutubeRepository youtubeRepository,
@@ -51,6 +57,8 @@ abstract class _PlaylistStore with Store {
 
   @action
   Future<void> addPlaylistsByChannelId(String channelId) async {
+    infoMessage = null;
+    errorMessage = null;
     fetching = true;
 
     try {
@@ -68,6 +76,43 @@ abstract class _PlaylistStore with Store {
     } finally {
       fetching = false;
     }
+  }
+
+  @action
+  Future<void> addPlaylistById(String id) async {
+    infoMessage = null;
+    errorMessage = null;
+    successMessage = null;
+    fetching = true;
+
+    try {
+      if (playlists.any((p) => p.id == id)) {
+        infoMessage = L10nStrings.info_alreadyAdded;
+        return;
+      }
+
+      final res = await _youtubeRepository.playlistByPlaylistId({id});
+
+      if (res == null) {
+        errorMessage = L10nStrings.error_fetchingPlaylists;
+      } else {
+        playlists.add(res.single);
+        successMessage = L10nStrings.success_playlistAdded;
+      }
+    } on SocketException {
+      errorMessage = L10nStrings.error_noInternet;
+    } catch (e) {
+      errorMessage = L10nStrings.error_unknown;
+    } finally {
+      fetching = false;
+    }
+  }
+
+  @action
+  void removePlaylistById(String id) {
+    successMessage = null;
+    playlists.removeWhere((p) => p.id == id);
+    successMessage = L10nStrings.success_playlistRemoved;
   }
 
   void dispose() {

@@ -80,14 +80,36 @@ class _MyHomePageState extends State<MyHomePage> {
     final playlistStore = context.read<PlaylistStore>();
 
     _reactionDisposer = autorun((_) {
-      final errorMessagePlaylistStore = playlistStore.errorMessage;
+      final errorMessage = playlistStore.errorMessage;
+      final infoMessage = playlistStore.infoMessage;
+      final successMessage = playlistStore.successMessage;
 
-      if (errorMessagePlaylistStore != null) {
+      if (errorMessage != null) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(
             AppSnackBar.error(
-              content: Text(errorMessagePlaylistStore.tr(context)),
+              content: Text(errorMessage.tr(context)),
+            ),
+          );
+      }
+
+      if (infoMessage != null) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            AppSnackBar.info(
+              content: Text(infoMessage.tr(context)),
+            ),
+          );
+      }
+
+      if (successMessage != null) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            AppSnackBar.success(
+              content: Text(successMessage.tr(context)),
             ),
           );
       }

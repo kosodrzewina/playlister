@@ -30,6 +30,9 @@ abstract class L10nStrings {
   static const error_fetchingPlaylists = 'error_fetchingPlaylists';
   static const error_noInternet = 'error_noInternet';
   static const error_unknown = 'error_unknown';
+  static const info_alreadyAdded = 'info_alreadyAdded';
+  static const success_playlistAdded = 'success_playlistAdded';
+  static const success_playlistRemoved = 'success_playlistRemoved';
 }
 
 extension L10nFromString on String {
@@ -83,6 +86,12 @@ extension L10nFromString on String {
         return L10n.of(context)!.error_noInternet;
       case L10nStrings.error_unknown:
         return L10n.of(context)!.error_unknown;
+      case L10nStrings.info_alreadyAdded:
+        return L10n.of(context)!.info_alreadyAdded;
+      case L10nStrings.success_playlistAdded:
+        return L10n.of(context)!.success_playlistAdded;
+      case L10nStrings.success_playlistRemoved:
+        return L10n.of(context)!.success_playlistRemoved;
 
       default:
         return this;

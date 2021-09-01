@@ -54,6 +54,36 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
     });
   }
 
+  final _$infoMessageAtom = Atom(name: '_PlaylistStore.infoMessage');
+
+  @override
+  String? get infoMessage {
+    _$infoMessageAtom.reportRead();
+    return super.infoMessage;
+  }
+
+  @override
+  set infoMessage(String? value) {
+    _$infoMessageAtom.reportWrite(value, super.infoMessage, () {
+      super.infoMessage = value;
+    });
+  }
+
+  final _$successMessageAtom = Atom(name: '_PlaylistStore.successMessage');
+
+  @override
+  String? get successMessage {
+    _$successMessageAtom.reportRead();
+    return super.successMessage;
+  }
+
+  @override
+  set successMessage(String? value) {
+    _$successMessageAtom.reportWrite(value, super.successMessage, () {
+      super.successMessage = value;
+    });
+  }
+
   final _$addPlaylistsByChannelIdAsyncAction =
       AsyncAction('_PlaylistStore.addPlaylistsByChannelId');
 
@@ -63,12 +93,36 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
         .run(() => super.addPlaylistsByChannelId(channelId));
   }
 
+  final _$addPlaylistByIdAsyncAction =
+      AsyncAction('_PlaylistStore.addPlaylistById');
+
+  @override
+  Future<void> addPlaylistById(String id) {
+    return _$addPlaylistByIdAsyncAction.run(() => super.addPlaylistById(id));
+  }
+
+  final _$_PlaylistStoreActionController =
+      ActionController(name: '_PlaylistStore');
+
+  @override
+  void removePlaylistById(String id) {
+    final _$actionInfo = _$_PlaylistStoreActionController.startAction(
+        name: '_PlaylistStore.removePlaylistById');
+    try {
+      return super.removePlaylistById(id);
+    } finally {
+      _$_PlaylistStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 playlists: ${playlists},
 fetching: ${fetching},
-errorMessage: ${errorMessage}
+errorMessage: ${errorMessage},
+infoMessage: ${infoMessage},
+successMessage: ${successMessage}
     ''';
   }
 }
