@@ -111,7 +111,9 @@ abstract class _PlaylistStore with Store {
 
   @action
   void removePlaylistById(String id) {
+    successMessage = null;
     playlists.removeWhere((p) => p.id == id);
+    successMessage = L10nStrings.success_playlistRemoved;
   }
 
   void dispose() {

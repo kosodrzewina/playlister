@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 import '../stores/playlist_store.dart';
-import '../widgets/app_snack_bar.dart';
 import '../widgets/playlists_list_item.dart';
 
 class PlaylistsPage extends StatefulWidget {
@@ -76,19 +75,11 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                 final item = playlists[index];
 
                 return PlaylistsListItem(
-                    snippet: item.snippet!,
-                    icon: const Icon(Icons.delete),
-                    onPressedIcon: () {
-                      context.read<PlaylistStore>().removePlaylistById(item.id);
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          AppSnackBar.success(
-                            content:
-                                Text(L10n.of(context)!.success_playlistRemoved),
-                          ),
-                        );
-                    });
+                  snippet: item.snippet!,
+                  icon: const Icon(Icons.delete),
+                  onPressedIcon: () =>
+                      context.read<PlaylistStore>().removePlaylistById(item.id),
+                );
               },
             ),
           ),
