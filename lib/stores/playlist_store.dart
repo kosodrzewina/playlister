@@ -96,14 +96,8 @@ abstract class _PlaylistStore with Store {
       if (res == null) {
         errorMessage = L10nStrings.error_fetchingPlaylists;
       } else {
-        // TODO: playlists.firstWhere((p) => p.id)
-        final ids = playlists.map((p) => p.id).toSet();
-        if (ids.contains(res.single.id)) {
-          infoMessage = L10nStrings.info_alreadyAdded;
-        } else {
-          playlists.add(res.single);
-          successMessage = L10nStrings.success_playlistAdded;
-        }
+        playlists.add(res.single);
+        successMessage = L10nStrings.success_playlistAdded;
       }
     } on SocketException {
       errorMessage = L10nStrings.error_noInternet;
