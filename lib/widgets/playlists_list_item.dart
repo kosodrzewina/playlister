@@ -32,7 +32,7 @@ class PlaylistsListItem extends StatelessWidget {
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
-          onTap: onTap ?? () {},
+          onTap: onTap,
           borderRadius: BorderRadius.circular(
             15,
           ),
@@ -71,7 +71,7 @@ class PlaylistsListItem extends StatelessWidget {
                     type: MaterialType.transparency,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
-                      onTap: onTapIcon ?? () {},
+                      onTap: onTapIcon,
                       child: icon,
                     ),
                   ),
