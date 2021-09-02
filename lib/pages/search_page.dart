@@ -27,13 +27,38 @@ class _SearchPageState extends State<SearchPage> {
         const SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: SearchField(
-            labelText: L10n.of(context)!.searchPage_searchForPlaylists,
-            accentColor: Theme.of(context).accentColor,
-            onSubmitted: (searchTerm) {
-              setState(() =>
-                  this.searchTerm = searchTerm.isEmpty ? null : searchTerm);
-            },
+          child: Observer(
+            builder: (_) => SearchField(
+              isEnabled: context.read<AuthStore>().apiKey != null,
+              labelText: L10n.of(context)!.searchPage_searchForPlaylists,
+              labelStyle: TextStyle(
+                color: context.read<AuthStore>().apiKey != null
+                    ? Theme.of(context).textTheme.bodyText1!.color!
+                    : Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .color!
+                        .withOpacity(0.3),
+              ),
+              icon: context.read<AuthStore>().apiKey != null
+                  ? Icon(
+                      Icons.search,
+                      color: Theme.of(context).iconTheme.color,
+                    )
+                  : Icon(
+                      Icons.search,
+                      color:
+                          Theme.of(context).iconTheme.color!.withOpacity(0.3),
+                    ),
+              fillColor: context.read<AuthStore>().apiKey != null
+                  ? Theme.of(context).cardColor
+                  : Theme.of(context).cardColor.withOpacity(0.3),
+              accentColor: Theme.of(context).accentColor,
+              onSubmitted: (searchTerm) {
+                setState(() =>
+                    this.searchTerm = searchTerm.isEmpty ? null : searchTerm);
+              },
+            ),
           ),
         ),
         Observer(
