@@ -8,6 +8,7 @@ import '../l10n/l10n.dart';
 import '../models.dart';
 import '../repositories/youtube_repository.dart';
 import '../stores/playlist_store.dart';
+import 'app_snack_bar.dart';
 import 'playlists_list_item.dart';
 
 class SearchListView extends StatefulWidget {
@@ -41,6 +42,14 @@ class _SearchListViewState extends State<SearchListView> {
         .searchedPlaylistsPage(searchTerm, _pageSize, nextPageToken: pageKey);
 
     if (fetched == null) {
+      _pagingController.appendLastPage([]);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          AppSnackBar.error(
+            content: Text(L10n.of(context)!.error_fetchingPlaylists),
+          ),
+        );
       return;
     }
 
