@@ -115,21 +115,23 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                             .withOpacity(0.3),
                       ),
                     ),
-              onPressed: () {
-                context.read<AuthStore>().setApiKey(null);
+              onPressed: context.read<AuthStore>().apiKey != null
+                  ? () {
+                      context.read<AuthStore>().setApiKey(null);
 
-                widget.profileScaffoldMessengerKey.currentState!
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    AppSnackBar.success(
-                      content: Text(
-                        L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
-                      ),
-                    ),
-                  );
+                      widget.profileScaffoldMessengerKey.currentState!
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          AppSnackBar.success(
+                            content: Text(
+                              L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
+                            ),
+                          ),
+                        );
 
-                Navigator.pop(context);
-              },
+                      Navigator.pop(context);
+                    }
+                  : null,
             ),
           ),
           const SizedBox(height: 20),
