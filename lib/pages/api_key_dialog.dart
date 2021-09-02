@@ -95,7 +95,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
           const SizedBox(height: 10),
           IconTextButton(
             icon: const Icon(Icons.delete),
-            text: L10n.of(context)!.apiKeyDialog_removeApiKey,
+            text: Text(L10n.of(context)!.apiKeyDialog_removeApiKey),
             onPressed: () {
               context.read<AuthStore>().setApiKey(null);
 

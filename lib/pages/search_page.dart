@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
+import '../stores/auth_store.dart';
 import '../widgets/icon_text_button.dart';
 import '../widgets/search_field.dart';
 import '../widgets/search_list_view.dart';
@@ -33,10 +36,30 @@ class _SearchPageState extends State<SearchPage> {
             },
           ),
         ),
-        IconTextButton(
-          icon: const Icon(Icons.add),
-          text: L10n.of(context)!.searchPage_addByChannelId,
-          onPressed: () async => await showChannelIdDialog(context),
+        Observer(
+          builder: (_) => IconTextButton(
+            icon: context.read<AuthStore>().apiKey != null
+                ? const Icon(Icons.add)
+                : Icon(
+                    Icons.add,
+                    color: Theme.of(context).iconTheme.color!.withOpacity(0.3),
+                  ),
+            text: context.read<AuthStore>().apiKey != null
+                ? Text(L10n.of(context)!.searchPage_addByChannelId)
+                : Text(
+                    L10n.of(context)!.searchPage_addByChannelId,
+                    style: TextStyle(
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .color!
+                          .withOpacity(0.3),
+                    ),
+                  ),
+            onPressed: context.read<AuthStore>().apiKey != null
+                ? () async => await showChannelIdDialog(context)
+                : null,
+          ),
         ),
         Expanded(
           child: SearchListView(
