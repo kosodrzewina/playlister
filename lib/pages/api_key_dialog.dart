@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
@@ -93,24 +94,43 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             ],
           ),
           const SizedBox(height: 10),
-          IconTextButton(
-            icon: const Icon(Icons.delete),
-            text: Text(L10n.of(context)!.apiKeyDialog_removeApiKey),
-            onPressed: () {
-              context.read<AuthStore>().setApiKey(null);
-
-              widget.profileScaffoldMessengerKey.currentState!
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  AppSnackBar.success(
-                    content: Text(
-                      L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
+          Observer(
+            builder: (_) => IconTextButton(
+              icon: context.read<AuthStore>().apiKey != null
+                  ? const Icon(Icons.delete)
+                  : Icon(
+                      Icons.delete,
+                      color:
+                          Theme.of(context).iconTheme.color!.withOpacity(0.3),
                     ),
-                  ),
-                );
+              text: context.read<AuthStore>().apiKey != null
+                  ? Text(L10n.of(context)!.apiKeyDialog_removeApiKey)
+                  : Text(
+                      L10n.of(context)!.apiKeyDialog_removeApiKey,
+                      style: TextStyle(
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .color!
+                            .withOpacity(0.3),
+                      ),
+                    ),
+              onPressed: () {
+                context.read<AuthStore>().setApiKey(null);
 
-              Navigator.pop(context);
-            },
+                widget.profileScaffoldMessengerKey.currentState!
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    AppSnackBar.success(
+                      content: Text(
+                        L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
+                      ),
+                    ),
+                  );
+
+                Navigator.pop(context);
+              },
+            ),
           ),
           const SizedBox(height: 20),
         ],
