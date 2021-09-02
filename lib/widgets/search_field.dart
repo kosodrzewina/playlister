@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:playlister/stores/auth_store.dart';
 import 'package:provider/provider.dart';
+
+import '../stores/auth_store.dart';
 
 class SearchField extends StatefulWidget {
   final String labelText;
