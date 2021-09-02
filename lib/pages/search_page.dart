@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
@@ -18,7 +19,19 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  ReactionDisposer? _reactionDisposer;
+  final _controller = TextEditingController();
   String? searchTerm;
+
+  @override
+  void initState() {
+    _reactionDisposer = autorun((_) {
+      if (context.read<AuthStore>().apiKey == null) {
+        _controller.clear();
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +43,7 @@ class _SearchPageState extends State<SearchPage> {
           child: Observer(
             builder: (_) => SearchField(
               isEnabled: context.read<AuthStore>().apiKey != null,
+              controller: _controller,
               labelText: L10n.of(context)!.searchPage_searchForPlaylists,
               labelStyle: TextStyle(
                 color: context.read<AuthStore>().apiKey != null
@@ -94,5 +108,11 @@ class _SearchPageState extends State<SearchPage> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _reactionDisposer?.call();
+    super.dispose();
   }
 }

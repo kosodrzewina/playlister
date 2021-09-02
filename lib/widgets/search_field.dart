@@ -7,6 +7,7 @@ class SearchField extends StatefulWidget {
   final Color fillColor;
   final Color accentColor;
   final TextStyle? labelStyle;
+  final TextEditingController? controller;
   final ValueChanged<String> onSubmitted;
   final bool isEnabled;
 
@@ -16,6 +17,7 @@ class SearchField extends StatefulWidget {
     required this.fillColor,
     required this.accentColor,
     this.labelStyle,
+    this.controller,
     required this.onSubmitted,
     this.isEnabled = true,
   });
@@ -39,6 +41,7 @@ class _SearchFieldState extends State<SearchField> {
   Widget build(BuildContext context) {
     return TextField(
       enabled: widget.isEnabled,
+      controller: widget.controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
