@@ -94,16 +94,18 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             ],
           ),
           const SizedBox(height: 10),
-          Observer(
-            builder: (_) => IconTextButton(
-              icon: context.read<AuthStore>().apiKey != null
+          Observer(builder: (_) {
+            final isApiKey = context.read<AuthStore>().apiKey != null;
+
+            return IconTextButton(
+              icon: isApiKey
                   ? const Icon(Icons.delete)
                   : Icon(
                       Icons.delete,
                       color:
                           Theme.of(context).iconTheme.color!.withOpacity(0.3),
                     ),
-              widget: context.read<AuthStore>().apiKey != null
+              widget: isApiKey
                   ? Text(L10n.of(context)!.apiKeyDialog_removeApiKey)
                   : Text(
                       L10n.of(context)!.apiKeyDialog_removeApiKey,
@@ -115,7 +117,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                             .withOpacity(0.3),
                       ),
                     ),
-              onPressed: context.read<AuthStore>().apiKey != null
+              onPressed: isApiKey
                   ? () {
                       context.read<AuthStore>().setApiKey(null);
 
@@ -132,8 +134,8 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                       Navigator.pop(context);
                     }
                   : null,
-            ),
-          ),
+            );
+          }),
           const SizedBox(height: 20),
         ],
       ),

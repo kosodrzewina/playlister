@@ -40,13 +40,15 @@ class _SearchPageState extends State<SearchPage> {
         const SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Observer(
-            builder: (_) => SearchField(
-              isEnabled: context.read<AuthStore>().apiKey != null,
+          child: Observer(builder: (_) {
+            final isApiKey = context.read<AuthStore>().apiKey != null;
+
+            return SearchField(
+              isEnabled: isApiKey,
               controller: _controller,
               labelText: L10n.of(context)!.searchPage_searchForPlaylists,
               labelStyle: TextStyle(
-                color: context.read<AuthStore>().apiKey != null
+                color: isApiKey
                     ? Theme.of(context).textTheme.bodyText1!.color!
                     : Theme.of(context)
                         .textTheme
@@ -54,7 +56,7 @@ class _SearchPageState extends State<SearchPage> {
                         .color!
                         .withOpacity(0.3),
               ),
-              icon: context.read<AuthStore>().apiKey != null
+              icon: isApiKey
                   ? Icon(
                       Icons.search,
                       color: Theme.of(context).iconTheme.color,
@@ -64,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
                       color:
                           Theme.of(context).iconTheme.color!.withOpacity(0.3),
                     ),
-              fillColor: context.read<AuthStore>().apiKey != null
+              fillColor: isApiKey
                   ? Theme.of(context).cardColor
                   : Theme.of(context).cardColor.withOpacity(0.3),
               accentColor: Theme.of(context).accentColor,
@@ -72,18 +74,20 @@ class _SearchPageState extends State<SearchPage> {
                 setState(() =>
                     this.searchTerm = searchTerm.isEmpty ? null : searchTerm);
               },
-            ),
-          ),
+            );
+          }),
         ),
-        Observer(
-          builder: (_) => IconTextButton(
-            icon: context.read<AuthStore>().apiKey != null
+        Observer(builder: (_) {
+          final isApiKey = context.read<AuthStore>().apiKey != null;
+
+          return IconTextButton(
+            icon: isApiKey
                 ? const Icon(Icons.add)
                 : Icon(
                     Icons.add,
                     color: Theme.of(context).iconTheme.color!.withOpacity(0.3),
                   ),
-            widget: context.read<AuthStore>().apiKey != null
+            widget: isApiKey
                 ? Text(L10n.of(context)!.searchPage_addByChannelId)
                 : Text(
                     L10n.of(context)!.searchPage_addByChannelId,
@@ -95,11 +99,9 @@ class _SearchPageState extends State<SearchPage> {
                           .withOpacity(0.3),
                     ),
                   ),
-            onPressed: context.read<AuthStore>().apiKey != null
-                ? () => showChannelIdDialog(context)
-                : null,
-          ),
-        ),
+            onPressed: isApiKey ? () => showChannelIdDialog(context) : null,
+          );
+        }),
         Expanded(
           child: SearchListView(
             searchTerm: searchTerm,
