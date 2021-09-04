@@ -96,7 +96,7 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                   ),
             onPressed: context.read<AuthStore>().apiKey != null
-                ? () async => await showChannelIdDialog(context)
+                ? () => showChannelIdDialog(context)
                 : null,
           ),
         ),
