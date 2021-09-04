@@ -103,7 +103,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                       color:
                           Theme.of(context).iconTheme.color!.withOpacity(0.3),
                     ),
-              text: context.read<AuthStore>().apiKey != null
+              widget: context.read<AuthStore>().apiKey != null
                   ? Text(L10n.of(context)!.apiKeyDialog_removeApiKey)
                   : Text(
                       L10n.of(context)!.apiKeyDialog_removeApiKey,

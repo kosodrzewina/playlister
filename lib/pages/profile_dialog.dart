@@ -50,7 +50,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                   const SizedBox(height: 20),
                   IconTextButton(
                     icon: Icon(loggedIn ? Icons.logout : Icons.login),
-                    text: Text(
+                    widget: Text(
                       loggedIn
                           ? L10n.of(context)!.profileDialog_logOut
                           : L10n.of(context)!.profileDialog_logIn,
@@ -64,7 +64,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                   ),
                   IconTextButton(
                     icon: const Icon(Icons.vpn_key),
-                    text: Text(L10n.of(context)!.profileDialog_enterApiKey),
+                    widget: Text(L10n.of(context)!.profileDialog_enterApiKey),
                     matchParent: true,
                     onPressed: () async {
                       await showApiKeyDialog(
@@ -75,7 +75,7 @@ class _ProfileDialogState extends State<ProfileDialog> {
                   ),
                   IconTextButton(
                     icon: const Icon(Icons.help),
-                    text: Text(L10n.of(context)!.profileDialog_help),
+                    widget: Text(L10n.of(context)!.profileDialog_help),
                     matchParent: true,
                     onPressed: () {},
                   ),

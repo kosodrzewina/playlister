@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class IconTextButton extends StatefulWidget {
   final Icon icon;
-  final Text text;
+  final Widget widget;
   final VoidCallback? onPressed;
   final bool matchParent;
 
   const IconTextButton({
     required this.icon,
-    required this.text,
+    required this.widget,
     required this.onPressed,
     this.matchParent = false,
   });
@@ -29,7 +29,7 @@ class _IconTextButtonState extends State<IconTextButton> {
           const SizedBox(width: 10),
           widget.icon,
           const SizedBox(width: 10),
-          widget.text,
+          widget.widget,
           const SizedBox(width: 10),
         ],
       ),
