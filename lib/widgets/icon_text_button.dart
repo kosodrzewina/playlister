@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class IconTextButton extends StatefulWidget {
   final Icon icon;
   final Text text;
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
   final bool matchParent;
 
   const IconTextButton({
