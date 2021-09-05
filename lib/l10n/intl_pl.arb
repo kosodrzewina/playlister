@@ -52,6 +52,8 @@
   "@info_alreadyAdded": {},
   "success_playlistAdded": "Playlista została pomyślnie dodana",
   "@success_playlistAdded": {},
+  "success_playlistsAdded": "Playlisty zostały pomyślnie dodane",
+  "@success_playlistsAdded": {},
   "success_playlistRemoved": "Playlista została pomyślnie usunięta",
   "@success_playlistRemoved": {}
 }

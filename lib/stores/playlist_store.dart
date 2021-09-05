@@ -59,6 +59,7 @@ abstract class _PlaylistStore with Store {
   Future<void> addPlaylistsByChannelId(String channelId) async {
     infoMessage = null;
     errorMessage = null;
+    successMessage = null;
     fetching = true;
 
     try {
@@ -68,6 +69,7 @@ abstract class _PlaylistStore with Store {
       } else {
         final ids = playlists.map((p) => p.id).toSet();
         playlists.addAll(res.where((p) => !ids.contains(p.id)));
+        successMessage = L10nStrings.success_playlistsAdded;
       }
     } on SocketException {
       errorMessage = L10nStrings.error_noInternet;
