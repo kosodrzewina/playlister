@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:playlister/pages/playlist_item_page.dart';
 import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
@@ -80,6 +81,13 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onPressedIcon: () => context
                               .read<PlaylistStore>()
                               .removePlaylistById(item.id),
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute<PlaylistItemPage>(
+                              builder: (context) => PlaylistItemPage(
+                                title: item.snippet!.title,
+                              ),
+                            ),
+                          ),
                         );
                       },
                     ),
