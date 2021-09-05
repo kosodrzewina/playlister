@@ -87,7 +87,8 @@ class _SearchPageState extends State<SearchPage> {
                     Icons.add,
                     color: Theme.of(context).iconTheme.color!.withOpacity(0.3),
                   ),
-            widget: isApiKey
+            onPressed: isApiKey ? () => showChannelIdDialog(context) : null,
+            child: isApiKey
                 ? Text(L10n.of(context)!.searchPage_addByChannelId)
                 : Text(
                     L10n.of(context)!.searchPage_addByChannelId,
@@ -99,7 +100,6 @@ class _SearchPageState extends State<SearchPage> {
                           .withOpacity(0.3),
                     ),
                   ),
-            onPressed: isApiKey ? () => showChannelIdDialog(context) : null,
           );
         }),
         Expanded(

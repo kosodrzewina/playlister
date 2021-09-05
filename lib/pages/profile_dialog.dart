@@ -50,21 +50,20 @@ class _ProfileDialogState extends State<ProfileDialog> {
                   const SizedBox(height: 20),
                   IconTextButton(
                     icon: Icon(loggedIn ? Icons.logout : Icons.login),
-                    widget: Text(
-                      loggedIn
-                          ? L10n.of(context)!.profileDialog_logOut
-                          : L10n.of(context)!.profileDialog_logIn,
-                    ),
                     matchParent: true,
                     onPressed: () {
                       setState(() {
                         loggedIn = !loggedIn;
                       });
                     },
+                    child: Text(
+                      loggedIn
+                          ? L10n.of(context)!.profileDialog_logOut
+                          : L10n.of(context)!.profileDialog_logIn,
+                    ),
                   ),
                   IconTextButton(
                     icon: const Icon(Icons.vpn_key),
-                    widget: Text(L10n.of(context)!.profileDialog_enterApiKey),
                     matchParent: true,
                     onPressed: () async {
                       await showApiKeyDialog(
@@ -72,12 +71,13 @@ class _ProfileDialogState extends State<ProfileDialog> {
                         profileScaffoldMessengerKey,
                       );
                     },
+                    child: Text(L10n.of(context)!.profileDialog_enterApiKey),
                   ),
                   IconTextButton(
                     icon: const Icon(Icons.help),
-                    widget: Text(L10n.of(context)!.profileDialog_help),
                     matchParent: true,
                     onPressed: () {},
+                    child: Text(L10n.of(context)!.profileDialog_help),
                   ),
                   const SizedBox(height: 20),
                 ],
