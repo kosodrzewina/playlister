@@ -3,13 +3,23 @@ import 'package:flutter/material.dart';
 
 class SearchField extends StatefulWidget {
   final String labelText;
+  final Icon icon;
+  final Color fillColor;
   final Color accentColor;
+  final TextStyle? labelStyle;
+  final TextEditingController? controller;
   final ValueChanged<String> onSubmitted;
+  final bool isEnabled;
 
   const SearchField({
     required this.labelText,
+    required this.icon,
+    required this.fillColor,
     required this.accentColor,
+    this.labelStyle,
+    this.controller,
     required this.onSubmitted,
+    this.isEnabled = true,
   });
 
   @override
@@ -30,6 +40,8 @@ class _SearchFieldState extends State<SearchField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      enabled: widget.isEnabled,
+      controller: widget.controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
@@ -46,12 +58,11 @@ class _SearchFieldState extends State<SearchField> {
         fillColor: Theme.of(context).cardColor,
         filled: true,
         prefixIcon: Icon(
-          Icons.search,
-          color: _isFocused
-              ? widget.accentColor
-              : Theme.of(context).iconTheme.color,
+          widget.icon.icon,
+          color: _isFocused ? widget.accentColor : widget.icon.color,
         ),
         labelText: widget.labelText,
+        labelStyle: widget.labelStyle,
         floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       focusNode: _focusNode,

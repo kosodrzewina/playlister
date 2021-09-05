@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
@@ -93,25 +94,48 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
             ],
           ),
           const SizedBox(height: 10),
-          IconTextButton(
-            icon: const Icon(Icons.delete),
-            text: L10n.of(context)!.apiKeyDialog_removeApiKey,
-            onPressed: () {
-              context.read<AuthStore>().setApiKey(null);
+          Observer(builder: (_) {
+            final isApiKey = context.read<AuthStore>().apiKey != null;
 
-              widget.profileScaffoldMessengerKey.currentState!
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  AppSnackBar.success(
-                    content: Text(
-                      L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
+            return IconTextButton(
+              icon: isApiKey
+                  ? const Icon(Icons.delete)
+                  : Icon(
+                      Icons.delete,
+                      color:
+                          Theme.of(context).iconTheme.color!.withOpacity(0.3),
                     ),
-                  ),
-                );
+              onPressed: isApiKey
+                  ? () {
+                      context.read<AuthStore>().setApiKey(null);
 
-              Navigator.pop(context);
-            },
-          ),
+                      widget.profileScaffoldMessengerKey.currentState!
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          AppSnackBar.success(
+                            content: Text(
+                              L10n.of(context)!.apiKeyDialog_apiKeyRemoved,
+                            ),
+                          ),
+                        );
+
+                      Navigator.pop(context);
+                    }
+                  : null,
+              child: isApiKey
+                  ? Text(L10n.of(context)!.apiKeyDialog_removeApiKey)
+                  : Text(
+                      L10n.of(context)!.apiKeyDialog_removeApiKey,
+                      style: TextStyle(
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .color!
+                            .withOpacity(0.3),
+                      ),
+                    ),
+            );
+          }),
           const SizedBox(height: 20),
         ],
       ),
