@@ -68,6 +68,31 @@ abstract class _PlaylistStore with Store {
         errorMessage = L10nStrings.error_fetchingPlaylists;
       } else {
         final ids = playlists.map((p) => p.id).toSet();
+        res.where((p) => !ids.contains(p.id)).forEach((p) async {
+          final items = <PlaylistItem>[];
+          var playlistItemsResponse = await _youtubeRepository
+              .playlistItemsByPlaylistId(p.id, 50, null);
+
+          var currentItems = playlistItemsResponse?.item1;
+          if (currentItems != null) {
+            items.addAll(currentItems);
+          }
+
+          var nextPageToken = playlistItemsResponse?.item2;
+          while (nextPageToken != null) {
+            playlistItemsResponse = await _youtubeRepository
+                .playlistItemsByPlaylistId(p.id, 50, nextPageToken);
+            currentItems = playlistItemsResponse?.item1;
+
+            if (currentItems != null) {
+              items.addAll(currentItems);
+            }
+
+            nextPageToken = playlistItemsResponse?.item2;
+          }
+
+          p.items = items;
+        });
         playlists.addAll(res.where((p) => !ids.contains(p.id)));
         successMessage = L10nStrings.success_playlistsAdded;
       }
@@ -98,7 +123,33 @@ abstract class _PlaylistStore with Store {
       if (res == null) {
         errorMessage = L10nStrings.error_fetchingPlaylists;
       } else {
-        playlists.add(res.single);
+        final fetchedPlaylist = res.single;
+
+        final items = <PlaylistItem>[];
+        var playlistItemsResponse = await _youtubeRepository
+            .playlistItemsByPlaylistId(fetchedPlaylist.id, 50, null);
+
+        var currentItems = playlistItemsResponse?.item1;
+        if (currentItems != null) {
+          items.addAll(currentItems);
+        }
+
+        var nextPageToken = playlistItemsResponse?.item2;
+        while (nextPageToken != null) {
+          playlistItemsResponse = await _youtubeRepository
+              .playlistItemsByPlaylistId(fetchedPlaylist.id, 50, nextPageToken);
+          currentItems = playlistItemsResponse?.item1;
+
+          if (currentItems != null) {
+            items.addAll(currentItems);
+          }
+
+          nextPageToken = playlistItemsResponse?.item2;
+        }
+
+        fetchedPlaylist.items = items;
+
+        playlists.add(fetchedPlaylist);
         successMessage = L10nStrings.success_playlistAdded;
       }
     } on SocketException {

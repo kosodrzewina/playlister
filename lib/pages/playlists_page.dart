@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:playlister/pages/playlist_item_page.dart';
 import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 import '../stores/playlist_store.dart';
 import '../widgets/playlists_list_item.dart';
+import 'playlist_item_page.dart';
 
 class PlaylistsPage extends StatefulWidget {
   const PlaylistsPage();
@@ -85,6 +85,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             MaterialPageRoute<PlaylistItemPage>(
                               builder: (context) => PlaylistItemPage(
                                 title: item.snippet!.title,
+                                items: item.items,
                               ),
                             ),
                           ),

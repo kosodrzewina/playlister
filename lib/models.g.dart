@@ -92,6 +92,9 @@ Playlist _$PlaylistFromJson(Map<String, dynamic> json) {
     snippet: json['snippet'] == null
         ? null
         : SnippetPlaylist.fromJson(json['snippet'] as Map<String, dynamic>),
+    items: (json['items'] as List<dynamic>?)
+        ?.map((e) => PlaylistItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -100,6 +103,7 @@ Map<String, dynamic> _$PlaylistToJson(Playlist instance) => <String, dynamic>{
       'etag': instance.etag,
       'id': instance.id,
       'snippet': instance.snippet,
+      'items': instance.items,
     };
 
 SnippetPlaylist _$SnippetPlaylistFromJson(Map<String, dynamic> json) {
@@ -173,7 +177,8 @@ YTResponsePlaylistItems _$YTResponsePlaylistItemsFromJson(
   return YTResponsePlaylistItems(
     kind: json['kind'] as String,
     etag: json['etag'] as String,
-    nextPageToken: json['nextPageToken'] as String,
+    nextPageToken: json['nextPageToken'] as String?,
+    prevPageToken: json['prevPageToken'] as String?,
     items: (json['items'] as List<dynamic>)
         .map((e) => PlaylistItem.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -186,6 +191,7 @@ Map<String, dynamic> _$YTResponsePlaylistItemsToJson(
       'kind': instance.kind,
       'etag': instance.etag,
       'nextPageToken': instance.nextPageToken,
+      'prevPageToken': instance.prevPageToken,
       'items': instance.items,
     };
 
@@ -268,8 +274,8 @@ SnippetVideo _$SnippetVideoFromJson(Map<String, dynamic> json) {
     playlistId: json['playlistId'] as String,
     position: json['position'] as int,
     resourceId: ResourceId.fromJson(json['resourceId'] as Map<String, dynamic>),
-    videoOwnerChannelTitle: json['videoOwnerChannelTitle'] as String,
-    videoOwnerChannelId: json['videoOwnerChannelId'] as String,
+    videoOwnerChannelTitle: json['videoOwnerChannelTitle'] as String?,
+    videoOwnerChannelId: json['videoOwnerChannelId'] as String?,
   );
 }
 
@@ -304,9 +310,15 @@ Map<String, dynamic> _$ThumbnailToJson(Thumbnail instance) => <String, dynamic>{
 
 ThumbnailsVideo _$ThumbnailsVideoFromJson(Map<String, dynamic> json) {
   return ThumbnailsVideo(
-    default_: Thumbnail.fromJson(json['default'] as Map<String, dynamic>),
-    medium: Thumbnail.fromJson(json['medium'] as Map<String, dynamic>),
-    high: Thumbnail.fromJson(json['high'] as Map<String, dynamic>),
+    default_: json['default'] == null
+        ? null
+        : Thumbnail.fromJson(json['default'] as Map<String, dynamic>),
+    medium: json['medium'] == null
+        ? null
+        : Thumbnail.fromJson(json['medium'] as Map<String, dynamic>),
+    high: json['high'] == null
+        ? null
+        : Thumbnail.fromJson(json['high'] as Map<String, dynamic>),
   );
 }
 
