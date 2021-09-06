@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:playlister/l10n/l10n.dart';
 
+import '../gen/assets.gen.dart';
 import '../models.dart';
 
 class PlaylistItemPage extends StatelessWidget {
@@ -30,7 +32,21 @@ class PlaylistItemPage extends StatelessWidget {
                 return Text(item.snippet.title);
               },
             )
-          : const Center(child: Text("nothing's here")),
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Assets.icons.lookingAtVoid.svg(
+                    height: 250,
+                    width: 250,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    L10n.of(context)!.playlistItemPage_howEmpty,
+                  ),
+                ],
+              ),
+            ),
     );
   }
 }

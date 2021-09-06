@@ -42,6 +42,8 @@
     "@channelIdDialog_channelId": {},
     "endangeredPage_noDeletedVideosDetected": "No deleted videos detected",
     "@endangeredPage_noDeletedVideosDetected": {},
+    "playlistItemPage_howEmpty": "How empty...",
+    "@playlistItemPage_howEmpty": {},
     "error_fetchingPlaylists": "Failed to fetch playlists!",
     "@error_fetchingPlaylists": {},
     "error_noInternet": "No Internet connection!",

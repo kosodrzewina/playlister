@@ -27,6 +27,7 @@ abstract class L10nStrings {
   static const channelIdDialog_channelId = 'channelIdDialog_channelId';
   static const endangeredPage_noDeletedVideosDetected =
       'endangeredPage_noDeletedVideosDetected';
+  static const playlistItemPage_howEmpty = 'playlistItemPage_howEmpty';
   static const error_fetchingPlaylists = 'error_fetchingPlaylists';
   static const error_noInternet = 'error_noInternet';
   static const error_unknown = 'error_unknown';
@@ -81,6 +82,8 @@ extension L10nFromString on String {
         return L10n.of(context)!.channelIdDialog_channelId;
       case L10nStrings.endangeredPage_noDeletedVideosDetected:
         return L10n.of(context)!.endangeredPage_noDeletedVideosDetected;
+      case L10nStrings.playlistItemPage_howEmpty:
+        return L10n.of(context)!.playlistItemPage_howEmpty;
       case L10nStrings.error_fetchingPlaylists:
         return L10n.of(context)!.error_fetchingPlaylists;
       case L10nStrings.error_noInternet:
