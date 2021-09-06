@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:playlister/l10n/l10n.dart';
-import 'package:playlister/widgets/playlists_list_item.dart';
 
 import '../gen/assets.gen.dart';
+import '../l10n/l10n.dart';
 import '../models.dart';
+import '../widgets/playlists_list_item.dart';
 
 class PlaylistItemPage extends StatelessWidget {
   final String title;
