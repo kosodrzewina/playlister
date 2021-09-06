@@ -6,7 +6,7 @@ import '../model_extensions.dart';
 import '../models.dart';
 
 class PlaylistsListItem extends StatelessWidget {
-  final SnippetPlaylist snippet;
+  final Snippet snippet;
   final Icon? icon;
   final VoidCallback? onTap;
   final VoidCallback? onPressedIcon;

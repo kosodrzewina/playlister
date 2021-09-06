@@ -112,8 +112,7 @@ SnippetPlaylist _$SnippetPlaylistFromJson(Map<String, dynamic> json) {
     channelId: json['channelId'] as String?,
     title: json['title'] as String,
     description: json['description'] as String,
-    thumbnails:
-        ThumbnailsPlaylist.fromJson(json['thumbnails'] as Map<String, dynamic>),
+    thumbnails: Thumbnails.fromJson(json['thumbnails'] as Map<String, dynamic>),
     channelTitle: json['channelTitle'] as String?,
     localized: Localization.fromJson(json['localized'] as Map<String, dynamic>),
   );
@@ -121,11 +120,11 @@ SnippetPlaylist _$SnippetPlaylistFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SnippetPlaylistToJson(SnippetPlaylist instance) =>
     <String, dynamic>{
+      'title': instance.title,
+      'thumbnails': instance.thumbnails,
       'publishedAt': instance.publishedAt,
       'channelId': instance.channelId,
-      'title': instance.title,
       'description': instance.description,
-      'thumbnails': instance.thumbnails,
       'channelTitle': instance.channelTitle,
       'localized': instance.localized,
     };
@@ -143,8 +142,8 @@ Map<String, dynamic> _$LocalizationToJson(Localization instance) =>
       'description': instance.description,
     };
 
-ThumbnailsPlaylist _$ThumbnailsPlaylistFromJson(Map<String, dynamic> json) {
-  return ThumbnailsPlaylist(
+Thumbnails _$ThumbnailsFromJson(Map<String, dynamic> json) {
+  return Thumbnails(
     default_: json['default'] == null
         ? null
         : Thumbnail.fromJson(json['default'] as Map<String, dynamic>),
@@ -163,7 +162,7 @@ ThumbnailsPlaylist _$ThumbnailsPlaylistFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ThumbnailsPlaylistToJson(ThumbnailsPlaylist instance) =>
+Map<String, dynamic> _$ThumbnailsToJson(Thumbnails instance) =>
     <String, dynamic>{
       'default': instance.default_,
       'medium': instance.medium,
@@ -268,8 +267,7 @@ SnippetVideo _$SnippetVideoFromJson(Map<String, dynamic> json) {
     channelId: json['channelId'] as String,
     title: json['title'] as String,
     description: json['description'] as String,
-    thumbnails:
-        ThumbnailsVideo.fromJson(json['thumbnails'] as Map<String, dynamic>),
+    thumbnails: Thumbnails.fromJson(json['thumbnails'] as Map<String, dynamic>),
     channelTitle: json['channelTitle'] as String,
     playlistId: json['playlistId'] as String,
     position: json['position'] as int,
@@ -281,11 +279,11 @@ SnippetVideo _$SnippetVideoFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SnippetVideoToJson(SnippetVideo instance) =>
     <String, dynamic>{
+      'title': instance.title,
+      'thumbnails': instance.thumbnails,
       'publishedAt': instance.publishedAt,
       'channelId': instance.channelId,
-      'title': instance.title,
       'description': instance.description,
-      'thumbnails': instance.thumbnails,
       'channelTitle': instance.channelTitle,
       'playlistId': instance.playlistId,
       'position': instance.position,
@@ -306,27 +304,6 @@ Map<String, dynamic> _$ThumbnailToJson(Thumbnail instance) => <String, dynamic>{
       'url': instance.url,
       'width': instance.width,
       'height': instance.height,
-    };
-
-ThumbnailsVideo _$ThumbnailsVideoFromJson(Map<String, dynamic> json) {
-  return ThumbnailsVideo(
-    default_: json['default'] == null
-        ? null
-        : Thumbnail.fromJson(json['default'] as Map<String, dynamic>),
-    medium: json['medium'] == null
-        ? null
-        : Thumbnail.fromJson(json['medium'] as Map<String, dynamic>),
-    high: json['high'] == null
-        ? null
-        : Thumbnail.fromJson(json['high'] as Map<String, dynamic>),
-  );
-}
-
-Map<String, dynamic> _$ThumbnailsVideoToJson(ThumbnailsVideo instance) =>
-    <String, dynamic>{
-      'default': instance.default_,
-      'medium': instance.medium,
-      'high': instance.high,
     };
 
 ResourceId _$ResourceIdFromJson(Map<String, dynamic> json) {

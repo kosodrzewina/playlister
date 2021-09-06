@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:playlister/l10n/l10n.dart';
+import 'package:playlister/widgets/playlists_list_item.dart';
 
 import '../gen/assets.gen.dart';
 import '../models.dart';
@@ -29,7 +30,8 @@ class PlaylistItemPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final item = items![index];
 
-                return Text(item.snippet.title);
+                return PlaylistsListItem(snippet: item.snippet);
+                // return PlaylistsListItem(snippet: item.snippet);
               },
             )
           : Center(
