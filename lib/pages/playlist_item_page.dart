@@ -31,7 +31,6 @@ class PlaylistItemPage extends StatelessWidget {
                 final item = items![index];
 
                 return PlaylistsListItem(snippet: item.snippet);
-                // return PlaylistsListItem(snippet: item.snippet);
               },
             )
           : Center(
