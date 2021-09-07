@@ -204,4 +204,24 @@ class YoutubeRepository {
       responseDeserialized.nextPageToken,
     );
   }
+
+  Future<List<PlaylistItem>?> allPlaylistItemsByPlaylistId(
+      String playlistId) async {
+    var fetched = await playlistItemsByPlaylistId(playlistId, 50, null);
+    if (fetched == null) {
+      return null;
+    }
+
+    final items = fetched.item1;
+
+    while (fetched != null && fetched.item2 != null) {
+      fetched = await playlistItemsByPlaylistId(playlistId, 50, fetched.item2);
+
+      if (fetched != null) {
+        items.addAll(fetched.item1);
+      }
+    }
+
+    return items;
+  }
 }
