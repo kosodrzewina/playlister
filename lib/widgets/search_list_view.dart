@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 import '../models.dart';
+import '../pages/playlist_item_page.dart';
 import '../repositories/youtube_repository.dart';
 import '../stores/playlist_store.dart';
 import 'app_snack_bar.dart';
@@ -88,10 +89,25 @@ class _SearchListViewState extends State<SearchListView> {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       builderDelegate: PagedChildBuilderDelegate<Playlist>(
         itemBuilder: (context, item, index) => PlaylistsListItem(
-            snippet: item.snippet!,
-            icon: const Icon(Icons.add),
-            onPressedIcon: () =>
-                context.read<PlaylistStore>().addPlaylistById(item.id)),
+          snippet: item.snippet!,
+          icon: const Icon(Icons.add),
+          onTap: () async {
+            final items = await context
+                .read<YoutubeRepository>()
+                .allPlaylistItemsByPlaylistId(item.id);
+
+            await Navigator.of(context).push(
+              MaterialPageRoute<PlaylistItemPage>(
+                builder: (context) => PlaylistItemPage(
+                  title: item.snippet!.title,
+                  items: items,
+                ),
+              ),
+            );
+          },
+          onPressedIcon: () =>
+              context.read<PlaylistStore>().addPlaylistById(item.id),
+        ),
       ),
     );
   }
