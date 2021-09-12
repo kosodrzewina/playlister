@@ -60,7 +60,9 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
     } catch (e) {
       errorMessage = L10n.of(context)!.error_unknown;
     } finally {
-      fetching = false;
+      setState(() {
+        fetching = false;
+      });
     }
   }
 
