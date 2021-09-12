@@ -26,7 +26,7 @@ class PlaylistItemPage extends StatefulWidget {
 }
 
 class _PlaylistItemPageState extends State<PlaylistItemPage> {
-  List<PlaylistItem>? items;
+  List<PlaylistItem>? _items;
   bool fetching = false;
   String? errorMessage;
 
@@ -36,7 +36,7 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
       fetchPlaylistItems();
     } else {
       setState(() {
-        items = widget.items;
+        _items = widget.items;
       });
     }
 
@@ -55,7 +55,7 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
           .allPlaylistItemsByPlaylistId(widget.id);
 
       setState(() {
-        items = res;
+        _items = res;
       });
     } on SocketException {
       errorMessage = L10n.of(context)!.error_noInternet;
@@ -70,15 +70,17 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
 
   @override
   Widget build(BuildContext context) {
+    final items = _items;
+
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
-      body: items != null
+      body: items != null && items.isNotEmpty
           ? ListView.separated(
-              itemCount: items!.length,
+              itemCount: items.length,
               padding: const EdgeInsets.all(10),
               separatorBuilder: (context, index) => const SizedBox(height: 10),
               itemBuilder: (context, index) {
-                final item = items![index];
+                final item = items[index];
 
                 return PlaylistsListItem(snippet: item.snippet);
               },
