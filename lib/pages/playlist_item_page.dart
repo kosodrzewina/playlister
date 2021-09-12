@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -54,7 +53,7 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
     super.initState();
   }
 
-  Future<Void?> fetchPlaylistItems() async {
+  Future<void> fetchPlaylistItems() async {
     final res = await context
         .read<YoutubeRepository>()
         .allPlaylistItemsByPlaylistId(widget.id);
@@ -98,7 +97,7 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
   }
 }
 
-class PlaylistItemPageRoute extends MaterialPageRoute<Void> {
+class PlaylistItemPageRoute extends MaterialPageRoute<void> {
   PlaylistItemPageRoute({
     required String id,
     required String title,
