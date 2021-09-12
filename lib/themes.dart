@@ -8,8 +8,8 @@ ThemeData _buildTheme(Brightness brightness) {
 
   return ThemeData(
     colorScheme: isDark
-        ? const ColorScheme.dark(secondary: Colors.red)
-        : const ColorScheme.light(secondary: Colors.red),
+        ? const ColorScheme.dark(secondary: Colors.red, primary: Colors.red)
+        : const ColorScheme.light(secondary: Colors.red, primary: Colors.red),
     primaryColor: isDark ? Colors.black : Colors.white,
     scaffoldBackgroundColor: isDark ? Colors.black : Colors.white,
     hintColor: isDark ? Colors.white : Colors.grey[700],
