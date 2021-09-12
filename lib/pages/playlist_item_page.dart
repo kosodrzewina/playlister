@@ -40,10 +40,7 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
       body: items != null
           ? ListView.separated(
               itemCount: items!.length,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
-              ),
+              padding: const EdgeInsets.all(10),
               separatorBuilder: (context, index) => const SizedBox(height: 10),
               itemBuilder: (context, index) {
                 final item = items![index];
