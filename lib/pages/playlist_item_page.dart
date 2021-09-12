@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +8,7 @@ import '../l10n/l10n.dart';
 import '../models.dart';
 import '../widgets/playlists_list_item.dart';
 
-class PlaylistItemPage extends StatelessWidget {
+class PlaylistItemPage extends StatefulWidget {
   final String title;
   final List<PlaylistItem>? items;
 
@@ -16,9 +18,25 @@ class PlaylistItemPage extends StatelessWidget {
   });
 
   @override
+  State<PlaylistItemPage> createState() => _PlaylistItemPageState();
+}
+
+class _PlaylistItemPageState extends State<PlaylistItemPage> {
+  List<PlaylistItem>? items;
+
+  @override
+  void initState() {
+    if (widget.items == null) {
+      // TODO: fetching
+    }
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(widget.title)),
       body: items != null
           ? ListView.separated(
               itemCount: items!.length,
@@ -50,4 +68,16 @@ class PlaylistItemPage extends StatelessWidget {
             ),
     );
   }
+}
+
+class PlaylistItemPageRoute extends MaterialPageRoute<Void> {
+  PlaylistItemPageRoute({
+    required String title,
+    List<PlaylistItem>? items,
+  }) : super(
+          builder: (context) => PlaylistItemPage(
+            title: title,
+            items: items,
+          ),
+        );
 }

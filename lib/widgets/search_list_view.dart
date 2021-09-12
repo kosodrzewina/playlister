@@ -97,11 +97,9 @@ class _SearchListViewState extends State<SearchListView> {
                 .allPlaylistItemsByPlaylistId(item.id);
 
             await Navigator.of(context).push(
-              MaterialPageRoute<PlaylistItemPage>(
-                builder: (context) => PlaylistItemPage(
-                  title: item.snippet!.title,
-                  items: items,
-                ),
+              PlaylistItemPageRoute(
+                title: item.snippet!.title,
+                items: item.items,
               ),
             );
           },
