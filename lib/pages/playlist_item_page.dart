@@ -32,12 +32,14 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
 
   @override
   void initState() {
-    if (widget.items != null) {
-      items = widget.items;
-      return;
+    if (widget.items == null) {
+      fetchPlaylistItems();
+    } else {
+      setState(() {
+        items = widget.items;
+      });
     }
 
-    fetchPlaylistItems();
     super.initState();
   }
 
