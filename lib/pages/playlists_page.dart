@@ -83,6 +83,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                               .removePlaylistById(item.id),
                           onTap: () => Navigator.of(context).push(
                             PlaylistItemPageRoute(
+                              id: item.id,
                               title: item.snippet!.title,
                               items: item.items,
                             ),

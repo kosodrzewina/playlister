@@ -91,18 +91,13 @@ class _SearchListViewState extends State<SearchListView> {
         itemBuilder: (context, item, index) => PlaylistsListItem(
           snippet: item.snippet!,
           icon: const Icon(Icons.add),
-          onTap: () async {
-            final items = await context
-                .read<YoutubeRepository>()
-                .allPlaylistItemsByPlaylistId(item.id);
-
-            await Navigator.of(context).push(
-              PlaylistItemPageRoute(
-                title: item.snippet!.title,
-                items: item.items,
-              ),
-            );
-          },
+          onTap: () async => await Navigator.of(context).push(
+            PlaylistItemPageRoute(
+              id: item.id,
+              title: item.snippet!.title,
+              items: item.items,
+            ),
+          ),
           onPressedIcon: () =>
               context.read<PlaylistStore>().addPlaylistById(item.id),
         ),

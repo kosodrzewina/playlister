@@ -1,18 +1,23 @@
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 import '../models.dart';
+import '../repositories/youtube_repository.dart';
 import '../widgets/playlists_list_item.dart';
 
 class PlaylistItemPage extends StatefulWidget {
+  final String id;
   final String title;
   final List<PlaylistItem>? items;
 
   const PlaylistItemPage({
+    required this.id,
     required this.title,
     required this.items,
   });
@@ -23,14 +28,40 @@ class PlaylistItemPage extends StatefulWidget {
 
 class _PlaylistItemPageState extends State<PlaylistItemPage> {
   List<PlaylistItem>? items;
+  bool fetching = false;
+  String? errorMessage;
 
   @override
   void initState() {
-    if (widget.items == null) {
-      // TODO: fetching
+    if (widget.items != null) {
+      items = widget.items;
+      return;
+    }
+
+    fetching = true;
+    errorMessage = null;
+
+    try {
+      fetchPlaylistItems();
+    } on SocketException {
+      errorMessage = L10n.of(context)!.error_noInternet;
+    } catch (e) {
+      errorMessage = L10n.of(context)!.error_unknown;
+    } finally {
+      fetching = false;
     }
 
     super.initState();
+  }
+
+  Future<Void?> fetchPlaylistItems() async {
+    final res = await context
+        .read<YoutubeRepository>()
+        .allPlaylistItemsByPlaylistId(widget.id);
+
+    setState(() {
+      items = res;
+    });
   }
 
   @override
@@ -69,10 +100,12 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
 
 class PlaylistItemPageRoute extends MaterialPageRoute<Void> {
   PlaylistItemPageRoute({
+    required String id,
     required String title,
     List<PlaylistItem>? items,
   }) : super(
           builder: (context) => PlaylistItemPage(
+            id: id,
             title: title,
             items: items,
           ),
