@@ -87,13 +87,21 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Assets.icons.lookingAtVoid.svg(
-                    height: 250,
-                    width: 250,
-                  ),
+                  if (fetching)
+                    Assets.icons.fetching.svg(
+                      height: 250,
+                      width: 250,
+                    )
+                  else
+                    Assets.icons.lookingAtVoid.svg(
+                      height: 250,
+                      width: 250,
+                    ),
                   const SizedBox(height: 10),
                   Text(
-                    L10n.of(context)!.playlistItemPage_howEmpty,
+                    fetching
+                        ? L10n.of(context)!.playlistItemPage_pleaseWait
+                        : L10n.of(context)!.playlistItemPage_howEmpty,
                   ),
                 ],
               ),

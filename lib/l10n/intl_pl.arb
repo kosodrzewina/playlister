@@ -43,6 +43,8 @@
   "endangeredPage_noDeletedVideosDetected": "Nie wykryto usuniętych filmów",
   "@endangeredPage_noDeletedVideosDetected": {},
   "playlistItemPage_howEmpty": "Jak pusto...",
+  "playlistItemPage_pleaseWait": "Pobieranie filmów, proszę czekać...",
+  "@playlistItemPage_pleaseWait": {},
   "@playlistItemPage_howEmpty": {},
   "error_fetchingPlaylists": "Nie udało się pobrać playlist!",
   "@error_fetchingPlaylists": {},

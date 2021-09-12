@@ -43,6 +43,8 @@
     "endangeredPage_noDeletedVideosDetected": "No deleted videos detected",
     "@endangeredPage_noDeletedVideosDetected": {},
     "playlistItemPage_howEmpty": "How empty...",
+    "playlistItemPage_pleaseWait": "Fetching videos, please wait...",
+    "@playlistItemPage_pleaseWait": {},
     "@playlistItemPage_howEmpty": {},
     "error_fetchingPlaylists": "Failed to fetch playlists!",
     "@error_fetchingPlaylists": {},
