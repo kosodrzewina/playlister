@@ -37,11 +37,24 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
       return;
     }
 
-    fetching = true;
-    errorMessage = null;
+    fetchPlaylistItems();
+    super.initState();
+  }
+
+  Future<void> fetchPlaylistItems() async {
+    setState(() {
+      fetching = true;
+      errorMessage = null;
+    });
 
     try {
-      fetchPlaylistItems();
+      final res = await context
+          .read<YoutubeRepository>()
+          .allPlaylistItemsByPlaylistId(widget.id);
+
+      setState(() {
+        items = res;
+      });
     } on SocketException {
       errorMessage = L10n.of(context)!.error_noInternet;
     } catch (e) {
@@ -49,18 +62,6 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
     } finally {
       fetching = false;
     }
-
-    super.initState();
-  }
-
-  Future<void> fetchPlaylistItems() async {
-    final res = await context
-        .read<YoutubeRepository>()
-        .allPlaylistItemsByPlaylistId(widget.id);
-
-    setState(() {
-      items = res;
-    });
   }
 
   @override
