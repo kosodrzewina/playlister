@@ -27,11 +27,14 @@ abstract class L10nStrings {
   static const channelIdDialog_channelId = 'channelIdDialog_channelId';
   static const endangeredPage_noDeletedVideosDetected =
       'endangeredPage_noDeletedVideosDetected';
+  static const playlistItemPage_howEmpty = 'playlistItemPage_howEmpty';
+  static const playlistItemPage_pleaseWait = 'playlistItemPage_pleaseWait';
   static const error_fetchingPlaylists = 'error_fetchingPlaylists';
   static const error_noInternet = 'error_noInternet';
   static const error_unknown = 'error_unknown';
   static const info_alreadyAdded = 'info_alreadyAdded';
   static const success_playlistAdded = 'success_playlistAdded';
+  static const success_playlistsAdded = 'success_playlistsAdded';
   static const success_playlistRemoved = 'success_playlistRemoved';
 }
 
@@ -80,6 +83,10 @@ extension L10nFromString on String {
         return L10n.of(context)!.channelIdDialog_channelId;
       case L10nStrings.endangeredPage_noDeletedVideosDetected:
         return L10n.of(context)!.endangeredPage_noDeletedVideosDetected;
+      case L10nStrings.playlistItemPage_howEmpty:
+        return L10n.of(context)!.playlistItemPage_howEmpty;
+      case L10nStrings.playlistItemPage_pleaseWait:
+        return L10n.of(context)!.playlistItemPage_pleaseWait;
       case L10nStrings.error_fetchingPlaylists:
         return L10n.of(context)!.error_fetchingPlaylists;
       case L10nStrings.error_noInternet:
@@ -90,6 +97,8 @@ extension L10nFromString on String {
         return L10n.of(context)!.info_alreadyAdded;
       case L10nStrings.success_playlistAdded:
         return L10n.of(context)!.success_playlistAdded;
+      case L10nStrings.success_playlistsAdded:
+        return L10n.of(context)!.success_playlistsAdded;
       case L10nStrings.success_playlistRemoved:
         return L10n.of(context)!.success_playlistRemoved;
 

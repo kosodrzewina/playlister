@@ -69,7 +69,7 @@ class _SearchPageState extends State<SearchPage> {
               fillColor: isApiKey
                   ? Theme.of(context).cardColor
                   : Theme.of(context).cardColor.withOpacity(0.3),
-              accentColor: Theme.of(context).accentColor,
+              accentColor: Theme.of(context).colorScheme.secondary,
               onSubmitted: (searchTerm) {
                 setState(() =>
                     this.searchTerm = searchTerm.isEmpty ? null : searchTerm);

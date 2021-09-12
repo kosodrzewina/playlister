@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -59,6 +60,7 @@ abstract class _PlaylistStore with Store {
   Future<void> addPlaylistsByChannelId(String channelId) async {
     infoMessage = null;
     errorMessage = null;
+    successMessage = null;
     fetching = true;
 
     try {
@@ -67,7 +69,17 @@ abstract class _PlaylistStore with Store {
         errorMessage = L10nStrings.error_fetchingPlaylists;
       } else {
         final ids = playlists.map((p) => p.id).toSet();
-        playlists.addAll(res.where((p) => !ids.contains(p.id)));
+        playlists.addAll(
+          await Future.wait(
+            res.where((p) => !ids.contains(p.id)).map(
+                  (p) async => p.copyWith(
+                    items: await _youtubeRepository
+                        .allPlaylistItemsByPlaylistId(p.id),
+                  ),
+                ),
+          ),
+        );
+        successMessage = L10nStrings.success_playlistsAdded;
       }
     } on SocketException {
       errorMessage = L10nStrings.error_noInternet;
@@ -96,7 +108,13 @@ abstract class _PlaylistStore with Store {
       if (res == null) {
         errorMessage = L10nStrings.error_fetchingPlaylists;
       } else {
-        playlists.add(res.single);
+        playlists.add(
+          res.single.copyWith(
+            items: await _youtubeRepository
+                .allPlaylistItemsByPlaylistId(res.single.id),
+          ),
+        );
+
         successMessage = L10nStrings.success_playlistAdded;
       }
     } on SocketException {

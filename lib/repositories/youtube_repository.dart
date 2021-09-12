@@ -12,7 +12,6 @@ extension on Response {
 
 class YoutubeRepository {
   static final baseUri = Uri.parse('https://www.googleapis.com/youtube/v3');
-
   final AuthStore _authStore;
 
   const YoutubeRepository(this._authStore);
@@ -161,5 +160,68 @@ class YoutubeRepository {
     }
 
     return playlists;
+  }
+
+  // item1: fetched playlist items
+  // item2: next page token
+  Future<Tuple2<List<PlaylistItem>, String?>?> playlistItemsByPlaylistId(
+    String playlistId,
+    int itemCount,
+    String? nextPageToken,
+  ) async {
+    if (itemCount < 1 || itemCount > 50) {
+      return null;
+    }
+
+    final apiKey = _authStore.apiKey;
+
+    if (apiKey == null) {
+      return null;
+    }
+
+    final queryParameters = {
+      'key': apiKey,
+      'playlistId': playlistId,
+      'part': 'snippet',
+      'maxResults': itemCount.toString(),
+      if (nextPageToken != null) 'pageToken': nextPageToken,
+    };
+    final url = baseUri.replace(
+      path: '${baseUri.path}/playlistItems',
+      queryParameters: queryParameters,
+    );
+    final response = await get(url);
+
+    if (!response.ok) {
+      return null;
+    }
+
+    final responseDeserialized = YTResponsePlaylistItems.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>);
+
+    return Tuple2(
+      responseDeserialized.items,
+      responseDeserialized.nextPageToken,
+    );
+  }
+
+  Future<List<PlaylistItem>?> allPlaylistItemsByPlaylistId(
+      String playlistId) async {
+    var fetched = await playlistItemsByPlaylistId(playlistId, 50, null);
+    if (fetched == null) {
+      return null;
+    }
+
+    final items = fetched.item1;
+
+    while (fetched != null && fetched.item2 != null) {
+      fetched = await playlistItemsByPlaylistId(playlistId, 50, fetched.item2);
+
+      if (fetched != null) {
+        items.addAll(fetched.item1);
+      }
+    }
+
+    return items;
   }
 }
