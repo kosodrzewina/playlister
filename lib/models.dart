@@ -87,7 +87,7 @@ class Playlist {
   final String etag;
   final String id;
   final SnippetPlaylist? snippet;
-  List<PlaylistItem>? items;
+  final List<PlaylistItem>? items;
 
   Playlist({
     required this.kind,
@@ -96,6 +96,21 @@ class Playlist {
     this.snippet,
     this.items,
   });
+
+  Playlist copyWith({
+    String? kind,
+    String? etag,
+    String? id,
+    SnippetPlaylist? snippet,
+    List<PlaylistItem>? items,
+  }) =>
+      Playlist(
+        kind: kind ?? this.kind,
+        etag: etag ?? this.etag,
+        id: id ?? this.id,
+        snippet: snippet ?? this.snippet,
+        items: items ?? this.items,
+      );
 
   factory Playlist.fromJson(Map<String, dynamic> json) =>
       _$PlaylistFromJson(json);
