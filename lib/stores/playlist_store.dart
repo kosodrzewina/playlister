@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -68,9 +69,16 @@ abstract class _PlaylistStore with Store {
         errorMessage = L10nStrings.error_fetchingPlaylists;
       } else {
         final ids = playlists.map((p) => p.id).toSet();
-        res.where((p) => !ids.contains(p.id)).forEach((p) async => p.items =
-            await _youtubeRepository.allPlaylistItemsByPlaylistId(p.id));
-        playlists.addAll(res.where((p) => !ids.contains(p.id)));
+        playlists.addAll(
+          await Future.wait(
+            res.where((p) => !ids.contains(p.id)).map(
+                  (p) async => p.copyWith(
+                    items: await _youtubeRepository
+                        .allPlaylistItemsByPlaylistId(p.id),
+                  ),
+                ),
+          ),
+        );
         successMessage = L10nStrings.success_playlistsAdded;
       }
     } on SocketException {
@@ -100,11 +108,13 @@ abstract class _PlaylistStore with Store {
       if (res == null) {
         errorMessage = L10nStrings.error_fetchingPlaylists;
       } else {
-        final fetchedPlaylist = res.single;
+        playlists.add(
+          res.single.copyWith(
+            items: await _youtubeRepository
+                .allPlaylistItemsByPlaylistId(res.single.id),
+          ),
+        );
 
-        fetchedPlaylist.items = await _youtubeRepository
-            .allPlaylistItemsByPlaylistId(fetchedPlaylist.id);
-        playlists.add(fetchedPlaylist);
         successMessage = L10nStrings.success_playlistAdded;
       }
     } on SocketException {
