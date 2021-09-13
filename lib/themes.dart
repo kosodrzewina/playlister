@@ -16,6 +16,10 @@ ThemeData _buildTheme(Brightness brightness) {
     cardColor: isDark ? Colors.grey[800] : Colors.grey[300],
     highlightColor: Colors.red.withOpacity(0.4),
     splashColor: Colors.red,
+    appBarTheme: AppBarTheme(
+      backgroundColor: isDark ? Colors.black : Colors.white,
+      foregroundColor: isDark ? Colors.white : Colors.black,
+    ),
     iconTheme: IconThemeData(
       color: isDark ? Colors.white : Colors.black,
     ),
