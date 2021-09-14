@@ -122,7 +122,9 @@ class Playlist extends Comparable<Playlist> {
     final snippet = this.snippet;
     final snippetOther = other.snippet;
     if (snippet != null && snippetOther != null) {
-      return snippet.title.compareTo(snippetOther.title);
+      return snippet.title.toLowerCase().compareTo(
+            snippetOther.title.toLowerCase(),
+          );
     }
 
     return 0;
