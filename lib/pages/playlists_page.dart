@@ -23,8 +23,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
   Widget build(BuildContext context) {
     final playlists = context.watch<PlaylistStore>().playlists;
 
-    return Observer(
-      builder: (_) => playlists.isEmpty
+    return Observer(builder: (_) {
+      playlists.sort();
+
+      return playlists.isEmpty
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -40,61 +42,35 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                 ],
               ),
             )
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: DropdownButton<String>(
-                    value: currentSort,
-                    icon: const Icon(Icons.filter_list),
-                    items: [
-                      for (var item in ['Sort by 0', 'Sort by 1', 'Sort by 2'])
-                        DropdownMenuItem(
-                          value: item,
-                          child: Text(item),
-                        ),
-                    ],
-                    onChanged: (value) {
-                      setState(() {
-                        currentSort = value!;
-                      });
-                    },
-                  ),
+          : Observer(
+              builder: (_) => ListView.separated(
+                itemCount: playlists.length,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
                 ),
-                Observer(
-                  builder: (_) => Expanded(
-                    child: ListView.separated(
-                      itemCount: playlists.length,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 10,
-                      ),
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 10),
-                      itemBuilder: (context, index) {
-                        final item = playlists[index];
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 10),
+                itemBuilder: (context, index) {
+                  final item = playlists[index];
 
-                        return PlaylistsListItem(
-                          snippet: item.snippet!,
-                          icon: const Icon(Icons.delete),
-                          onPressedIcon: () => context
-                              .read<PlaylistStore>()
-                              .removePlaylistById(item.id),
-                          onTap: () => Navigator.of(context).push(
-                            PlaylistItemPageRoute(
-                              id: item.id,
-                              title: item.snippet!.title,
-                              items: item.items,
-                            ),
-                          ),
-                        );
-                      },
+                  return PlaylistsListItem(
+                    snippet: item.snippet!,
+                    icon: const Icon(Icons.delete),
+                    onPressedIcon: () => context
+                        .read<PlaylistStore>()
+                        .removePlaylistById(item.id),
+                    onTap: () => Navigator.of(context).push(
+                      PlaylistItemPageRoute(
+                        id: item.id,
+                        title: item.snippet!.title,
+                        items: item.items,
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            ),
-    );
+                  );
+                },
+              ),
+            );
+    });
   }
 }

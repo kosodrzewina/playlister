@@ -82,7 +82,7 @@ class ID {
 }
 
 @JsonSerializable()
-class Playlist {
+class Playlist extends Comparable<Playlist> {
   final String kind;
   final String etag;
   final String id;
@@ -116,6 +116,19 @@ class Playlist {
       _$PlaylistFromJson(json);
 
   Map<String, dynamic> toJson() => _$PlaylistToJson(this);
+
+  @override
+  int compareTo(Playlist other) {
+    final snippet = this.snippet;
+    final snippetOther = other.snippet;
+    if (snippet != null && snippetOther != null) {
+      return snippet.title.toLowerCase().compareTo(
+            snippetOther.title.toLowerCase(),
+          );
+    }
+
+    return 0;
+  }
 }
 
 class Snippet {
