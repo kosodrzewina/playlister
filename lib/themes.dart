@@ -10,12 +10,15 @@ ThemeData _buildTheme(Brightness brightness) {
     colorScheme: isDark
         ? const ColorScheme.dark(secondary: Colors.red, primary: Colors.red)
         : const ColorScheme.light(secondary: Colors.red, primary: Colors.red),
-    primaryColor: isDark ? Colors.black : Colors.white,
     scaffoldBackgroundColor: isDark ? Colors.black : Colors.white,
     hintColor: isDark ? Colors.white : Colors.grey[700],
     cardColor: isDark ? Colors.grey[800] : Colors.grey[300],
     highlightColor: Colors.red.withOpacity(0.4),
     splashColor: Colors.red,
+    appBarTheme: AppBarTheme(
+      backgroundColor: isDark ? Colors.black : Colors.white,
+      foregroundColor: isDark ? Colors.white : Colors.black,
+    ),
     iconTheme: IconThemeData(
       color: isDark ? Colors.white : Colors.black,
     ),
