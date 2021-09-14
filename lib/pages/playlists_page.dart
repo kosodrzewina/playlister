@@ -23,8 +23,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
   Widget build(BuildContext context) {
     final playlists = context.watch<PlaylistStore>().playlists;
 
-    return Observer(
-      builder: (_) => playlists.isEmpty
+    return Observer(builder: (_) {
+      playlists.sort();
+
+      return playlists.isEmpty
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +70,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                   );
                 },
               ),
-            ),
-    );
+            );
+    });
   }
 }
