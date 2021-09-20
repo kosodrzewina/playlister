@@ -112,11 +112,6 @@ class Playlist extends Comparable<Playlist> {
         items: items ?? this.items,
       );
 
-  factory Playlist.fromJson(Map<String, dynamic> json) =>
-      _$PlaylistFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PlaylistToJson(this);
-
   @override
   int compareTo(Playlist other) {
     final snippet = this.snippet;
@@ -129,6 +124,42 @@ class Playlist extends Comparable<Playlist> {
 
     return 0;
   }
+
+  List<PlaylistItem>? getEndangeredVideos(Playlist playlist) {
+    if (playlist.id != id) {
+      return null;
+    }
+
+    final items = this.items;
+    final itemsOther = playlist.items;
+
+    if (items == null || itemsOther == null) {
+      return null;
+    }
+
+    final videos = <PlaylistItem>[];
+
+    for (final video in items) {
+      PlaylistItem vOther;
+
+      try {
+        vOther = itemsOther.firstWhere((vo) => vo.id == video.id);
+      } on Exception {
+        continue;
+      }
+
+      if (!video.equals(vOther)) {
+        videos.add(vOther);
+      }
+    }
+
+    return videos;
+  }
+
+  factory Playlist.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistToJson(this);
 }
 
 class Snippet {
@@ -259,6 +290,11 @@ class PlaylistItem {
     required this.contentDetails,
     required this.status,
   });
+
+  bool equals(PlaylistItem other) {
+    // TODO: equals function
+    return false;
+  }
 
   factory PlaylistItem.fromJson(Map<String, dynamic> json) =>
       _$PlaylistItemFromJson(json);
