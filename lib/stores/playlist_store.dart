@@ -23,6 +23,9 @@ abstract class _PlaylistStore with Store {
   ObservableList<Playlist> playlists = ObservableList<Playlist>();
 
   @observable
+  ObservableList<Playlist> endangeredPlaylists = ObservableList<Playlist>();
+
+  @observable
   bool fetching = false;
 
   @observable
@@ -54,6 +57,27 @@ abstract class _PlaylistStore with Store {
         jsonEncode(playlists),
       );
     });
+  }
+
+  @action
+  Future<void> addEndangeredPlaylists() async {
+    for (final playlist in playlists) {
+      final currentPlaylist =
+          await _youtubeRepository.playlistByPlaylistId({playlist.id});
+
+      if (currentPlaylist == null) {
+        continue;
+      }
+
+      final endangeredVideos =
+          playlist.getEndangeredVideos(currentPlaylist.first);
+
+      if (endangeredVideos != null && endangeredVideos.isNotEmpty) {
+        endangeredPlaylists.add(
+          currentPlaylist.first.copyWith(items: endangeredVideos),
+        );
+      }
+    }
   }
 
   @action
