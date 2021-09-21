@@ -148,7 +148,8 @@ class Playlist extends Comparable<Playlist> {
         continue;
       }
 
-      if (!video.equals(vOther)) {
+      final isChanged = video.isChanged(vOther);
+      if (isChanged != null && isChanged) {
         videos.add(vOther);
       }
     }
@@ -291,9 +292,12 @@ class PlaylistItem {
     required this.status,
   });
 
-  bool equals(PlaylistItem other) {
-    // TODO: equals function
-    return false;
+  bool? isChanged(PlaylistItem other) {
+    if (id != other.id) {
+      return null;
+    }
+
+    return snippet.title != other.snippet.title;
   }
 
   factory PlaylistItem.fromJson(Map<String, dynamic> json) =>
