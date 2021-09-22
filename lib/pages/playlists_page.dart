@@ -17,8 +17,6 @@ class PlaylistsPage extends StatefulWidget {
 }
 
 class _PlaylistsPageState extends State<PlaylistsPage> {
-  String currentSort = 'Sort by 0';
-
   @override
   Widget build(BuildContext context) {
     final playlists = context.watch<PlaylistStore>().playlists;
