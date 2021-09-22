@@ -83,6 +83,7 @@ class _EndangeredPageState extends State<EndangeredPage> {
 
                   return PlaylistsListItem(
                     snippet: item.snippet!,
+                    color: Colors.deepOrange,
                     onTap: () => Navigator.of(context).push(
                       PlaylistItemPageRoute(
                         id: item.id,

@@ -51,6 +51,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
 
                   return PlaylistsListItem(
                     snippet: item.snippet!,
+                    color: Theme.of(context).cardColor,
                     icon: const Icon(Icons.delete),
                     onPressedIcon: () => context
                         .read<PlaylistStore>()

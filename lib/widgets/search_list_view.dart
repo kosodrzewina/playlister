@@ -90,6 +90,7 @@ class _SearchListViewState extends State<SearchListView> {
       builderDelegate: PagedChildBuilderDelegate<Playlist>(
         itemBuilder: (context, item, index) => PlaylistsListItem(
           snippet: item.snippet!,
+          color: Theme.of(context).cardColor,
           icon: const Icon(Icons.add),
           onTap: () async => await Navigator.of(context).push(
             PlaylistItemPageRoute(

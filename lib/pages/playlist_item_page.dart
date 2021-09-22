@@ -82,7 +82,10 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
               itemBuilder: (context, index) {
                 final item = items[index];
 
-                return PlaylistsListItem(snippet: item.snippet);
+                return PlaylistsListItem(
+                  snippet: item.snippet,
+                  color: Theme.of(context).cardColor,
+                );
               },
             )
           : Center(
