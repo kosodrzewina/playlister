@@ -84,7 +84,6 @@ class YoutubeRepository {
     );
 
     final playlists = <Playlist>[];
-
     var response = await get(url);
 
     if (!response.ok) {

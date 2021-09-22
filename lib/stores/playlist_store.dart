@@ -62,19 +62,21 @@ abstract class _PlaylistStore with Store {
   @action
   Future<void> addEndangeredPlaylists() async {
     for (final playlist in playlists) {
-      final currentPlaylist =
-          await _youtubeRepository.playlistByPlaylistId({playlist.id});
+      final res = await _youtubeRepository.playlistByPlaylistId({playlist.id});
 
-      if (currentPlaylist == null) {
+      if (res == null) {
         continue;
       }
 
-      final endangeredVideos =
-          playlist.getEndangeredVideos(currentPlaylist.first);
+      final currentPlaylist = res.first.copyWith(
+          items: await _youtubeRepository
+              .allPlaylistItemsByPlaylistId(res.first.id));
+
+      final endangeredVideos = playlist.getEndangeredVideos(currentPlaylist);
 
       if (endangeredVideos != null && endangeredVideos.isNotEmpty) {
         endangeredPlaylists.add(
-          currentPlaylist.first.copyWith(items: endangeredVideos),
+          currentPlaylist.copyWith(items: endangeredVideos),
         );
       }
     }

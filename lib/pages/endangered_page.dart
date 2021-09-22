@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:playlister/widgets/icon_text_button.dart';
 import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
@@ -11,26 +12,47 @@ class EndangeredPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () => context.read<PlaylistStore>().addEndangeredPlaylists(),
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Assets.icons.secure.svg(
-                height: 250,
-                width: 250,
+    final _playlistStore = context.read<PlaylistStore>();
+
+    return Column(
+      children: [
+        IconTextButton(
+          icon: const Icon(Icons.ac_unit),
+          child: const Text('check'),
+          onPressed: () {
+            _playlistStore.addEndangeredPlaylists();
+
+            if (_playlistStore.endangeredPlaylists.isEmpty) {
+              print('no changes found');
+              return;
+            }
+
+            final snippet = _playlistStore.endangeredPlaylists.first.snippet;
+            print(snippet != null ? snippet.title : 'something went wrong');
+          },
+        ),
+        RefreshIndicator(
+          onRefresh: () => Future.delayed(Duration.zero),
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Assets.icons.secure.svg(
+                    height: 250,
+                    width: 250,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    L10n.of(context)!.endangeredPage_noDeletedVideosDetected,
+                  ),
+                ],
               ),
-              const SizedBox(height: 10),
-              Text(
-                L10n.of(context)!.endangeredPage_noDeletedVideosDetected,
-              ),
-            ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
