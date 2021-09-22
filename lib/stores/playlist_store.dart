@@ -15,8 +15,10 @@ class PlaylistStore = _PlaylistStore with _$PlaylistStore;
 
 abstract class _PlaylistStore with Store {
   static const playlistsKey = 'PLAYLISTS';
+  static const endangeredPlaylistsKey = 'ENDANGERED_PLAYLISTS';
 
-  late ReactionDisposer _saveDisposer;
+  late ReactionDisposer _saveDisposerPlaylists;
+  late ReactionDisposer _saveDisposerEndangeredPlaylists;
   final YoutubeRepository _youtubeRepository;
 
   @observable
@@ -44,17 +46,33 @@ abstract class _PlaylistStore with Store {
     final savedPlaylists =
         jsonDecode(sharedPrefs.getString(playlistsKey) ?? '[]')
             as List<dynamic>;
+    final savedEndangeredPlaylists =
+        jsonDecode(sharedPrefs.getString(endangeredPlaylistsKey) ?? '[]')
+            as List<dynamic>;
 
     playlists.addAll(
       savedPlaylists.map(
         (dynamic item) => Playlist.fromJson(item as Map<String, dynamic>),
       ),
     );
+    endangeredPlaylists.addAll(
+      savedEndangeredPlaylists.map(
+        (dynamic item) => Playlist.fromJson(item as Map<String, dynamic>),
+      ),
+    );
 
-    _saveDisposer = reaction((_) => playlists.asObservable(), (_) async {
+    _saveDisposerPlaylists =
+        reaction((_) => playlists.asObservable(), (_) async {
       await sharedPrefs.setString(
         playlistsKey,
         jsonEncode(playlists),
+      );
+    });
+    _saveDisposerEndangeredPlaylists =
+        reaction((_) => endangeredPlaylists.asObservable(), (_) async {
+      await sharedPrefs.setString(
+        endangeredPlaylistsKey,
+        jsonEncode(endangeredPlaylists),
       );
     });
   }
@@ -83,7 +101,7 @@ abstract class _PlaylistStore with Store {
       }
     }
 
-    final ids = endangeredPlaylists.map((ep) => ep.id);
+    final ids = this.endangeredPlaylists.map((ep) => ep.id);
     this.endangeredPlaylists.addAll(
           endangeredPlaylists.where(
             (ep) => !ids.contains(ep.id),
@@ -169,6 +187,7 @@ abstract class _PlaylistStore with Store {
   }
 
   void dispose() {
-    _saveDisposer();
+    _saveDisposerPlaylists();
+    _saveDisposerEndangeredPlaylists();
   }
 }
