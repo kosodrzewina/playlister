@@ -61,6 +61,8 @@ abstract class _PlaylistStore with Store {
 
   @action
   Future<void> addEndangeredPlaylists() async {
+    final endangeredPlaylists = <Playlist>[];
+
     for (final playlist in playlists) {
       final res = await _youtubeRepository.playlistByPlaylistId({playlist.id});
 
@@ -80,6 +82,13 @@ abstract class _PlaylistStore with Store {
         );
       }
     }
+
+    final ids = endangeredPlaylists.map((ep) => ep.id);
+    this.endangeredPlaylists.addAll(
+          endangeredPlaylists.where(
+            (ep) => !ids.contains(ep.id),
+          ),
+        );
   }
 
   @action
