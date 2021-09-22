@@ -24,8 +24,10 @@ class _EndangeredPageState extends State<EndangeredPage> {
         context.read<PlaylistStore>().endangeredPlaylists;
     final _playlistStore = context.read<PlaylistStore>();
 
-    return Observer(
-      builder: (_) => endangeredPlaylists.isEmpty
+    return Observer(builder: (_) {
+      endangeredPlaylists.sort();
+
+      return endangeredPlaylists.isEmpty
           ? Column(
               children: [
                 IconTextButton(
@@ -91,7 +93,7 @@ class _EndangeredPageState extends State<EndangeredPage> {
                   );
                 },
               ),
-            ),
-    );
+            );
+    });
   }
 }
