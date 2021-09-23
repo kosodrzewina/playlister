@@ -73,26 +73,50 @@ class _EndangeredPageState extends State<EndangeredPage> {
               ],
             )
           : Observer(
-              builder: (_) => ListView.separated(
-                padding: const EdgeInsets.all(10),
-                itemCount: endangeredPlaylists.length,
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 10),
-                itemBuilder: (context, index) {
-                  final item = endangeredPlaylists[index];
+              builder: (_) => Column(
+                children: [
+                  IconTextButton(
+                    icon: const Icon(Icons.ac_unit),
+                    child: const Text('check'),
+                    onPressed: () {
+                      _playlistStore.addEndangeredPlaylists();
 
-                  return PlaylistsListItem(
-                    snippet: item.snippet!,
-                    color: Colors.deepOrange,
-                    onTap: () => Navigator.of(context).push(
-                      PlaylistItemPageRoute(
-                        id: item.id,
-                        title: item.snippet!.title,
-                        items: item.items,
-                      ),
+                      if (_playlistStore.endangeredPlaylists.isEmpty) {
+                        print('no changes found');
+                        return;
+                      }
+
+                      final snippet =
+                          _playlistStore.endangeredPlaylists.first.snippet;
+                      print(snippet != null
+                          ? snippet.title
+                          : 'something went wrong');
+                    },
+                  ),
+                  Expanded(
+                    child: ListView.separated(
+                      padding: const EdgeInsets.all(10),
+                      itemCount: endangeredPlaylists.length,
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 10),
+                      itemBuilder: (context, index) {
+                        final item = endangeredPlaylists[index];
+
+                        return PlaylistsListItem(
+                          snippet: item.snippet!,
+                          color: Colors.deepOrange,
+                          onTap: () => Navigator.of(context).push(
+                            PlaylistItemPageRoute(
+                              id: item.id,
+                              title: item.snippet!.title,
+                              items: item.items,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
             );
     });
