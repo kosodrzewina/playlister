@@ -92,6 +92,8 @@ abstract class _PlaylistStore with Store {
           items: await _youtubeRepository
               .allPlaylistItemsByPlaylistId(res.first.id));
 
+      addNewVideos(currentPlaylist);
+
       final endangeredVideos = playlist.getEndangeredVideos(currentPlaylist);
 
       if (endangeredVideos != null && endangeredVideos.isNotEmpty) {
@@ -107,6 +109,27 @@ abstract class _PlaylistStore with Store {
             (ep) => !ids.contains(ep.id),
           ),
         );
+  }
+
+  @action
+  void addNewVideos(Playlist playlist) {
+    final storedVideos = playlists.firstWhere((p) => p.id == playlist.id).items;
+
+    final newVideos = playlist.items;
+    if (newVideos == null) {
+      return;
+    }
+
+    for (final nv in newVideos) {
+      try {
+        storedVideos!.singleWhere((sv) => sv.id == nv.id);
+        // ignore: avoid_catching_errors
+      } on StateError {
+        playlists
+          ..removeWhere((p) => p.id == playlist.id)
+          ..add(playlist);
+      }
+    }
   }
 
   @action
