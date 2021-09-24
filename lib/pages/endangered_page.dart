@@ -89,7 +89,6 @@ class _EndangeredPageState extends State<EndangeredPage> {
                       itemBuilder: (context, index) {
                         final item = endangeredPlaylists[index];
 
-                        // TODO: items should be a list of videos from 'playlists', but only those that are on the endangered list
                         return PlaylistsListItem(
                           snippet: item.snippet!,
                           color: Colors.deepOrange,
@@ -98,6 +97,7 @@ class _EndangeredPageState extends State<EndangeredPage> {
                               id: item.id,
                               title: item.snippet!.title,
                               items: item.items,
+                              endangeredList: true,
                             ),
                           ),
                         );

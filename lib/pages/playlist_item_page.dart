@@ -14,11 +14,13 @@ class PlaylistItemPage extends StatefulWidget {
   final String id;
   final String title;
   final List<PlaylistItem>? items;
+  final bool endangeredPage;
 
   const PlaylistItemPage({
     required this.id,
     required this.title,
     required this.items,
+    this.endangeredPage = false,
   });
 
   @override
@@ -85,6 +87,11 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
                 return PlaylistsListItem(
                   snippet: item.snippet,
                   color: Theme.of(context).cardColor,
+                  onTap: widget.endangeredPage
+                      ? () {
+                          print('tapped on ${item.snippet.title}');
+                        }
+                      : null,
                 );
               },
             )
@@ -120,11 +127,13 @@ class PlaylistItemPageRoute extends MaterialPageRoute<void> {
     required String id,
     required String title,
     List<PlaylistItem>? items,
+    bool endangeredList = false,
   }) : super(
           builder: (context) => PlaylistItemPage(
             id: id,
             title: title,
             items: items,
+            endangeredPage: endangeredList,
           ),
         );
 }
