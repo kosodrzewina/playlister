@@ -79,6 +79,8 @@ abstract class _PlaylistStore with Store {
 
   @action
   Future<void> addEndangeredPlaylists() async {
+    infoMessage = null;
+
     final endangeredPlaylists = <Playlist>[];
 
     for (final playlist in playlists) {
@@ -104,11 +106,16 @@ abstract class _PlaylistStore with Store {
     }
 
     final ids = this.endangeredPlaylists.map((ep) => ep.id);
-    this.endangeredPlaylists.addAll(
-          endangeredPlaylists.where(
-            (ep) => !ids.contains(ep.id),
-          ),
-        );
+    final newEndangeredPlaylists = endangeredPlaylists.where(
+      (ep) => !ids.contains(ep.id),
+    );
+
+    if (newEndangeredPlaylists.isEmpty) {
+      infoMessage = L10nStrings.info_noChangesFound;
+      return;
+    }
+
+    this.endangeredPlaylists.addAll(newEndangeredPlaylists);
   }
 
   @action

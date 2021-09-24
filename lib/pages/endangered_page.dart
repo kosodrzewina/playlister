@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:playlister/widgets/app_snack_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
@@ -33,29 +32,8 @@ class _EndangeredPageState extends State<EndangeredPage> {
               children: [
                 IconTextButton(
                   icon: const Icon(Icons.ac_unit),
+                  onPressed: _playlistStore.addEndangeredPlaylists,
                   child: const Text('check'),
-                  onPressed: () {
-                    _playlistStore.addEndangeredPlaylists();
-
-                    if (_playlistStore.endangeredPlaylists.isEmpty) {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          AppSnackBar.info(
-                            content:
-                                Text(L10n.of(context)!.info_noChangesFound),
-                          ),
-                        );
-
-                      return;
-                    }
-
-                    final snippet =
-                        _playlistStore.endangeredPlaylists.first.snippet;
-                    print(snippet != null
-                        ? snippet.title
-                        : 'something went wrong');
-                  },
                 ),
                 RefreshIndicator(
                   onRefresh: () => Future.delayed(Duration.zero),
