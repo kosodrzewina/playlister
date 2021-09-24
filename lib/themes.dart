@@ -40,6 +40,13 @@ ThemeData _buildTheme(Brightness brightness) {
         ),
       ),
     ),
+    cardTheme: CardTheme(
+      color: isDark ? Colors.grey[900] : Colors.grey[300],
+      elevation: 10,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
