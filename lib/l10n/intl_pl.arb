@@ -54,6 +54,8 @@
   "@error_unknown": {},
   "info_alreadyAdded": "Ta playlista została już dodana!",
   "@info_alreadyAdded": {},
+  "info_noChangesFound": "Nie znaleziono żadnych zmian",
+  "@info_noChangesFound": {},
   "success_playlistAdded": "Playlista została pomyślnie dodana",
   "@success_playlistAdded": {},
   "success_playlistsAdded": "Playlisty zostały pomyślnie dodane",

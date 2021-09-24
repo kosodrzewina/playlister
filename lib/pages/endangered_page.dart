@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:playlister/widgets/app_snack_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../gen/assets.gen.dart';
@@ -37,7 +38,15 @@ class _EndangeredPageState extends State<EndangeredPage> {
                     _playlistStore.addEndangeredPlaylists();
 
                     if (_playlistStore.endangeredPlaylists.isEmpty) {
-                      print('no changes found');
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          AppSnackBar.info(
+                            content:
+                                Text(L10n.of(context)!.info_noChangesFound),
+                          ),
+                        );
+
                       return;
                     }
 
