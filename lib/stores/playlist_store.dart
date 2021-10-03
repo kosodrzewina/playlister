@@ -79,6 +79,8 @@ abstract class _PlaylistStore with Store {
 
   @action
   Future<void> addEndangeredPlaylists() async {
+    successMessage = null;
+    errorMessage = null;
     infoMessage = null;
 
     final endangeredPlaylists = <Playlist>[];
