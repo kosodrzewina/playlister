@@ -78,6 +78,94 @@ abstract class _PlaylistStore with Store {
   }
 
   @action
+  void updateVideoTitle(String id, String newTitle) {
+    PlaylistItem? oldVideo;
+    String? playlistId;
+
+    for (final p in playlists) {
+      final items = p.items;
+
+      if (items == null) {
+        continue;
+      }
+
+      for (final v in items) {
+        if (v.id == id) {
+          oldVideo = v;
+          playlistId = p.id;
+        }
+      }
+    }
+
+    if (oldVideo == null || playlistId == null) {
+      return;
+    }
+
+    final oldSnippet = oldVideo.snippet;
+    final newVideo =
+        oldVideo.copyWith(snippet: oldSnippet.copyWith(title: newTitle));
+
+    removeVideo(oldVideo);
+    playlists.firstWhere((p) => p.id == playlistId).items!.add(newVideo);
+    removeEndangeredVideoById(oldVideo.id);
+  }
+
+  @action
+  void removeVideo(PlaylistItem video) {
+    String? playlistId;
+    var found = false;
+
+    for (final p in playlists) {
+      final items = p.items;
+      if (items == null) {
+        continue;
+      }
+
+      for (final v in items) {
+        if (v.id == video.id) {
+          found = true;
+          playlistId = p.id;
+
+          break;
+        }
+      }
+    }
+
+    if (found && playlistId != null) {
+      playlists
+          .firstWhere((playlist) => playlist.id == playlistId)
+          .items!
+          .remove(video);
+    }
+  }
+
+  @action
+  void removeEndangeredVideoById(String id) {
+    for (final p in endangeredPlaylists) {
+      final items = p.items;
+      if (items == null) {
+        continue;
+      }
+
+      for (final v in items) {
+        if (v.id == id) {
+          endangeredPlaylists
+              .firstWhere((playlist) => playlist.id == p.id)
+              .items!
+              .remove(v);
+
+          if (endangeredPlaylists
+              .firstWhere((playlist) => playlist.id == p.id)
+              .items!
+              .isEmpty) {
+            endangeredPlaylists.remove(p);
+          }
+        }
+      }
+    }
+  }
+
+  @action
   Future<void> addEndangeredPlaylists() async {
     successMessage = null;
     errorMessage = null;

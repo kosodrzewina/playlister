@@ -300,6 +300,23 @@ class PlaylistItem {
     return snippet.title != other.snippet.title;
   }
 
+  PlaylistItem copyWith({
+    String? kind,
+    String? etag,
+    String? id,
+    SnippetVideo? snippet,
+    ContentDetails? contentDetails,
+    Status? status,
+  }) =>
+      PlaylistItem(
+        kind: kind ?? this.kind,
+        etag: etag ?? this.etag,
+        id: id ?? this.id,
+        snippet: snippet ?? this.snippet,
+        contentDetails: contentDetails ?? this.contentDetails,
+        status: status ?? this.status,
+      );
+
   factory PlaylistItem.fromJson(Map<String, dynamic> json) =>
       _$PlaylistItemFromJson(json);
 
@@ -366,6 +383,31 @@ class SnippetVideo extends Snippet {
     this.videoOwnerChannelTitle,
     this.videoOwnerChannelId,
   }) : super(title: title, thumbnails: thumbnails);
+
+  SnippetVideo copyWith({
+    String? publishedAt,
+    String? channelId,
+    String? title,
+    String? description,
+    Thumbnails? thumbnails,
+    String? channelTitle,
+    String? playlistId,
+    int? position,
+    ResourceId? resourceId,
+    String? videoOwnerChannelTitle,
+    String? videoOwnerChannelId,
+  }) =>
+      SnippetVideo(
+        publishedAt: publishedAt ?? this.publishedAt,
+        channelId: channelId ?? this.channelId,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        thumbnails: thumbnails ?? this.thumbnails,
+        channelTitle: channelTitle ?? this.channelTitle,
+        playlistId: playlistId ?? this.playlistId,
+        position: position ?? this.position,
+        resourceId: resourceId ?? this.resourceId,
+      );
 
   factory SnippetVideo.fromJson(Map<String, dynamic> json) =>
       _$SnippetVideoFromJson(json);

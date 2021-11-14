@@ -24,6 +24,22 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
     });
   }
 
+  final _$endangeredPlaylistsAtom =
+      Atom(name: '_PlaylistStore.endangeredPlaylists');
+
+  @override
+  ObservableList<Playlist> get endangeredPlaylists {
+    _$endangeredPlaylistsAtom.reportRead();
+    return super.endangeredPlaylists;
+  }
+
+  @override
+  set endangeredPlaylists(ObservableList<Playlist> value) {
+    _$endangeredPlaylistsAtom.reportWrite(value, super.endangeredPlaylists, () {
+      super.endangeredPlaylists = value;
+    });
+  }
+
   final _$fetchingAtom = Atom(name: '_PlaylistStore.fetching');
 
   @override
@@ -84,6 +100,15 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
     });
   }
 
+  final _$addEndangeredPlaylistsAsyncAction =
+      AsyncAction('_PlaylistStore.addEndangeredPlaylists');
+
+  @override
+  Future<void> addEndangeredPlaylists() {
+    return _$addEndangeredPlaylistsAsyncAction
+        .run(() => super.addEndangeredPlaylists());
+  }
+
   final _$addPlaylistsByChannelIdAsyncAction =
       AsyncAction('_PlaylistStore.addPlaylistsByChannelId');
 
@@ -105,6 +130,50 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
       ActionController(name: '_PlaylistStore');
 
   @override
+  void updateVideoTitle(String id, String newTitle) {
+    final _$actionInfo = _$_PlaylistStoreActionController.startAction(
+        name: '_PlaylistStore.updateVideoTitle');
+    try {
+      return super.updateVideoTitle(id, newTitle);
+    } finally {
+      _$_PlaylistStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeVideo(PlaylistItem video) {
+    final _$actionInfo = _$_PlaylistStoreActionController.startAction(
+        name: '_PlaylistStore.removeVideo');
+    try {
+      return super.removeVideo(video);
+    } finally {
+      _$_PlaylistStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeEndangeredVideoById(String id) {
+    final _$actionInfo = _$_PlaylistStoreActionController.startAction(
+        name: '_PlaylistStore.removeEndangeredVideoById');
+    try {
+      return super.removeEndangeredVideoById(id);
+    } finally {
+      _$_PlaylistStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addNewVideos(Playlist playlist) {
+    final _$actionInfo = _$_PlaylistStoreActionController.startAction(
+        name: '_PlaylistStore.addNewVideos');
+    try {
+      return super.addNewVideos(playlist);
+    } finally {
+      _$_PlaylistStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void removePlaylistById(String id) {
     final _$actionInfo = _$_PlaylistStoreActionController.startAction(
         name: '_PlaylistStore.removePlaylistById');
@@ -119,6 +188,7 @@ mixin _$PlaylistStore on _PlaylistStore, Store {
   String toString() {
     return '''
 playlists: ${playlists},
+endangeredPlaylists: ${endangeredPlaylists},
 fetching: ${fetching},
 errorMessage: ${errorMessage},
 infoMessage: ${infoMessage},

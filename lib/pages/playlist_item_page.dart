@@ -105,8 +105,8 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
                               oldVideos.firstWhere((v) => v.id == item.id);
                           Navigator.of(context).push(
                             ConflictPageRoute(
-                              oldSnippet: oldVideo.snippet,
-                              newSnippet: item.snippet,
+                              oldVideo: oldVideo,
+                              newVideo: item,
                             ),
                           );
                         }
