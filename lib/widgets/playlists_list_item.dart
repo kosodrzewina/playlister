@@ -7,6 +7,7 @@ import '../models.dart';
 
 class PlaylistsListItem extends StatelessWidget {
   final Snippet snippet;
+  final Color color;
   final Icon? icon;
   final VoidCallback? onTap;
   final VoidCallback? onPressedIcon;
@@ -14,6 +15,7 @@ class PlaylistsListItem extends StatelessWidget {
   const PlaylistsListItem({
     Key? key,
     required this.snippet,
+    required this.color,
     this.icon,
     this.onTap,
     this.onPressedIcon,
@@ -24,10 +26,8 @@ class PlaylistsListItem extends StatelessWidget {
     return Container(
       height: 55,
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(
-          15,
-        ),
+        color: color,
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Material(
         type: MaterialType.transparency,

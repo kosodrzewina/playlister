@@ -15,12 +15,17 @@ class PlaylistStore = _PlaylistStore with _$PlaylistStore;
 
 abstract class _PlaylistStore with Store {
   static const playlistsKey = 'PLAYLISTS';
+  static const endangeredPlaylistsKey = 'ENDANGERED_PLAYLISTS';
 
-  late ReactionDisposer _saveDisposer;
+  late ReactionDisposer _saveDisposerPlaylists;
+  late ReactionDisposer _saveDisposerEndangeredPlaylists;
   final YoutubeRepository _youtubeRepository;
 
   @observable
   ObservableList<Playlist> playlists = ObservableList<Playlist>();
+
+  @observable
+  ObservableList<Playlist> endangeredPlaylists = ObservableList<Playlist>();
 
   @observable
   bool fetching = false;
@@ -41,19 +46,187 @@ abstract class _PlaylistStore with Store {
     final savedPlaylists =
         jsonDecode(sharedPrefs.getString(playlistsKey) ?? '[]')
             as List<dynamic>;
+    final savedEndangeredPlaylists =
+        jsonDecode(sharedPrefs.getString(endangeredPlaylistsKey) ?? '[]')
+            as List<dynamic>;
 
     playlists.addAll(
       savedPlaylists.map(
         (dynamic item) => Playlist.fromJson(item as Map<String, dynamic>),
       ),
     );
+    endangeredPlaylists.addAll(
+      savedEndangeredPlaylists.map(
+        (dynamic item) => Playlist.fromJson(item as Map<String, dynamic>),
+      ),
+    );
 
-    _saveDisposer = reaction((_) => playlists.asObservable(), (_) async {
+    _saveDisposerPlaylists =
+        reaction((_) => playlists.asObservable(), (_) async {
       await sharedPrefs.setString(
         playlistsKey,
         jsonEncode(playlists),
       );
     });
+    _saveDisposerEndangeredPlaylists =
+        reaction((_) => endangeredPlaylists.asObservable(), (_) async {
+      await sharedPrefs.setString(
+        endangeredPlaylistsKey,
+        jsonEncode(endangeredPlaylists),
+      );
+    });
+  }
+
+  @action
+  void updateVideoTitle(String id, String newTitle) {
+    PlaylistItem? oldVideo;
+    String? playlistId;
+
+    for (final p in playlists) {
+      final items = p.items;
+
+      if (items == null) {
+        continue;
+      }
+
+      for (final v in items) {
+        if (v.id == id) {
+          oldVideo = v;
+          playlistId = p.id;
+        }
+      }
+    }
+
+    if (oldVideo == null || playlistId == null) {
+      return;
+    }
+
+    final oldSnippet = oldVideo.snippet;
+    final newVideo =
+        oldVideo.copyWith(snippet: oldSnippet.copyWith(title: newTitle));
+
+    removeVideo(oldVideo);
+    playlists.firstWhere((p) => p.id == playlistId).items!.add(newVideo);
+    removeEndangeredVideoById(oldVideo.id);
+  }
+
+  @action
+  void removeVideo(PlaylistItem video) {
+    String? playlistId;
+    var found = false;
+
+    for (final p in playlists) {
+      final items = p.items;
+      if (items == null) {
+        continue;
+      }
+
+      for (final v in items) {
+        if (v.id == video.id) {
+          found = true;
+          playlistId = p.id;
+
+          break;
+        }
+      }
+    }
+
+    if (found && playlistId != null) {
+      playlists
+          .firstWhere((playlist) => playlist.id == playlistId)
+          .items!
+          .remove(video);
+    }
+  }
+
+  @action
+  void removeEndangeredVideoById(String id) {
+    for (final p in endangeredPlaylists) {
+      final items = p.items;
+      if (items == null) {
+        continue;
+      }
+
+      for (final v in items) {
+        if (v.id == id) {
+          endangeredPlaylists
+              .firstWhere((playlist) => playlist.id == p.id)
+              .items!
+              .remove(v);
+
+          if (endangeredPlaylists
+              .firstWhere((playlist) => playlist.id == p.id)
+              .items!
+              .isEmpty) {
+            endangeredPlaylists.remove(p);
+          }
+        }
+      }
+    }
+  }
+
+  @action
+  Future<void> addEndangeredPlaylists() async {
+    successMessage = null;
+    errorMessage = null;
+    infoMessage = null;
+
+    final endangeredPlaylists = <Playlist>[];
+
+    for (final playlist in playlists) {
+      final res = await _youtubeRepository.playlistByPlaylistId({playlist.id});
+
+      if (res == null) {
+        continue;
+      }
+
+      final currentPlaylist = res.first.copyWith(
+          items: await _youtubeRepository
+              .allPlaylistItemsByPlaylistId(res.first.id));
+
+      addNewVideos(currentPlaylist);
+
+      final endangeredVideos = playlist.getEndangeredVideos(currentPlaylist);
+
+      if (endangeredVideos != null && endangeredVideos.isNotEmpty) {
+        endangeredPlaylists.add(
+          currentPlaylist.copyWith(items: endangeredVideos),
+        );
+      }
+    }
+
+    final ids = this.endangeredPlaylists.map((ep) => ep.id);
+    final newEndangeredPlaylists = endangeredPlaylists.where(
+      (ep) => !ids.contains(ep.id),
+    );
+
+    if (newEndangeredPlaylists.isEmpty) {
+      infoMessage = L10nStrings.info_noChangesFound;
+      return;
+    }
+
+    this.endangeredPlaylists.addAll(newEndangeredPlaylists);
+  }
+
+  @action
+  void addNewVideos(Playlist playlist) {
+    final storedVideos = playlists.firstWhere((p) => p.id == playlist.id).items;
+
+    final newVideos = playlist.items;
+    if (newVideos == null) {
+      return;
+    }
+
+    for (final nv in newVideos) {
+      try {
+        storedVideos!.singleWhere((sv) => sv.id == nv.id);
+        // ignore: avoid_catching_errors
+      } on StateError {
+        playlists
+          ..removeWhere((p) => p.id == playlist.id)
+          ..add(playlist);
+      }
+    }
   }
 
   @action
@@ -130,10 +303,12 @@ abstract class _PlaylistStore with Store {
   void removePlaylistById(String id) {
     successMessage = null;
     playlists.removeWhere((p) => p.id == id);
+    endangeredPlaylists.removeWhere((ep) => ep.id == id);
     successMessage = L10nStrings.success_playlistRemoved;
   }
 
   void dispose() {
-    _saveDisposer();
+    _saveDisposerPlaylists();
+    _saveDisposerEndangeredPlaylists();
   }
 }

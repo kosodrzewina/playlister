@@ -8,17 +8,21 @@ import '../gen/assets.gen.dart';
 import '../l10n/l10n.dart';
 import '../models.dart';
 import '../repositories/youtube_repository.dart';
+import '../stores/playlist_store.dart';
 import '../widgets/playlists_list_item.dart';
+import 'conflict_page.dart';
 
 class PlaylistItemPage extends StatefulWidget {
   final String id;
   final String title;
   final List<PlaylistItem>? items;
+  final bool endangeredPage;
 
   const PlaylistItemPage({
     required this.id,
     required this.title,
     required this.items,
+    this.endangeredPage = false,
   });
 
   @override
@@ -82,7 +86,32 @@ class _PlaylistItemPageState extends State<PlaylistItemPage> {
               itemBuilder: (context, index) {
                 final item = items[index];
 
-                return PlaylistsListItem(snippet: item.snippet);
+                return PlaylistsListItem(
+                  snippet: item.snippet,
+                  color: Theme.of(context).cardColor,
+                  onTap: widget.endangeredPage
+                      ? () {
+                          final oldPlaylist = context
+                              .read<PlaylistStore>()
+                              .playlists
+                              .firstWhere((p) => p.id == widget.id);
+
+                          final oldVideos = oldPlaylist.items;
+                          if (oldVideos == null) {
+                            return;
+                          }
+
+                          final oldVideo =
+                              oldVideos.firstWhere((v) => v.id == item.id);
+                          Navigator.of(context).push(
+                            ConflictPageRoute(
+                              oldVideo: oldVideo,
+                              newVideo: item,
+                            ),
+                          );
+                        }
+                      : null,
+                );
               },
             )
           : Center(
@@ -117,11 +146,13 @@ class PlaylistItemPageRoute extends MaterialPageRoute<void> {
     required String id,
     required String title,
     List<PlaylistItem>? items,
+    bool endangeredList = false,
   }) : super(
           builder: (context) => PlaylistItemPage(
             id: id,
             title: title,
             items: items,
+            endangeredPage: endangeredList,
           ),
         );
 }

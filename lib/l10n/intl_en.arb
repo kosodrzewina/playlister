@@ -54,6 +54,8 @@
     "@error_unknown": {},
     "info_alreadyAdded": "This playlist has been already added!",
     "@info_alreadyAdded": {},
+    "info_noChangesFound": "No changes found",
+    "@info_noChangesFound": {},
     "success_playlistAdded": "Playlist has been successfully added",
     "@success_playlistAdded": {},
     "success_playlistsAdded": "Playlists have been successfully added",

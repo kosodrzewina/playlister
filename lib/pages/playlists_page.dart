@@ -17,8 +17,6 @@ class PlaylistsPage extends StatefulWidget {
 }
 
 class _PlaylistsPageState extends State<PlaylistsPage> {
-  String currentSort = 'Sort by 0';
-
   @override
   Widget build(BuildContext context) {
     final playlists = context.watch<PlaylistStore>().playlists;
@@ -45,10 +43,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
           : Observer(
               builder: (_) => ListView.separated(
                 itemCount: playlists.length,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
-                ),
+                padding: const EdgeInsets.all(10),
                 separatorBuilder: (context, index) =>
                     const SizedBox(height: 10),
                 itemBuilder: (context, index) {
@@ -56,6 +51,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
 
                   return PlaylistsListItem(
                     snippet: item.snippet!,
+                    color: Theme.of(context).cardColor,
                     icon: const Icon(Icons.delete),
                     onPressedIcon: () => context
                         .read<PlaylistStore>()
